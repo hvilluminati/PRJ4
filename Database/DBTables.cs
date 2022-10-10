@@ -7,26 +7,24 @@ using System.Threading.Tasks;
 
 namespace Database.Tables
 {
-    public interface IProduct
+    public interface IText
     {
-        int ProductId { get; set; }
-        string maker { get; set; }
-        int model { get; set; }
-        string type { get; set; }
-        List<Product> Products { get; }
+        public int TextID { get; set; }
+        public string Headline { get; set; }
+
+        public int MainText { get; set; }
     }
 
-    public class Product : IProduct
+    public class Text : IText
     {
 
-        public int ProductId { get; set; }
-        public string maker { get; set; }
+        public int TextID { get; set; }
+        public string Headline { get; set; }
 
-        public int model { get; set; }
+        public int MainText { get; set; }
 
-        public string type { get; set; }
 
-        public List<Product> Products { get; } = new();
+        public List<Text> Texts { get; } = new();
     }
     
 }
