@@ -17,8 +17,10 @@ namespace Database.Tables
 
     public class Text : IText
     {
-
+        [Key]
         public int TextID { get; set; }
+
+        [MaxLength(50)]
         public string Headline { get; set; }
 
         public int MainText { get; set; }
