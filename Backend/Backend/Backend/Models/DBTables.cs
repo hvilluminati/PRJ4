@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database.Tables
+namespace Backend.Models
 {
     public interface IText
     {
@@ -29,5 +29,5 @@ namespace Database.Tables
 
         public List<Text> Texts { get; } = new();
     }
-    
+
 }
