@@ -539,3 +539,37 @@ thumb
 sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/csharp,react,aspnetcore
+full-stack/package.json
+full-stack/full-stack/Properties/launchSettings.json
+full-stack/package-lock.json
+full-stack/full-stack/WeatherForecast.cs
+full-stack/full-stack/Program.cs
+full-stack/full-stack/Pages/Error.cshtml.cs
+full-stack/full-stack/Pages/Error.cshtml
+full-stack/full-stack/Pages/_ViewImports.cshtml
+full-stack/full-stack/full-stack.csproj
+full-stack/full-stack/Controllers/WeatherForecastController.cs
+full-stack/full-stack/appsettings.json
+full-stack/full-stack/appsettings.Development.json
+full-stack/full-stack.sln
+full-stack/client-app/tsconfig.json
+full-stack/client-app/src/setupTests.ts
+full-stack/client-app/src/reportWebVitals.ts
+full-stack/client-app/src/react-app-env.d.ts
+full-stack/client-app/src/logo.svg
+full-stack/client-app/src/index.tsx
+full-stack/client-app/src/index.css
+full-stack/client-app/src/aspnetcore-react.ts
+full-stack/client-app/src/aspnetcore-https.ts
+full-stack/client-app/src/App.tsx
+full-stack/client-app/src/App.test.tsx
+full-stack/client-app/src/App.css
+full-stack/client-app/README.md
+full-stack/client-app/public/robots.txt
+full-stack/client-app/public/manifest.json
+full-stack/client-app/public/logo512.png
+full-stack/client-app/public/logo192.png
+full-stack/client-app/public/index.html
+full-stack/client-app/public/favicon.ico
+full-stack/client-app/package.json
+full-stack/client-app/package-lock.json
