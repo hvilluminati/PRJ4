@@ -30,4 +30,21 @@ namespace Backend.Models
         public List<Text> Texts { get; } = new();
     }
 
+    public class Skill
+    {
+        [Key]
+        public int SkillID { get; set; }
+
+        [MaxLength(50)]
+        [Required]
+        public string SkillName { get; set; }
+
+        [Required]
+        [Range(1, 10)]
+        public int SkillLevel { get; set; }
+
+        public int MonthsOfExperience { get; set; }
+
+    }
+
 }
