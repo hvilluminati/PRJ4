@@ -13,7 +13,7 @@ namespace Backend.Models
         public int TextId { get; set; }
         public string Headline { get; set; }
 
-        public int MainText { get; set; }
+        public string MainText { get; set; }
     }
 
     public class Text : IText
@@ -24,7 +24,7 @@ namespace Backend.Models
         [MaxLength(50)]
         public string Headline { get; set; }
 
-        public int MainText { get; set; }
+        public string MainText { get; set; }
 
 
         public List<Text> Texts { get; } = new();

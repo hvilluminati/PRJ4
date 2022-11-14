@@ -1,6 +1,5 @@
 ﻿using System;
 using Backend.Models;
-
 using Microsoft.EntityFrameworkCore;
 
 public interface IMyDBContext
