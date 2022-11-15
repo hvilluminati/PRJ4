@@ -49,7 +49,6 @@ namespace Database_test1.Controllers
 
             return File(fileBytes, "application/force-download", fileName);
 
-            return files;
             
         }
 
