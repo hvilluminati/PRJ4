@@ -8,11 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Database_test1.Data;
 using Database_test1.Models;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController, Authorize]
     public class TextsController : ControllerBase
     {
         private readonly PortfolioDbContext _context;
@@ -25,14 +26,14 @@ namespace Database_test1.Controllers
         }
 
         // GET: api/Texts
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Text>>> GetTexts()
         {
             return await _context.Texts.ToListAsync();
         }
 
         // GET: api/Texts/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), AllowAnonymous]
         public async Task<ActionResult<Text>> GetText(int id)
         {
             var text = await _context.Texts.FindAsync(id);

@@ -18,6 +18,8 @@ namespace Database_test1.Data
 
         public DbSet<Database_test1.Models.Files> Files { get; set; }
 
+        public DbSet<Database_test1.Models.User> Users { get; set; }
+
 
 
     }

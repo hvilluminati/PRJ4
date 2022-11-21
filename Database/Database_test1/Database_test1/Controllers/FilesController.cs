@@ -8,11 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Database_test1.Data;
 using Database_test1.Models;
 using Microsoft.CodeAnalysis;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController, Authorize]
     public class FilesController : ControllerBase
     {
         private readonly PortfolioDbContext _context;
@@ -23,7 +24,7 @@ namespace Database_test1.Controllers
         }
 
         // GET: api/Files
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Files>>> GetFiles()
         {
             return await _context.Files.ToListAsync();
@@ -33,7 +34,7 @@ namespace Database_test1.Controllers
         }
 
         // GET: api/Files/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), AllowAnonymous]
         public async Task<ActionResult<Files>> GetFiles(int id)
         {
             var files = await _context.Files.FindAsync(id);
