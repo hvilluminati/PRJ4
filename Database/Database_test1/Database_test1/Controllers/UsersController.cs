@@ -16,6 +16,8 @@ using System.Text;
 using Database_test1.Utilities;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Identity;
+using NuGet.Common;
+using System.Security.Principal;
 
 namespace Database_test1.Controllers
 {
@@ -25,7 +27,6 @@ namespace Database_test1.Controllers
     {
         private readonly PortfolioDbContext _context;
         private readonly AppSettings _appSettings;
-        const int BcryptWorkfactor = 11;
 
         public UsersController(PortfolioDbContext context, IOptions<AppSettings> appSettings)
         {
@@ -35,51 +36,58 @@ namespace Database_test1.Controllers
 
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost("register"), AllowAnonymous]
-        public async Task<ActionResult<TokenDto>> Register(UserDto regUser)
-        {
-            regUser.Email = regUser.Email.ToLower();
-            var emailExist = await _context.Users.Where(u => u.Email == regUser.Email).FirstOrDefaultAsync();
-            if (emailExist != null)
-                return BadRequest(new { errorMessage = "Email already in use" });
-            User user = new User()
-            {
-                Email = regUser.Email
-            };
-            user.PwHash = HashPassword(regUser.Password, BcryptWorkfactor);
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-            var token = new TokenDto();
-            token.JWT = GenerateToken(user);
-            return CreatedAtAction("Get", new { id = user.UserId }, token);
-        }
+        //[HttpPost("register"), AllowAnonymous]
+        //public async Task<ActionResult<TokenDto>> Register(UserDto regUser)
+        //{
+        //    regUser.Email = regUser.Email.ToLower();
+        //    var emailExist = await _context.Users.Where(u => u.Email == regUser.Email).FirstOrDefaultAsync();
+        //    if (emailExist != null)
+        //        return BadRequest(new { errorMessage = "Email already in use" });
+        //    User user = new User()
+        //    {
+        //        Email = regUser.Email
+        //    };
+        //    user.PwHash = HashPassword(regUser.Password, BcryptWorkfactor);
+        //    _context.Users.Add(user);
+        //    await _context.SaveChangesAsync();
+        //    var token = new TokenDto();
+        //    token.JWT = GenerateToken(user);
+        //    return CreatedAtAction("Get", new { id = user.UserId }, token);
+        //}
 
 
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("login"), AllowAnonymous]
-        public async Task<ActionResult<TokenDto>> Login(UserDto login)
+        public async Task<ActionResult<TokenDto>> Login([FromBody]UserDto login)
         {
-            login.Email = login.Email.ToLower();
-            var user = await _context.Users.Where(u => u.Email == login.Email).FirstOrDefaultAsync();
-            if(user!= null)
+            if (login != null)
             {
-                var validPwd = Verify(login.Password, user.PwHash);
-                if(validPwd)
+                login.Email = login.Email.ToLowerInvariant();
+                var user = await _context.Users.Where(u => u.Email == login.Email).FirstOrDefaultAsync();
+                if (user != null)
                 {
-                    var token = new TokenDto();
-                    token.JWT = GenerateToken(user);
-                    return token;
+                    var validPwd = Verify(login.Password, user.PwHash);
+                    if (validPwd)
+                    {
+                        var jwt = GenerateToken(user);
+                        var token = new TokenDto() { JWT = jwt };
+                        return token;
+
+                        //var token = new TokenDto();
+                        //token.JWT = GenerateToken(user);
+                        //return token;
+                    }
                 }
             }
-            ModelState.AddModelError(string.Empty, "Invalid login");
+            ModelState.AddModelError(string.Empty, "Invalid login"); 
             return BadRequest(ModelState);
         }
 
 
         // GET: api/Account/5
-        [HttpGet("{id}", Name = "Get")]
-        public async Task<ActionResult<UserDto>> Get(int id)
+        [HttpGet("{id}", Name = "Get"),AllowAnonymous]
+        public async Task<ActionResult<UserDto>> Get(long id)
         {
             var user = await _context.Users.FindAsync(id);
 
@@ -90,6 +98,14 @@ namespace Database_test1.Controllers
             var userDto = new UserDto();
             userDto.Email = user.Email;
             return userDto;
+        }
+
+
+        //Junk get call, only used to check authorize status on frontend
+        [HttpGet(Name = "LoggedIn")]
+        public async Task<ActionResult<bool>> LoggedIn()
+        {
+            return true;
         }
 
         private string GenerateToken(User user)
