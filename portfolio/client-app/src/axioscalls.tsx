@@ -94,6 +94,15 @@ export function getDescription() {
 		.catch(console.error);
 }
 
+export function putSkill(skill: any) {
+	axiosInstance
+		.put('Skills/' + skill.skillID, skill, config)
+		.then((response) => {
+			return response;
+		})
+		.catch(console.error);
+}
+
 export function putDescription(desc: string) {
 	axiosInstance
 		.put(
@@ -126,16 +135,4 @@ export function putTitle(title: string) {
 			return response;
 		})
 		.catch(console.error);
-}
-
-export function authorize() {
-	return axiosInstance
-		.put('/users/loggedin', config)
-		.then(() => {
-			return true;
-		})
-		.catch((err) => {
-			console.log(err);
-			return false;
-		});
 }

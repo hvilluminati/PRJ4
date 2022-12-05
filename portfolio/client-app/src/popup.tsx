@@ -1,5 +1,5 @@
-import react from 'react';
-import { putDescription, putTitle } from './axioscalls';
+import react, { useState, useEffect } from 'react';
+import { putDescription, putTitle, putSkill } from './axioscalls';
 import { lang } from './pos';
 import Popup from 'reactjs-popup';
 
@@ -10,7 +10,7 @@ export const AboutPopup = ({
 	sender: string;
 	func: Function;
 }) => {
-	const [text, setText] = react.useState(
+	const [text, setText] = useState(
 		document.getElementById(sender === 'title' ? 'aboutTitleText' : 't')!
 			.innerHTML
 	);
@@ -42,9 +42,9 @@ export const AboutPopup = ({
 };
 
 export const SkillsPopup = () => {
-	const [height, setHeight] = react.useState('1px');
+	const [height, setHeight] = useState('1px');
 
-	react.useEffect(() => {
+	useEffect(() => {
 		setHeight(lang.length * 35 + 'px');
 	}, []);
 	return (
@@ -53,7 +53,8 @@ export const SkillsPopup = () => {
 				<Popup
 					trigger={<button id={'skill'}>{l[1]}</button>}
 					arrow={false}
-					position={i % 2 === 0 ? 'left center' : 'right center'}>
+					position={i % 2 === 0 ? 'left center' : 'right center'}
+					key={i}>
 					<SkillPopup skill={l} />
 				</Popup>
 			))}
@@ -62,11 +63,44 @@ export const SkillsPopup = () => {
 };
 
 const SkillPopup = ({ skill }: { skill: any }) => {
+	const [skillName, setSkillName] = useState(skill[1]);
+	const [skillLevel, setSkillLevel] = useState(skill[2]);
+	const [monthsOfExperience, setMonthsOfExperience] = useState(skill[3]);
+
+	function click() {
+		putSkill({
+			skillID: skill[0],
+			skillName: skillName,
+			skillLevel: skillLevel,
+			monthsOfExperience: monthsOfExperience,
+		});
+	}
+
 	return (
 		<div id='skillWrapper'>
-			<textarea value={skill[1]} />
-			<textarea value={skill[2]} />
-			<textarea value={skill[3]} />
+			<textarea
+				id='skillAtt'
+				placeholder={skillName}
+				onChange={(event) => setSkillName(event.target.value)}
+			/>
+			<textarea
+				id='skillAtt'
+				placeholder={skillLevel}
+				onChange={(event) => setSkillLevel(event.target.value)}
+			/>
+			<textarea
+				id='skillAtt'
+				placeholder={monthsOfExperience}
+				onChange={(event) => setMonthsOfExperience(event.target.value)}
+			/>
+			<div id='skill-btn-wrapper'>
+				<button onClick={click}>Change skill</button>
+				<div className='border bottom' />
+				<div className='border left' />
+				<div className='border right' />
+				<div className='border topright' />
+				<div className='border topleft' />
+			</div>
 		</div>
 	);
 };
