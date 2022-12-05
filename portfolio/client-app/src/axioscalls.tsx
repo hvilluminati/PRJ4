@@ -108,7 +108,7 @@ export function putDescription(desc: string) {
 		.then((response) => {
 			return response;
 		})
-		.catch(console.error);
+		.catch((error) => console.error('There was an error!', error));
 	console.log('Description changed to ' + desc);
 }
 
