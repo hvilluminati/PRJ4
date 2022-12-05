@@ -10,7 +10,7 @@ namespace Database_test1.Models
 
 
 
-    public class File 
+    public class ZipFile 
     {
         [Key] 
         public int DocumentId { get; set; }

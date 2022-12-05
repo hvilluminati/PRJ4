@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,9 @@ using Database_test1.Data;
 using Database_test1.Models;
 using Microsoft.CodeAnalysis;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
+
+File = Database_test1.Models.ZipFile;
 namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
@@ -20,17 +24,17 @@ namespace Database_test1.Controllers
         public FilesController(PortfolioDbContext context)
         {
             _context = context;
-            TypeAdapterConfig<File,File_DTO>.NewConfig().IgnoreNullValues(true);
+            TypeAdapterConfig<File,ZipFile_DTO>.NewConfig().IgnoreNullValues(true);
 
         }
 
         // GET: api/Files
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<File>>> GetFiles()
+        public async Task<ActionResult<IEnumerable<WebRequestMethods.File>>> GetFiles()
         {
-            List<File> filesList= await _context.Files.ToListAsync();
+            List<WebRequestMethods.File> filesList= await _context.Files.ToListAsync();
 
-            return filesList.Adapt<List<File_DTO>>();
+            return filesList.Adapt<List<ZipFile_DTO>>();
 
 
 
@@ -38,7 +42,7 @@ namespace Database_test1.Controllers
 
         // GET: api/Files/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<File>> GetFiles(int id)
+        public async Task<ActionResult<WebRequestMethods.File>> GetFiles(int id)
         {
             var files = await _context.Files.FindAsync(id);
 
@@ -59,7 +63,7 @@ namespace Database_test1.Controllers
         // PUT: api/Files/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFiles(int id, File file)
+        public async Task<IActionResult> PutFiles(int id, WebRequestMethods.File file)
         {
             if (id != file.DocumentId)
             {
@@ -90,7 +94,7 @@ namespace Database_test1.Controllers
         // POST: api/Files
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<File>> PostFiles(IFormFile files,string language)
+        public async Task<ActionResult<WebRequestMethods.File>> PostFiles(IFormFile files,string language)
         {
             if (files != null)
             {
@@ -107,7 +111,7 @@ namespace Database_test1.Controllers
                     }
                     var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
-                    var objfiles = new File()
+                    var objfiles = new WebRequestMethods.File()
                     {
                         Name = newFileName,
                         FileType = fileExtension,
