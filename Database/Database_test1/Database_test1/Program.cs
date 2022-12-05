@@ -22,7 +22,7 @@ builder.Services.AddControllers();
 
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
 builder.Services.Configure<AppSettings>(appSettingsSection);
-var appSettings = appSettingsSection.Get<AppSettings>();
+var _appSettings = appSettingsSection.Get<AppSettings>();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -35,7 +35,7 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false,
         ValidateIssuer = false,
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("the secret that needs to be at least 16 characeters long for HmacSha256")),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appSettings.SecretKey)),
     ValidateLifetime = true, //validate the expiration and not before values
     ClockSkew = TimeSpan.FromMinutes(5) //5 minute tolerance for the expiration
 };
@@ -53,9 +53,9 @@ builder.Services.AddSwaggerGen(c =>
     // Set the comments path for the Swagger JSON and UI.
 
 
-    //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    //c.IncludeXmlComments(xmlPath);
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
 
 
     // Bearer token authentication
@@ -96,7 +96,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
@@ -105,7 +105,7 @@ using (var scope = app.Services.CreateScope())
     var serviceProvider = scope.ServiceProvider;
     var dbContext = serviceProvider.GetService<PortfolioDbContext>();
     if (dbContext != null)
-        SeedAdmin.SeedData(dbContext, appSettings.BcryptWorkfactor);
+        SeedAdmin.SeedData(dbContext, _appSettings.BcryptWorkfactor);
     else throw new Exception("Unable to get dbContext!");
 }
 

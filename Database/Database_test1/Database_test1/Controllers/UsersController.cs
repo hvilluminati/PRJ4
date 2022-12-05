@@ -84,7 +84,11 @@ namespace Database_test1.Controllers
             return BadRequest(ModelState);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: api/Account/5
         [HttpGet("{id}", Name = "Get"),AllowAnonymous]
         public async Task<ActionResult<UserDto>> Get(long id)
