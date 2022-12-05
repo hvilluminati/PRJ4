@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Backend.Data;
-using Backend.Models;
+using Database_test1.Data;
+using Database_test1.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace test.Controllers
+namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController, Authorize]
     public class SkillsController : ControllerBase
     {
         private readonly PortfolioDbContext _context;
@@ -22,14 +23,14 @@ namespace test.Controllers
         }
 
         // GET: api/Skills
-        [HttpGet]
+        [HttpGet, AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Skill>>> GetSkills()
         {
             return await _context.Skills.ToListAsync();
         }
 
         // GET: api/Skills/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), AllowAnonymous]
         public async Task<ActionResult<Skill>> GetSkill(int id)
         {
             var skill = await _context.Skills.FindAsync(id);

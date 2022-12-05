@@ -1,10 +1,8 @@
 import axios from 'axios';
-import Popup from 'reactjs-popup';
-import React from 'react';
 
 const config = {
 	headers: {
-		Authorization: 'Bearer ' + localStorage.getItem('token'),
+		Authorization: 'Bearer ' + localStorage.getItem('jwt'),
 	},
 };
 
@@ -55,7 +53,7 @@ export const code = (name: string) => {
 
 var lang: string[][] = [];
 
-const axiosInstance = axios.create({ baseURL: 'https://localhost:7062/api/' });
+const axiosInstance = axios.create({ baseURL: 'https://localhost:7041/api/' });
 export function getSkills(pos: number[][]) {
 	axiosInstance
 		.get('Skills')
@@ -98,7 +96,15 @@ export function getDescription() {
 
 export function putDescription(desc: string) {
 	axiosInstance
-		.put('Texts/1', desc)
+		.put(
+			'Texts/1',
+			{
+				textID: 1,
+				headline: 'bruh',
+				mainText: 'floop',
+			},
+			config
+		)
 		.then((response) => {
 			return response;
 		})
@@ -118,7 +124,7 @@ export function putTitle(title: string) {
 
 export function authorize() {
 	return axiosInstance
-		.get('/users/loggedin', config)
+		.put('/users/loggedin', config)
 		.then(() => {
 			return true;
 		})

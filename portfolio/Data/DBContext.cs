@@ -1,26 +1,26 @@
 ﻿using System;
-using Backend.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Database_test1.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Backend.Data
+namespace Database_test1.Data
 {
     public class PortfolioDbContext : DbContext
     {
-        public PortfolioDbContext(DbContextOptions options)
-        : base(options)
-        {
-        }
+        public PortfolioDbContext(DbContextOptions<PortfolioDbContext> options)
+            : base(options) { }
 
         public DbSet<Text> Texts { get; set; }
 
         public DbSet<Skill> Skills { get; set; }
 
+        public DbSet<Database_test1.Models.Files> Files { get; set; }
+
+        public DbSet<Database_test1.Models.User> Users { get; set; }
 
 
-        public string DbPath { get; }
 
-
-        // The following configures EF to create a Sqlite database file in the
-        // special "local" folder for your platform.
-       }
+    }
 }
