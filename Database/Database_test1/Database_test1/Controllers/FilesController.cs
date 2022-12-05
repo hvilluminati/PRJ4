@@ -11,12 +11,12 @@ using Database_test1.Models;
 using Microsoft.CodeAnalysis;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
+using File = Database_test1.Models.File;
 
-File = Database_test1.Models.ZipFile;
 namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController, Authorize]
+   // [ApiController, Authorize]
     public class FilesController : ControllerBase
     {
         private readonly PortfolioDbContext _context;
@@ -24,17 +24,17 @@ namespace Database_test1.Controllers
         public FilesController(PortfolioDbContext context)
         {
             _context = context;
-            TypeAdapterConfig<File,ZipFile_DTO>.NewConfig().IgnoreNullValues(true);
+            TypeAdapterConfig<File,File_DTO>.NewConfig().IgnoreNullValues(true);
 
         }
 
         // GET: api/Files
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<WebRequestMethods.File>>> GetFiles()
+        public async Task<ActionResult<IEnumerable<File_DTO>>> GetFiles()
         {
-            List<WebRequestMethods.File> filesList= await _context.Files.ToListAsync();
+            List<File> filesList= await _context.ZipFiles.ToListAsync();
 
-            return filesList.Adapt<List<ZipFile_DTO>>();
+            return filesList.Adapt<List<File_DTO>>();
 
 
 
@@ -42,9 +42,9 @@ namespace Database_test1.Controllers
 
         // GET: api/Files/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<WebRequestMethods.File>> GetFiles(int id)
+        public async Task<ActionResult<File>> GetFiles(int id)
         {
-            var files = await _context.Files.FindAsync(id);
+            var files = await _context.ZipFiles.FindAsync(id);
 
             if (files == null)
             {
@@ -63,7 +63,7 @@ namespace Database_test1.Controllers
         // PUT: api/Files/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFiles(int id, WebRequestMethods.File file)
+        public async Task<IActionResult> PutFiles(int id, File file)
         {
             if (id != file.DocumentId)
             {
@@ -94,7 +94,7 @@ namespace Database_test1.Controllers
         // POST: api/Files
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<WebRequestMethods.File>> PostFiles(IFormFile files,string language)
+        public async Task<ActionResult<File>> PostFiles(IFormFile files,string language)
         {
             if (files != null)
             {
@@ -111,7 +111,7 @@ namespace Database_test1.Controllers
                     }
                     var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
-                    var objfiles = new WebRequestMethods.File()
+                    var objfiles = new File()
                     {
                         Name = newFileName,
                         FileType = fileExtension,
@@ -125,12 +125,12 @@ namespace Database_test1.Controllers
                         objfiles.DataFiles = target.ToArray();
                     }
 
-                    _context.Files.Add(objfiles);
+                    _context.ZipFiles.Add(objfiles);
                     _context.SaveChanges();
 
 
-                    var file = await _context.Files.FindAsync(objfiles.DocumentId);
-                    return CreatedAtAction("GetFiles", new { id = file.DocumentId }, files);
+                    var ZipFile = await _context.ZipFiles.FindAsync(objfiles.DocumentId);
+                    return CreatedAtAction("GetFiles", new { id = ZipFile.DocumentId }, files);
 
 
                 }
@@ -143,13 +143,13 @@ namespace Database_test1.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFiles(int id)
         {
-            var files = await _context.Files.FindAsync(id);
+            var files = await _context.ZipFiles.FindAsync(id);
             if (files == null)
             {
                 return NotFound();
             }
 
-            _context.Files.Remove(files);
+            _context.ZipFiles.Remove(files);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -157,7 +157,7 @@ namespace Database_test1.Controllers
 
         private bool FilesExists(int id)
         {
-            return _context.Files.Any(e => e.DocumentId == id);
+            return _context.ZipFiles.Any(e => e.DocumentId == id);
         }
     }
 }
