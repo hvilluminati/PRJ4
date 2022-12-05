@@ -100,26 +100,32 @@ export function putDescription(desc: string) {
 			'Texts/1',
 			{
 				textID: 1,
-				headline: 'bruh',
-				mainText: 'floop',
+				headline: document.getElementById('aboutTitleText')!.innerHTML,
+				mainText: desc,
 			},
 			config
 		)
 		.then((response) => {
 			return response;
 		})
-		.catch((error) => console.error('There was an error!', error));
-	console.log('Description changed to ' + desc);
+		.catch(console.error);
 }
 
 export function putTitle(title: string) {
 	axiosInstance
-		.put('Texts/1', title)
+		.put(
+			'Texts/1',
+			{
+				textID: 1,
+				headline: title,
+				mainText: document.getElementById('t')!.innerHTML,
+			},
+			config
+		)
 		.then((response) => {
 			return response;
 		})
 		.catch(console.error);
-	console.log('Title changed to ' + title);
 }
 
 export function authorize() {

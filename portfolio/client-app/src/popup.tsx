@@ -4,9 +4,8 @@ import { lang } from './pos';
 
 export const AboutPopup = ({ sender }: { sender: string }) => {
 	const [text, setText] = react.useState(
-		document.getElementById(
-			sender === 'title' ? 'aboutTitleText' : 'description'
-		)!.innerHTML
+		document.getElementById(sender === 'title' ? 'aboutTitleText' : 't')!
+			.innerHTML
 	);
 
 	function click() {

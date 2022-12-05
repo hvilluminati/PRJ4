@@ -16,14 +16,11 @@ function About() {
 			setTitle(d.headline);
 		});
 
-		// authorize().then((authorized) => {
-		// 	if (authorized)
-		// 		document.getElementById('description')!.className = 'Authorized';
-		// });
-
-		document.getElementById('description')!.className = 'authorized';
-		document.getElementById('aboutTitle')!.className = 'authorized';
-		setAuthorized(true);
+		if (localStorage.getItem('jwt') !== null) {
+			document.getElementById('description')!.className = 'authorized';
+			document.getElementById('aboutTitle')!.className = 'authorized';
+			setAuthorized(true);
+		}
 	}, []);
 
 	return (
@@ -50,7 +47,7 @@ function About() {
 							<Popup
 								trigger={
 									<button className='aboutPopupBtn' disabled={!authorized}>
-										<p>
+										<p id='t'>
 											{/*Lorem ipsum dolor sit amet consectetur adipisicing elit.
 											Maxime porro minima delectus. Cupiditate rem ducimus non
 											voluptatem in. Pariatur enim quae perspiciatis dolores
