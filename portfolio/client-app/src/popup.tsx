@@ -1,8 +1,15 @@
 import react from 'react';
 import { putDescription, putTitle } from './axioscalls';
 import { lang } from './pos';
+import Popup from 'reactjs-popup';
 
-export const AboutPopup = ({ sender }: { sender: string }) => {
+export const AboutPopup = ({
+	sender,
+	func,
+}: {
+	sender: string;
+	func: Function;
+}) => {
 	const [text, setText] = react.useState(
 		document.getElementById(sender === 'title' ? 'aboutTitleText' : 't')!
 			.innerHTML
@@ -11,6 +18,8 @@ export const AboutPopup = ({ sender }: { sender: string }) => {
 	function click() {
 		if (sender === 'title') putTitle(text);
 		else putDescription(text);
+
+		func(text);
 	}
 
 	return (
@@ -36,8 +45,28 @@ export const SkillsPopup = () => {
 	const [height, setHeight] = react.useState('1px');
 
 	react.useEffect(() => {
-		setHeight(lang.length * 22 + 'px');
-		console.log(lang.length * 22 + 'px');
+		setHeight(lang.length * 35 + 'px');
 	}, []);
-	return <div id='skillsWrapper' style={{ height: height }}></div>;
+	return (
+		<div id='skillsWrapper' style={{ height: height }}>
+			{lang.map((l, i) => (
+				<Popup
+					trigger={<button id={'skill'}>{l[1]}</button>}
+					arrow={false}
+					position={i % 2 === 0 ? 'left center' : 'right center'}>
+					<SkillPopup skill={l} />
+				</Popup>
+			))}
+		</div>
+	);
+};
+
+const SkillPopup = ({ skill }: { skill: any }) => {
+	return (
+		<div id='skillWrapper'>
+			<textarea value={skill[1]} />
+			<textarea value={skill[2]} />
+			<textarea value={skill[3]} />
+		</div>
+	);
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { authorize } from '../axioscalls';
 import Popup from 'reactjs-popup';
@@ -6,10 +6,12 @@ import { SkillsPopup } from '../popup';
 
 //https://codepen.io/ryasan86/pen/bGpqdYV
 function Skills() {
+	const [authorized, setAuthorized] = useState(false);
+
 	useEffect(() => {
-		// authorize().then((authorized) => {
-		// 	if (authorized)
-		// });
+		if (localStorage.getItem('jwt') !== null) {
+			setAuthorized(true);
+		}
 	}, []);
 
 	return (
@@ -36,20 +38,23 @@ function Skills() {
 						<div id='codeBoxFill'></div>
 					</div>
 				</label>
-				<Popup
-					trigger={
-						<div id='skills-btn-wrapper'>
-							<button>Edit skills</button>
-							<div className='border bottom' />
-							<div className='border left' />
-							<div className='border right' />
-							<div className='border topright' />
-							<div className='border topleft' />
-						</div>
-					}
-					position='top center'>
-					<SkillsPopup />
-				</Popup>
+				{authorized === true && (
+					<Popup
+						trigger={
+							<div id='skills-btn-wrapper'>
+								<button>Edit skills</button>
+								<div className='border bottom' />
+								<div className='border left' />
+								<div className='border right' />
+								<div className='border topright' />
+								<div className='border topleft' />
+							</div>
+						}
+						modal={true}
+						nested={true}>
+						<SkillsPopup />
+					</Popup>
+				)}
 			</div>
 		</>
 	);

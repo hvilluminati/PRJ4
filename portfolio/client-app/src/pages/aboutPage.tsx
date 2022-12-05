@@ -39,7 +39,7 @@ function About() {
 									<h1 id='aboutTitleText'>{title}</h1>
 								</button>
 							}>
-							<AboutPopup sender='title' />
+							<AboutPopup sender='title' func={setTitle} />
 						</Popup>
 					</div>
 					<div id='content'>
@@ -68,7 +68,7 @@ function About() {
 									</button>
 								}
 								position='right center'>
-								<AboutPopup sender='description' />
+								<AboutPopup sender='description' func={setDesc} />
 							</Popup>
 						</div>
 						<div id='rightSide'>

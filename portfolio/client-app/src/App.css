@@ -320,9 +320,34 @@ div {
 	border-radius: 20px;
 	background-color: white;
 	flex-direction: column;
-	height: 154px;
-	width: 100px;
-	margin-bottom: 0px;
+	width: 150px;
+	justify-content: space-evenly;
+	margin-top: 14px;
+	margin-bottom: 14px;
+}
+
+#skill {
+	border: hidden;
+	color: var(--black);
+	padding: 5px 12px;
+	text-align: center;
+	background-color: transparent;
+	font-size: 14px;
+	font-family: 'open sans', sans-serif;
+	letter-spacing: 1px;
+	cursor: pointer;
+	width: fit-content;
+	margin: auto;
+}
+
+#skillWrapper {
+	border-radius: 20px;
+	background-color: white;
+	flex-direction: column;
+	width: 150px;
+	height: 300px;
+	justify-content: space-evenly;
+	box-shadow: 1px 1px 1px 1px;
 }
 
 /*	#region hover effect	*/
