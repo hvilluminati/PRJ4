@@ -40,9 +40,5 @@ export const SkillsPopup = () => {
 		setHeight(lang.length * 22 + 'px');
 		console.log(lang.length * 22 + 'px');
 	}, []);
-	return (
-		<div
-			id='skillsWrapper'
-			style={{ height: height, marginBottom: height }}></div>
-	);
+	return <div id='skillsWrapper' style={{ height: height }}></div>;
 };
