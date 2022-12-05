@@ -85,6 +85,17 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityRequirement(securityRequirements);
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -98,6 +109,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors();
+
 app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
