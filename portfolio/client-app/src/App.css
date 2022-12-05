@@ -360,7 +360,6 @@ div {
 	margin: auto;
 	padding: 7px;
 	position: relative;
-	height: fit-content;
 }
 
 #about {
@@ -378,6 +377,7 @@ div {
 
 #content {
 	flex-direction: row;
+	margin: auto;
 }
 
 #description {
