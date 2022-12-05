@@ -8,8 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Database_test1.Data;
 using Database_test1.Models;
 using Microsoft.CodeAnalysis;
-using Microsoft.AspNetCore.Authorization;
-
+using Mapster;
 namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
@@ -21,21 +20,25 @@ namespace Database_test1.Controllers
         public FilesController(PortfolioDbContext context)
         {
             _context = context;
+            TypeAdapterConfig<File,File_DTO>.NewConfig().IgnoreNullValues(true);
+
         }
 
         // GET: api/Files
-        [HttpGet, AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Files>>> GetFiles()
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<File>>> GetFiles()
         {
-            return await _context.Files.ToListAsync();
+            List<File> filesList= await _context.Files.ToListAsync();
+
+            return filesList.Adapt<List<File_DTO>>();
 
 
 
         }
 
         // GET: api/Files/5
-        [HttpGet("{id}"), AllowAnonymous]
-        public async Task<ActionResult<Files>> GetFiles(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<File>> GetFiles(int id)
         {
             var files = await _context.Files.FindAsync(id);
 
@@ -56,14 +59,14 @@ namespace Database_test1.Controllers
         // PUT: api/Files/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFiles(int id, Files files)
+        public async Task<IActionResult> PutFiles(int id, File file)
         {
-            if (id != files.DocumentId)
+            if (id != file.DocumentId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(files).State = EntityState.Modified;
+            _context.Entry(file).State = EntityState.Modified;
 
             try
             {
@@ -87,7 +90,7 @@ namespace Database_test1.Controllers
         // POST: api/Files
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Files>> PostFiles(IFormFile files,string language)
+        public async Task<ActionResult<File>> PostFiles(IFormFile files,string language)
         {
             if (files != null)
             {
@@ -98,9 +101,13 @@ namespace Database_test1.Controllers
                     //Getting file Extension
                     var fileExtension = Path.GetExtension(fileName);
                     // concatenating  FileName + FileExtension
+                    if (fileExtension!=".zip")
+                    {
+                        return BadRequest("Not a zipped file");
+                    }
                     var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
-                    var objfiles = new Files()
+                    var objfiles = new File()
                     {
                         Name = newFileName,
                         FileType = fileExtension,
