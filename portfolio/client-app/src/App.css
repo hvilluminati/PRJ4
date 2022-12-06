@@ -34,11 +34,6 @@ div {
 	display: flex;
 }
 
-#editBtn {
-	visibility: visible;
-	height: 10px;
-}
-
 /*	#region home btn	*/
 .button {
 	position: absolute;
@@ -381,6 +376,26 @@ div {
 	cursor: pointer;
 }
 
+#delete-skill-btn-wrapper {
+	position: relative;
+	width: fit-content;
+	height: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#delete-skill-btn-wrapper button {
+	border: hidden;
+	color: red;
+	padding: 5px 12px;
+	text-align: center;
+	background-color: transparent;
+	font-size: 14px;
+	font-family: 'open sans', sans-serif;
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+
 /*	#region hover effect	*/
 
 #skills-btn-wrapper:hover .bottom {
@@ -417,6 +432,32 @@ div {
 #skill-btn-wrapper:hover .right {
 	height: 100%;
 	transition: all 0.15s linear 0.3s;
+}
+
+#delete-skill-btn-wrapper:hover .bottom {
+	width: 100%;
+	left: 0;
+	transition: all 0.15s linear 0.15s;
+}
+
+#delete-skill-btn-wrapper:hover .topleft,
+#delete-skill-btn-wrapper:hover .topright {
+	width: 50%;
+	transition: all 0.15s linear 0.45s;
+}
+
+#delete-skill-btn-wrapper:hover .left,
+#delete-skill-btn-wrapper:hover .right {
+	height: 100%;
+	transition: all 0.15s linear 0.3s;
+}
+
+.del-border {
+	position: absolute;
+	margin: auto;
+	content: '';
+	z-index: 1000;
+	background-color: red;
 }
 
 /*	#endregion	*/

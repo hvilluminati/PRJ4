@@ -53,7 +53,9 @@ export const code = (name: string) => {
 
 var lang: string[][] = [];
 
-const axiosInstance = axios.create({ baseURL: 'https://localhost:7041/api/' });
+const axiosInstance = axios.create({
+  baseURL: 'https://prj4appservice.azurewebsites.net/api/',
+});
 export function getSkills(pos: number[][]) {
   axiosInstance
     .get('Skills')
@@ -153,7 +155,7 @@ export function getFiles() {
   return axiosInstance
     .get('Files')
     .then((response) => {
-      console.log(response.data);
+      console.log(response);
       return response.data;
     })
     .catch(console.error);
@@ -179,4 +181,22 @@ export function getBlob(id: string) {
     document.body.removeChild(link);
     URL.revokeObjectURL(href);
   });
+}
+
+export function deleteSkill(id: number) {
+  axiosInstance
+    .delete('Skills/' + id, config)
+    .then((resp) => {
+      return resp;
+    })
+    .catch(console.error);
+}
+
+export function postSkill(skill: any) {
+  axiosInstance
+    .post('Skills', skill, config)
+    .then((resp) => {
+      return resp;
+    })
+    .catch(console.error);
 }
