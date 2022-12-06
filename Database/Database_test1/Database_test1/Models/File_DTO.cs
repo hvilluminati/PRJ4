@@ -15,6 +15,8 @@ namespace Database_test1.Models
         [Key] 
         public int DocumentId { get; set; }
         
+        public string id { get; set; }
+        
         
         [MaxLength(100)]
         public string Name { get; set; }

@@ -34,7 +34,11 @@ namespace Database_test1.Controllers
         {
             List<File> filesList= await _context.Files.ToListAsync();
 
-            return filesList.Adapt<List<File_DTO>>();
+
+            List<File_DTO> DTOList = filesList.Adapt<List<File_DTO>>();
+
+            DTOList.ForEach(file => file.id = file.DocumentId.ToString());
+            return DTOList;
 
 
 
