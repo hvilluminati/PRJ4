@@ -345,9 +345,40 @@ div {
 	background-color: white;
 	flex-direction: column;
 	width: 150px;
-	height: 300px;
+	height: 200px;
 	justify-content: space-evenly;
 	box-shadow: 1px 1px 1px 1px;
+}
+
+#skillAtt {
+	border-radius: 10px;
+	resize: none;
+	font-size: 16px;
+	overflow: hidden;
+	width: 120px;
+	height: 18px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#skill-btn-wrapper {
+	position: relative;
+	width: fit-content;
+	height: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#skill-btn-wrapper button {
+	border: hidden;
+	color: var(--black);
+	padding: 5px 12px;
+	text-align: center;
+	background-color: transparent;
+	font-size: 14px;
+	font-family: 'open sans', sans-serif;
+	letter-spacing: 1px;
+	cursor: pointer;
 }
 
 /*	#region hover effect	*/
@@ -366,6 +397,24 @@ div {
 
 #skills-btn-wrapper:hover .left,
 #skills-btn-wrapper:hover .right {
+	height: 100%;
+	transition: all 0.15s linear 0.3s;
+}
+
+#skill-btn-wrapper:hover .bottom {
+	width: 100%;
+	left: 0;
+	transition: all 0.15s linear 0.15s;
+}
+
+#skill-btn-wrapper:hover .topleft,
+#skill-btn-wrapper:hover .topright {
+	width: 50%;
+	transition: all 0.15s linear 0.45s;
+}
+
+#skill-btn-wrapper:hover .left,
+#skill-btn-wrapper:hover .right {
 	height: 100%;
 	transition: all 0.15s linear 0.3s;
 }

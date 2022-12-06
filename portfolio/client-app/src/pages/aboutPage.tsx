@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import picture from '../nonbinary-person.png';
 import { Link } from 'react-router-dom';
-import { getDescription, authorize } from '../axioscalls';
+import { getDescription } from '../axioscalls';
 import Popup from 'reactjs-popup';
 import { AboutPopup } from '../popup';
 

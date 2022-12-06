@@ -94,6 +94,15 @@ export function getDescription() {
     .catch(console.error);
 }
 
+export function putSkill(skill: any) {
+  axiosInstance
+    .put('Skills/' + skill.skillID, skill, config)
+    .then((response) => {
+      return response;
+    })
+    .catch(console.error);
+}
+
 export function putDescription(desc: string) {
   axiosInstance
     .put(
