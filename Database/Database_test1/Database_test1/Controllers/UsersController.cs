@@ -6,20 +6,20 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using static BCrypt.Net.BCrypt;
-using Database_test1.Data;
-using Database_test1.Models;
+using Portfolio.Data;
+using Portfolio.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Database_test1.Utilities;
+using Portfolio.Utilities;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Identity;
 using NuGet.Common;
 using System.Security.Principal;
 
-namespace Database_test1.Controllers
+namespace Portfolio.Controllers
 {
     [Route("api/[controller]")]
     [ApiController,Authorize]
@@ -106,11 +106,11 @@ namespace Database_test1.Controllers
 
 
         //Junk get call, only used to check authorize status on frontend
-        [HttpGet(Name = "LoggedIn")]
-        public async Task<ActionResult<bool>> LoggedIn()
-        {
-            return true;
-        }
+        //[HttpGet(Name = "LoggedIn")]
+        //public async Task<ActionResult<bool>> LoggedIn()
+        //{
+        //    return true;
+        //}
 
         private string GenerateToken(User user)
         {

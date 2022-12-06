@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using Database_test1.Data;
+using Portfolio.Data;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text; //for encoding maybe?
-using Database_test1.Utilities;
+using Portfolio.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,9 +53,9 @@ builder.Services.AddSwaggerGen(c =>
     // Set the comments path for the Swagger JSON and UI.
 
 
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    c.IncludeXmlComments(xmlPath);
+    //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    //c.IncludeXmlComments(xmlPath);
 
 
     // Bearer token authentication

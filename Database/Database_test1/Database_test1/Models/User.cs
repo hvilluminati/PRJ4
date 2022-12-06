@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 
-namespace Database_test1.Models
+namespace Portfolio.Models
 {
     public class User
     {
