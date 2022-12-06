@@ -32,7 +32,7 @@ namespace Database_test1.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<File_DTO>>> GetFiles()
         {
-            List<File> filesList= await _context.ZipFiles.ToListAsync();
+            List<File> filesList= await _context.Files.ToListAsync();
 
             return filesList.Adapt<List<File_DTO>>();
 
@@ -44,7 +44,7 @@ namespace Database_test1.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<File>> GetFiles(int id)
         {
-            var files = await _context.ZipFiles.FindAsync(id);
+            var files = await _context.Files.FindAsync(id);
 
             if (files == null)
             {
@@ -105,10 +105,7 @@ namespace Database_test1.Controllers
                     //Getting file Extension
                     var fileExtension = Path.GetExtension(fileName);
                     // concatenating  FileName + FileExtension
-                    if (fileExtension!=".zip")
-                    {
-                        return BadRequest("Not a zipped file");
-                    }
+                    
                     var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
                     var objfiles = new File()
@@ -125,12 +122,12 @@ namespace Database_test1.Controllers
                         objfiles.DataFiles = target.ToArray();
                     }
 
-                    _context.ZipFiles.Add(objfiles);
+                    _context.Files.Add(objfiles);
                     _context.SaveChanges();
 
 
-                    var ZipFile = await _context.ZipFiles.FindAsync(objfiles.DocumentId);
-                    return CreatedAtAction("GetFiles", new { id = ZipFile.DocumentId }, files);
+                    var File = await _context.Files.FindAsync(objfiles.DocumentId);
+                    return CreatedAtAction("GetFiles", new { id = File.DocumentId }, files);
 
 
                 }
@@ -143,13 +140,13 @@ namespace Database_test1.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFiles(int id)
         {
-            var files = await _context.ZipFiles.FindAsync(id);
+            var files = await _context.Files.FindAsync(id);
             if (files == null)
             {
                 return NotFound();
             }
 
-            _context.ZipFiles.Remove(files);
+            _context.Files.Remove(files);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -157,7 +154,7 @@ namespace Database_test1.Controllers
 
         private bool FilesExists(int id)
         {
-            return _context.ZipFiles.Any(e => e.DocumentId == id);
+            return _context.Files.Any(e => e.DocumentId == id);
         }
     }
 }
