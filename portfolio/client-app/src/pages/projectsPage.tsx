@@ -1,49 +1,53 @@
 import { useEffect, useState } from 'react';
 import { getBlob, getFiles } from '../axioscalls';
 import { Link } from 'react-router-dom';
+import { count } from 'console';
 
 export default function Projects() {
-  const [language, setLanguage] = useState('unknown Language');
-  const [type, setType] = useState(' unknown type');
-  const [name, setName] = useState(' unknown name');
+  const [language, setLanguage] = useState(['unknown Language']);
+  const [type, setType] = useState([' unknown type']);
+  const [name, setName] = useState([' unknown name']);
+  const [id, setId] = useState([' unknown Id']);
 
   useEffect(() => {
     getFiles().then((d) => {
+      let submissions = sizeof(d);
+      console.log(submissions);
       setLanguage(d.language);
 
       setType(d.fileType);
       setName(d.name);
+      setId(d.id);
 
       console.log('console printout', d);
     });
   }, []);
   function addRow(tableID: string) {
     var table = document.getElementById(tableID) as HTMLTableElement;
-    if (table != null) {
+    if (table && id) {
       var rowCount = table.rows.length;
       var row = table.insertRow(rowCount);
 
       var cell1 = row.insertCell(0);
-      cell1.innerHTML = name;
+      cell1.innerHTML = name[0];
 
       var cell2 = row.insertCell(1);
-      cell2.innerHTML = type;
+      cell2.innerHTML = type[0];
 
       var cell3 = row.insertCell(2);
-      cell3.innerHTML = language;
+      cell3.innerHTML = language[0];
 
       var cell4 = row.insertCell(3);
-      cell4.innerHTML =
-        '<button id="' +
-        '1' +
-        '" name="btn' +
-        '1' +
-        '"onClick={() => getBlob(' +
-        '1' +
-        ')}>Button</button>';
+
+      let buttonString =
+        '<button onClick={() => callblob(${id})}>Download</button>';
+
+      cell4.innerHTML = buttonString;
     }
   }
-
+  function callblob(id: string) {
+    getBlob('${id}');
+  }
   return (
     <div>
       <input
@@ -58,10 +62,7 @@ export default function Projects() {
           <td>{'File Type'}</td>
           <td>{'Programming language'}</td>
           <td>{'Download Button'}</td>
-          <button id='btn1' name='btn1' onClick={() => getBlob('1')}>
-            Button
-          </button>
-          '
+          <button onClick={() => getBlob('1')}>Download</button>'
         </tr>
       </table>
     </div>

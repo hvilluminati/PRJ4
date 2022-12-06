@@ -153,7 +153,8 @@ export function getFiles() {
   return axiosInstance
     .get('Files')
     .then((response) => {
-      return response.data[0];
+      console.log(response);
+      return response.data;
     })
     .catch(console.error);
 }
@@ -170,7 +171,7 @@ export function getBlob(id: string) {
     // create "a" HTML element with href to file & click
     const link = document.createElement('a');
     link.href = href;
-    link.setAttribute('download', 'PortfolioProject.zip'); //or any other extension
+    link.setAttribute('download', 'download.txt'); //or any other extension
     document.body.appendChild(link);
     link.click();
 
