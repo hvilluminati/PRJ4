@@ -153,7 +153,7 @@ export function getFiles() {
   return axiosInstance
     .get('Files')
     .then((response) => {
-      console.log(response);
+      console.log(response.data);
       return response.data;
     })
     .catch(console.error);
