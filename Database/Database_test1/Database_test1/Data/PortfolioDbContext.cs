@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Database_test1.Models;
+using Portfolio.Models;
 using Microsoft.EntityFrameworkCore;
 using File = Database_test1.Models.File;
 
-namespace Database_test1.Data
+namespace Portfolio.Data
 {
     public class PortfolioDbContext : DbContext
     {
@@ -19,7 +19,7 @@ namespace Database_test1.Data
 
         public DbSet<File> Files { get; set; }
 
-        public DbSet<Database_test1.Models.User> Users { get; set; }
+        public DbSet<Portfolio.Models.User> Users { get; set; }
 
 
 

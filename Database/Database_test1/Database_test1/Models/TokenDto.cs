@@ -1,4 +1,4 @@
-﻿namespace Database_test1.Models
+﻿namespace Portfolio.Models
 {
     public class TokenDto
     {

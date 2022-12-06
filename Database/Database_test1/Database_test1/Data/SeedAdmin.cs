@@ -1,9 +1,9 @@
-﻿using Database_test1.Controllers;
-using Database_test1.Models;
+﻿using Portfolio.Controllers;
+using Portfolio.Models;
 using Microsoft.AspNetCore.Identity;
 using static BCrypt.Net.BCrypt;
 
-namespace Database_test1.Data
+namespace Portfolio.Data
 {
     public static class SeedAdmin
     {
