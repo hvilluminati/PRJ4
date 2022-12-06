@@ -11,13 +11,14 @@ export default function Projects() {
 
   useEffect(() => {
     getFiles().then((d) => {
-      let submissions = sizeof(d);
-      console.log(submissions);
+      //let submissions = sizeof(d);
+      //console.log(submissions);
       setLanguage(d.language);
 
       setType(d.fileType);
       setName(d.name);
       setId(d.id);
+      console.log(id);
 
       console.log('console printout', d);
     });

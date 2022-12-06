@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lasse\\OneDrive\\Dokumenter\\skole\\4. semester\\PRJ\\portolio\\portfolio\\test.csproj": {}
+    "C:\\Users\\oscar\\Downloads\\AU\\AU\\4.semester\\PRJ\\PRJ4\\New folder\\portfolio\\test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lasse\\OneDrive\\Dokumenter\\skole\\4. semester\\PRJ\\portolio\\portfolio\\test.csproj": {
+    "C:\\Users\\oscar\\Downloads\\AU\\AU\\4.semester\\PRJ\\PRJ4\\New folder\\portfolio\\test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lasse\\OneDrive\\Dokumenter\\skole\\4. semester\\PRJ\\portolio\\portfolio\\test.csproj",
+        "projectUniqueName": "C:\\Users\\oscar\\Downloads\\AU\\AU\\4.semester\\PRJ\\PRJ4\\New folder\\portfolio\\test.csproj",
         "projectName": "test",
-        "projectPath": "C:\\Users\\Lasse\\OneDrive\\Dokumenter\\skole\\4. semester\\PRJ\\portolio\\portfolio\\test.csproj",
-        "packagesPath": "C:\\Users\\Lasse\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lasse\\OneDrive\\Dokumenter\\skole\\4. semester\\PRJ\\portolio\\portfolio\\obj\\",
+        "projectPath": "C:\\Users\\oscar\\Downloads\\AU\\AU\\4.semester\\PRJ\\PRJ4\\New folder\\portfolio\\test.csproj",
+        "packagesPath": "C:\\Users\\oscar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\oscar\\Downloads\\AU\\AU\\4.semester\\PRJ\\PRJ4\\New folder\\portfolio\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Lasse\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\oscar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -90,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
