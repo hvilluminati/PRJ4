@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Database_test1.Data;
-using Database_test1.Models;
+using Portfolio.Data;
+using Portfolio.Models;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Database_test1.Controllers
+namespace Portfolio.Controllers
 {
     [Route("api/[controller]")]
     [ApiController, Authorize]

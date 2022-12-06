@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using Database_test1.Data;
+using Portfolio.Data;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text; //for encoding maybe?
-using Database_test1.Utilities;
+using Portfolio.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,21 +41,21 @@ builder.Services.AddAuthentication(options =>
 };
 });
 
-builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Demo",
+        Title = "Portfolio",
         Version = "v1",
-        Description = "API to something."
+        Description = "API to PRJ4 - Portfolio."
     });
     // Set the comments path for the Swagger JSON and UI.
 
 
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    c.IncludeXmlComments(xmlPath);
+    //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    //c.IncludeXmlComments(xmlPath);
 
 
     // Bearer token authentication
@@ -85,12 +85,25 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityRequirement(securityRequirements);
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
+
+
+app.UseSwagger();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
     app.UseSwaggerUI();
 }
 
@@ -98,6 +111,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseCors();
+
 app.MapControllers();
 
 using (var scope = app.Services.CreateScope())

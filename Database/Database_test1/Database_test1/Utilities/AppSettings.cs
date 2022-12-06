@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Database_test1.Utilities
+namespace Portfolio.Utilities
 {
     public class AppSettings
     {
