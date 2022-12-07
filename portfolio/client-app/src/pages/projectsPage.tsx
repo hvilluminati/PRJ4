@@ -38,14 +38,14 @@ export default function Projects() {
   }, []);
 
   return (
-    <div>
+    <div  id='hej'>
       <Link to='/'>
         <button className='button button1'>
           <span>Home</span>
         </button>{' '}
       </Link>
       <table id='dataTable' width='350px'>
-        <tr>
+        <tr id='Titel'>
           <td>{'Encrypted Project name'}</td>
           <td>{'File Type'}</td>
           <td>{'Coding language'}</td>
@@ -61,11 +61,13 @@ export default function Projects() {
           </tr>
         ))}
       </table>
+      <div id='upload'>
       <Link to='/UploadProjects'>
         <button className='button button1'>
           <span>Upload A new Project</span>
         </button>{' '}
       </Link>
+    </div>
     </div>
   );
 }
