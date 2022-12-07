@@ -61,7 +61,7 @@ export default function Projects() {
           </tr>
         ))}
       </table>
-      <Link to='/UploadProjects'>
+      <Link to='/UploadProject'>
         <button className='button button1'>
           <span>Upload A new Project</span>
         </button>{' '}

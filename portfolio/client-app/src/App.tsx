@@ -11,72 +11,74 @@ import { code } from './axioscalls';
 import { posSetter } from './pos';
 import Spinner from './pages/spinner';
 import Projects from './pages/projectsPage';
+import Upload from './pages/UploadprojectPage';
 
 declare const window: any;
 
 function App() {
-	const [coords, setCoords, coordsRef] = useState<number[]>(() => [0, 0]);
-	var gyro = null;
+  const [coords, setCoords, coordsRef] = useState<number[]>(() => [0, 0]);
+  var gyro = null;
 
-	useEffect(() => {
-		WebFont.load({
-			google: {
-				families: ['La Belle Aurore', 'Open Sans'],
-			},
-		});
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['La Belle Aurore', 'Open Sans'],
+      },
+    });
 
-		var coolHeight = document.documentElement.clientHeight + 'px';
-		document.getElementById('root')!.style.height = coolHeight;
+    var coolHeight = document.documentElement.clientHeight + 'px';
+    document.getElementById('root')!.style.height = coolHeight;
 
-		posSetter();
-		if (window.innerWidth > 640) {
-			document.onmousemove = function (e) {
-				posSetter(e);
-			};
-		} else {
-			try {
-				gyro = new window.Gyroscope({ frequency: 60 });
-				gyro.addEventListener('reading', (e: any) => {
-					setCoords((p) => [p[0] + e.target.y, p[1] + e.target.x]);
+    posSetter();
+    if (window.innerWidth > 640) {
+      document.onmousemove = function (e) {
+        posSetter(e);
+      };
+    } else {
+      try {
+        gyro = new window.Gyroscope({ frequency: 60 });
+        gyro.addEventListener('reading', (e: any) => {
+          setCoords((p) => [p[0] + e.target.y, p[1] + e.target.x]);
 
-					posSetter(coordsRef.current);
-				});
+          posSetter(coordsRef.current);
+        });
 
-				gyro.addEventListener('error', (e: any) => {
-					console.error(`Gyroscope encounted error ${e}`);
-				});
+        gyro.addEventListener('error', (e: any) => {
+          console.error(`Gyroscope encounted error ${e}`);
+        });
 
-				gyro.start();
-			} catch (error) {
-				console.error(error);
-			}
-		}
+        gyro.start();
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
-		window.addEventListener('resize', () => {
-			coolHeight = document.documentElement.clientHeight + 'px';
-			document.getElementById('root')!.style.height = coolHeight;
-			posSetter();
-		});
+    window.addEventListener('resize', () => {
+      coolHeight = document.documentElement.clientHeight + 'px';
+      document.getElementById('root')!.style.height = coolHeight;
+      posSetter();
+    });
 
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-	return (
-		<>
-			<Suspense fallback={<Spinner />}>
-				<BrowserRouter basename={process.env.PUBLIC_URL}>
-					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='/about' element={<About />} />
-						<Route path='/skills' element={<Skills />} />
-						<Route path='/login' element={<Login />} />
-						<Route path='/spintest' element={<Spinner />} />
-						<Route path='/projects' element={<Projects />} />
-					</Routes>
-				</BrowserRouter>
-			</Suspense>
-			<div id='langs'>
-				{/* <p
+  return (
+    <>
+      <Suspense fallback={<Spinner />}>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/skills' element={<Skills />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/spintest' element={<Spinner />} />
+            <Route path='/projects' element={<Projects />} />
+            <Route path='/UploadProject' element={<Upload />} />
+          </Routes>
+        </BrowserRouter>
+      </Suspense>
+      <div id='langs'>
+        {/* <p
 					className='scribble'
 					id='React'
 					onClick={() => {
@@ -172,9 +174,9 @@ function App() {
 					}}>
 					C#9
 				</p> */}
-			</div>
-		</>
-	);
+      </div>
+    </>
+  );
 }
 
 export default App;
