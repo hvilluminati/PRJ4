@@ -44,8 +44,38 @@ namespace Portfolio.Controllers
 
         }
 
+
+        [HttpGet("FilesSort"), AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<File>>> GetFilesSorted(string sort)
+        {
+            if (sort == "name")
+            {
+                return await _context.Files.OrderBy(x => x.Name).ToListAsync();
+            }
+            else if (sort == "date")
+            {
+                return await _context.Files.OrderByDescending(x => x.CreatedOn).ToListAsync();
+            }
+            else
+            {
+
+                return await _context.Files.ToListAsync();
+            }
+
+        }
+
+
+        [HttpGet("FilesFind"), AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<File>>> GetFindFiles(string sort)
+        {
+            var list = _context.Files.Where(x => x.Language.Contains(sort)).ToList();
+            return list;
+
+        }
+
+
         // GET: api/Files/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), AllowAnonymous]
         public async Task<ActionResult<File>> GetFiles(int id)
         {
             var files = await _context.Files.FindAsync(id);
@@ -61,8 +91,9 @@ namespace Portfolio.Controllers
 
             return File(fileBytes, "application/force-download", fileName);
 
-            
+
         }
+
 
         // PUT: api/Files/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
