@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const config = {
 	headers: {
-		Authorization: 'Bearer ' + localStorage.getItem('jwt'),
+		Authorization: 'Bearer ' + window.localStorage.getItem('jwt'),
 	},
 };
 
@@ -219,31 +219,31 @@ export function getFiles() {
 }
 
 export function getFilesSort(sort: string) {
-  return axiosInstance
-    .get('Files/FilesSort', {
-      params: {
-        sort: sort,
-      },
-    })
-    .then((response) => {
-      console.log(response);
-      return response.data;
-    })
-    .catch(console.error);
+	return axiosInstance
+		.get('Files/FilesSort', {
+			params: {
+				sort: sort,
+			},
+		})
+		.then((response) => {
+			console.log(response);
+			return response.data;
+		})
+		.catch(console.error);
 }
 
 export function getFilesFind(find: string) {
-  return axiosInstance
-    .get('Files/FilesFind', {
-      params: {
-        sort: find,
-      },
-    })
-    .then((response) => {
-      console.log(response);
-      return response.data;
-    })
-    .catch(console.error);
+	return axiosInstance
+		.get('Files/FilesFind', {
+			params: {
+				sort: find,
+			},
+		})
+		.then((response) => {
+			console.log(response);
+			return response.data;
+		})
+		.catch(console.error);
 }
 
 export function getBlob(id: string) {
