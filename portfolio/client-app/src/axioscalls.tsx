@@ -289,3 +289,13 @@ export async function postProject(selectedFile: any) {
     console.log('ERROR!', error);
   }
 }
+
+export function postLogin(username: string, password: string){
+   return axiosInstance
+    .post('Users/login', {Email: username, Password: password})
+    .then((resp) => {
+      return resp;
+    })
+    .catch(console.error);
+}
+ 
