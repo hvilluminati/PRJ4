@@ -12,6 +12,7 @@ import { posSetter } from './pos';
 import Spinner from './pages/spinner';
 import Projects from './pages/projectsPage';
 import Upload from './pages/UploadprojectPage';
+import Contact from './pages/contactPage';
 
 declare const window: any;
 
@@ -74,6 +75,7 @@ function App() {
             <Route path='/spintest' element={<Spinner />} />
             <Route path='/projects' element={<Projects />} />
             <Route path='/UploadProject' element={<Upload />} />
+            <Route path='/contact' element={<Contact />} />
           </Routes>
         </BrowserRouter>
       </Suspense>
