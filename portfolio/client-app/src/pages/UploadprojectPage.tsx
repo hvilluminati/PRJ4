@@ -1,42 +1,19 @@
-import { useEffect, useState } from 'react';
-import { getBlob, getFiles } from '../axioscalls';
+import { useState } from 'react';
+import { postProject } from '../axioscalls';
 import { Link } from 'react-router-dom';
-import { count } from 'console';
 
-export default function Projects() {
-  const [fileinfo, setFileinfo] = useState<
-    Array<{
-      id: string;
-      name: string;
-      fileType: string;
-      language: string;
-    }>
-  >([]);
+export default function Upload() {
+  const [selectedFile, setSelectedFile] = useState<any>([]);
+  const [language, setLanguage] = useState('no Language');
+  const [isFilePicked, setIsFilePicked] = useState(false);
 
-  useEffect(() => {
-    getFiles().then((response) => {
-      setFileinfo([
-        {
-          id: response[0].documentId,
-          name: response[0].name,
-          fileType: response[0].fileType,
-          language: response[0].language,
-        },
-      ]);
-      for (let index = 0; index < response.length; index++) {
-        setFileinfo((arr) => [
-          ...arr,
-          {
-            id: response[index].documentId,
-            name: response[index].name,
-            fileType: response[index].fileType,
-            language: response[index].language,
-          },
-        ]);
-      }
-    });
-  }, []);
-
+  const fileUploaded = (event: any) => {
+    setSelectedFile(event.target.files[0]);
+    setIsFilePicked(true);
+  };
+  const Submit = () => {
+    postProject(selectedFile);
+  };
   return (
     <div>
       <Link to='/'>
@@ -44,28 +21,28 @@ export default function Projects() {
           <span>Home</span>
         </button>{' '}
       </Link>
-      <table id='dataTable' width='350px'>
-        <tr>
-          <td>{'Encrypted Project name'}</td>
-          <td>{'File Type'}</td>
-          <td>{'Coding language'}</td>
-          <td>{'Download button'}</td>
-        </tr>
-
-        {fileinfo.map((f) => (
-          <tr>
-            <td>{f.name}</td>
-            <td>{f.fileType}</td>
-            <td>{f.language}</td>
-            <button onClick={() => getBlob(f.id)}>Download</button>'
-          </tr>
-        ))}
-      </table>
-      <Link to='/UploadProject'>
-        <button className='button button1'>
-          <span>Upload A new Project</span>
-        </button>{' '}
-      </Link>
+      <input type='file' name='file' onChange={fileUploaded} />
+      <input
+        type='string'
+        name='language'
+        onChange={(event) => setLanguage(event.target.value)}
+      />
+      {isFilePicked ? (
+        <div>
+          <p>Filename: {selectedFile?.name}</p>
+          <p>Filetype: {selectedFile?.type}</p>
+          <p>Size in bytes: {selectedFile?.size}</p>
+          <p>
+            lastModifiedDate:{' '}
+            {selectedFile?.lastModifiedDate.toLocaleDateString()}
+          </p>
+        </div>
+      ) : (
+        <p>Select a file to show details</p>
+      )}
+      <div>
+        <button onClick={Submit}>Submit</button>
+      </div>
     </div>
   );
 }

@@ -257,3 +257,35 @@ export function postSkill(skill: any) {
     })
     .catch(console.error);
 }
+/*
+export function postProject(language: string, selectedFile: any) {
+  const formData = new FormData();
+  formData.append('selectedFile', selectedFile);
+  axiosInstance
+    .post('Files', { language, formData }, config)
+    .then((resp) => {
+      return resp;
+    })
+    .catch(console.error);
+}*/
+
+export async function postProject(selectedFile: any) {
+  const formData = new FormData();
+  formData.append('selectedFile', selectedFile);
+  for (const pair of formData.entries()) {
+    console.log(`${pair[0]}, ${pair[1]}`);
+  }
+  try {
+    axiosInstance({
+      method: 'post',
+      url: 'https://localhost:7041/api/Files/',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: 'Bearer ' + localStorage.getItem('jwt'),
+      },
+    });
+  } catch (error) {
+    console.log('ERROR!', error);
+  }
+}
