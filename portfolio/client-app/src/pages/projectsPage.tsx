@@ -14,14 +14,6 @@ export default function Projects() {
 
 	useEffect(() => {
 		getFiles().then((response) => {
-			setFileinfo([
-				{
-					id: response[0].documentId,
-					name: response[0].name,
-					fileType: response[0].fileType,
-					language: response[0].language,
-				},
-			]);
 			for (let index = 0; index < response.length; index++) {
 				setFileinfo((arr) => [
 					...arr,

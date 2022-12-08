@@ -225,7 +225,7 @@ export function getFiles() {
 
 export function getBlob(id: string) {
 	axiosInstance({
-		url: 'https://localhost:7041/api/files/' + id, //your url
+		url: '/api/files/' + id, //your url
 		method: 'GET',
 		responseType: 'blob', // important
 	}).then((response) => {
@@ -283,7 +283,7 @@ export async function postProject(selectedFile: any) {
 	try {
 		axiosInstance({
 			method: 'post',
-			url: 'https://localhost:7041/api/Files/',
+			url: 'https://prj4appservice.azurewebsites.net/api/Files/',
 			data: formData,
 			headers: {
 				'Content-Type': 'multipart/form-data',

@@ -33,6 +33,35 @@ namespace Database_test1.Controllers
 
         }
 
+        [HttpGet("FilesSort"), AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Files>>> GetFilesSorted(string sort)
+        {
+            if (sort == "name")
+            {
+                return await _context.Files.OrderBy(x => x.Name).ToListAsync();
+            }
+            else if (sort == "date")
+            {
+                return await _context.Files.OrderByDescending(x => x.CreatedOn).ToListAsync();
+            }
+            else
+            {
+                 
+                return await _context.Files.ToListAsync();
+            }
+
+        }
+
+
+        [HttpGet("FilesFind"), AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Files>>> GetFindFiles(string sort)
+        {
+            var list = _context.Files.Where(x => x.Language.Contains(sort)).ToList();
+            return list;
+
+        }
+
+
         // GET: api/Files/5
         [HttpGet("{id}"), AllowAnonymous]
         public async Task<ActionResult<Files>> GetFiles(int id)
