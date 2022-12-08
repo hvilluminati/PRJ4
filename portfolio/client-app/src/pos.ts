@@ -32,12 +32,14 @@ export var lang = getSkills(pos);
 // 	'CSharp9',
 // ];
 
+var x = 0;
+var y = 0;
+
 export function posSetter(e: any = 0) {
 	if (Object.prototype.toString.call(e) !== '[object Array]') {
-		var x = e === 0 ? 0 : e.clientX / 20;
-		var y = e === 0 ? 0 : e.clientY / 20;
+		x = e === 0 ? 0 : e.clientX / 20;
+		y = e === 0 ? 0 : e.clientY / 20;
 	} else {
-		var x: number = 0;
 		switch (true) {
 			case e[0] >= 180:
 				x = 25;
@@ -77,7 +79,6 @@ export function posSetter(e: any = 0) {
 				break;
 		}
 		x += 30;
-		var y: number = 0;
 		switch (true) {
 			case e[1] >= 180:
 				y = 100;
