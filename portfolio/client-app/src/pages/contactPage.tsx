@@ -90,7 +90,6 @@ function Contact() {
             <input type='submit' value='Send'></input>
           </form>
         </div>
-        <div>Message sent</div>
       </div>
     </>
   );
