@@ -34,7 +34,7 @@ namespace Database_test1.Controllers
         }
 
         [HttpGet("FilesSort"), AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Files>>> GetFilesSorted(string sort)
+        public async Task<ActionResult<IEnumerable<Files>>> GetFilesSorted(string? sort)
         {
             if (sort == "name")
             {
@@ -54,7 +54,7 @@ namespace Database_test1.Controllers
 
 
         [HttpGet("FilesFind"), AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Files>>> GetFindFiles(string sort)
+        public async Task<ActionResult<IEnumerable<Files>>> GetFindFiles(string? sort)
         {
             var list = _context.Files.Where(x => x.Language.Contains(sort)).ToList();
             return list;
