@@ -38,7 +38,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <div  id='hej'>
+    <div id='hej'>
       <Link to='/'>
         <button className='button button1'>
           <span>Home</span>
@@ -62,12 +62,12 @@ export default function Projects() {
         ))}
       </table>
       <div id='upload'>
-      <Link to='/UploadProjects'>
-        <button className='button button1'>
-          <span>Upload A new Project</span>
-        </button>{' '}
-      </Link>
-    </div>
+        <Link to='/UploadProject'>
+          <button className='button button1'>
+            <span>Upload A new Project</span>
+          </button>{' '}
+        </Link>
+      </div>
     </div>
   );
 }
