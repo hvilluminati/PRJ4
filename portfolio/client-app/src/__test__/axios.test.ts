@@ -1,5 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
-import { getSkills } from '../axioscalls';
+import axios from 'axios';
+import { getDescription } from '../axioscalls';
 import MockAdapter from 'axios-mock-adapter';
 
 jest.mock('axios', () => {
@@ -28,41 +28,29 @@ var pos = [
 ];
 
 describe('Skills table', () => {
-	describe('test get skills successful', () => {
+	describe('test get texts successful', () => {
 		it('Should return a skill item', async () => {
-			const mockFakeSkill = [
-				{
-					skillID: 1,
-					skillName: 'react',
-					skillLevel: 10,
-					monthsOfExperience: 0,
-				},
-				{
-					skillID: 1,
-					skillName: 'react',
-					skillLevel: 10,
-					monthsOfExperience: 0,
-				},
-			];
-			mock.onGet('Skills').replyOnce(200, mockFakeSkill);
+			const mockFakeSkill = [{ textID: 1, headline: 'hej', mainText: 'bye' }];
+			mock.onGet('Texts').replyOnce(200, mockFakeSkill);
 
-			const result = getSkills(pos);
-
-			setTimeout(() => console.log('wait'), 2000);
-
-			console.log(result);
+			var result: any;
+			await getDescription().then((t) => {
+				result = t;
+			});
 
 			expect(mock.history.get.length).toBe(1);
-			expect(result).toEqual(mockFakeSkill);
+			expect(result).toEqual(mockFakeSkill[0]);
 		});
 	});
 
-	// describe('test get skills successful', () => {
-	// 	it('fetches todos from the api', async () => {
-	// 		const networkError = 'ERR_AGAIN';
-	// 		axios.get.mockRejectedValueOnce(new Error(networkError));
-	// 		const result = await fetchTodo();
-	// 		expect(result).toBe({});
-	// 	});
-	// });
+	describe('test get texts unsuccessful', () => {
+		it('fetches todos from the api', async () => {
+			mock.onGet('Text').networkErrorOnce();
+			var result: any;
+			await getDescription().then((t) => {
+				result = t;
+			});
+			expect(result).toBe(undefined);
+		});
+	});
 });
