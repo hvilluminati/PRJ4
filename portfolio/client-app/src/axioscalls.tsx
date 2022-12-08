@@ -1,202 +1,189 @@
 import axios from 'axios';
 
 const config = {
-  headers: {
-    Authorization: 'Bearer ' + localStorage.getItem('jwt'),
-  },
+	headers: {
+		Authorization: 'Bearer ' + window.localStorage.getItem('jwt'),
+	},
 };
 
 export const code = (name: string) => {
-  if (window.location.pathname === '/PRJ-portfolio/skills') {
-    var element = document.getElementById(name);
-    var boxElement = document.getElementById('codeBox');
-    var textElement1 = document.getElementById('skillText1');
-    var textElement2 = document.getElementById('skillText2');
-    var elementskillLVL = document.getElementById('skillLVL');
-    var boxElementFill = document.getElementById('codeBoxFill');
-    if (element!.title === 'setSwag' && boxElement!.title === 'setSwag') {
-      element!.style.fontSize = '1.8rem';
-      element!.style.marginTop = '20';
-      element!.style.marginLeft = '20';
-      element!.style.transition = '0s';
-      boxElement!.style.opacity = '0';
-      boxElement!.style.width = '0%';
+	if (window.location.pathname === '/PRJ-portfolio/skills') {
+		var element = document.getElementById(name);
+		var boxElement = document.getElementById('codeBox');
+		var textElement1 = document.getElementById('skillText1');
+		var textElement2 = document.getElementById('skillText2');
+		var elementskillLVL = document.getElementById('skillLVL');
+		var boxElementFill = document.getElementById('codeBoxFill');
+		if (element!.title === 'setSwag' && boxElement!.title === 'setSwag') {
+			element!.style.fontSize = '1.8rem';
+			element!.style.marginTop = '20';
+			element!.style.marginLeft = '20';
+			element!.style.transition = '0s';
+			boxElement!.style.opacity = '0';
+			boxElement!.style.width = '0%';
 
-      element!.title = '';
-      boxElement!.title = '';
-      textElement1!.style.opacity = '1';
-      textElement2!.style.opacity = '0';
-      elementskillLVL!.style.opacity = '0';
-    } else if (element!.title === '' && boxElement!.title === '') {
-      element!.style.transition = '2s';
-      element!.style.fontSize = '8rem';
-      element!.style.position = 'absolute';
-      element!.style.marginTop = '15%';
-      element!.style.marginLeft =
-        window.innerWidth * 0.45 -
-        (element?.offsetWidth !== undefined ? element?.offsetWidth : 0) *
-          4.444 +
-        'px';
+			element!.title = '';
+			boxElement!.title = '';
+			textElement1!.style.opacity = '1';
+			textElement2!.style.opacity = '0';
+			elementskillLVL!.style.opacity = '0';
+		} else if (element!.title === '' && boxElement!.title === '') {
+			element!.style.transition = '2s';
+			element!.style.fontSize = '8rem';
+			element!.style.position = 'absolute';
+			element!.style.marginTop = '15%';
+			element!.style.marginLeft =
+				window.innerWidth * 0.45 -
+				(element?.offsetWidth !== undefined ? element?.offsetWidth : 0) *
+					4.444 +
+				'px';
 
-      boxElement!.style.opacity = '1';
-      boxElement!.style.width = '30%';
-      element!.title = 'setSwag';
-      boxElement!.title = 'setSwag';
-      textElement1!.style.opacity = '0';
-      textElement2!.style.opacity = '1';
-      elementskillLVL!.style.opacity = '1';
+			boxElement!.style.opacity = '1';
+			boxElement!.style.width = '30%';
+			element!.title = 'setSwag';
+			boxElement!.title = 'setSwag';
+			textElement1!.style.opacity = '0';
+			textElement2!.style.opacity = '1';
+			elementskillLVL!.style.opacity = '1';
 
-      boxElementFill!.style.width = '30%';
-    }
-  }
+			boxElementFill!.style.width = '30%';
+		}
+	}
 };
 
 var lang: string[][] = [];
 
 const axiosInstance = axios.create({
-  baseURL: 'https://prj4appservice.azurewebsites.net/api/',
+	baseURL: 'https://prj4appservice.azurewebsites.net/api/',
 });
 export function getSkills(pos: number[][]) {
-  axiosInstance
-    .get('Skills')
-    .then((response) => {
-      response.data.forEach((elem: any) => {
-        var p = document.createElement('p');
-        p.className = 'scribble';
-        p.id = elem.skillName;
-        p.innerHTML = elem.skillName;
-        p.style.marginLeft =
-          pos[elem.skillID - 1][0] * window.innerWidth + 'px';
-        p.style.marginTop =
-          pos[elem.skillID - 1][1] * window.innerHeight + 'px';
-        p.style.position = 'absolute';
-        p.onclick = () => {
-          code(elem.skillName);
-        };
-        document.getElementById('langs')?.appendChild(p);
-        lang.push([
-          elem.skillID,
-          elem.skillName,
-          elem.skillLevel,
-          elem.monthsOfExperience,
-        ]);
-      });
-    })
-    .catch(console.error);
-
-  return lang;
+	axiosInstance
+		.get('Skills')
+		.then((response) => {
+			response.data.forEach((elem: any) => {
+				var p = document.createElement('p');
+				p.className = 'scribble';
+				p.id = elem.skillName;
+				p.innerHTML = elem.skillName;
+				p.style.marginLeft =
+					pos[elem.skillID - 1][0] * window.innerWidth + 'px';
+				p.style.marginTop =
+					pos[elem.skillID - 1][1] * window.innerHeight + 'px';
+				p.style.position = 'absolute';
+				p.onclick = () => {
+					code(elem.skillName);
+				};
+				document.getElementById('langs')?.appendChild(p);
+				lang.push([
+					elem.skillID,
+					elem.skillName,
+					elem.skillLevel,
+					elem.monthsOfExperience,
+				]);
+			});
+		})
+		.catch(console.error);
+	return lang;
 }
 
 export function getDescription() {
-  return axiosInstance
-    .get('Texts')
-    .then((response) => {
-      return response.data[0];
-    })
-    .catch(console.error);
+	return axiosInstance
+		.get('Texts')
+		.then((response) => {
+			return response.data[0];
+		})
+		.catch(console.error);
 }
 
 export function putSkill(skill: any) {
-  axiosInstance
-    .put('Skills/' + skill.skillID, skill, config)
-    .then((response) => {
-      return response;
-    })
-    .catch(console.error);
+	axiosInstance
+		.put('Skills/' + skill.skillID, skill, config)
+		.then((response) => {
+			return response;
+		})
+		.catch(console.error);
 }
 
 export function putDescription(desc: string) {
-  axiosInstance
-    .put(
-      'Texts/1',
-      {
-        textID: 1,
-        headline: document.getElementById('aboutTitleText')!.innerHTML,
-        mainText: desc,
-      },
-      config
-    )
-    .then((response) => {
-      return response;
-    })
-    .catch(console.error);
+	axiosInstance
+		.put(
+			'Texts/1',
+			{
+				textID: 1,
+				headline: document.getElementById('aboutTitleText')!.innerHTML,
+				mainText: desc,
+			},
+			config
+		)
+		.then((response) => {
+			return response;
+		})
+		.catch(console.error);
 }
 
 export function putTitle(title: string) {
-  axiosInstance
-    .put(
-      'Texts/1',
-      {
-        textID: 1,
-        headline: title,
-        mainText: document.getElementById('t')!.innerHTML,
-      },
-      config
-    )
-    .then((response) => {
-      return response;
-    })
-    .catch(console.error);
-}
-
-export function authorize() {
-  return axiosInstance
-    .put('/users/loggedin', config)
-    .then(() => {
-      return true;
-    })
-    .catch((err) => {
-      console.log(err);
-      return false;
-    });
+	axiosInstance
+		.put(
+			'Texts/1',
+			{
+				textID: 1,
+				headline: title,
+				mainText: document.getElementById('t')!.innerHTML,
+			},
+			config
+		)
+		.then((response) => {
+			return response;
+		})
+		.catch(console.error);
 }
 
 export function getFiles() {
-  return axiosInstance
-    .get('Files')
-    .then((response) => {
-      console.log(response);
-      return response.data;
-    })
-    .catch(console.error);
+	return axiosInstance
+		.get('Files')
+		.then((response) => {
+			console.log(response);
+			return response.data;
+		})
+		.catch(console.error);
 }
 
 export function getBlob(id: string) {
-  axiosInstance({
-    url: 'https://localhost:7041/api/files/' + id, //your url
-    method: 'GET',
-    responseType: 'blob', // important
-  }).then((response) => {
-    // create file link in browser's memory
-    const href = URL.createObjectURL(response.data);
+	axiosInstance({
+		url: 'https://localhost:7041/api/files/' + id, //your url
+		method: 'GET',
+		responseType: 'blob', // important
+	}).then((response) => {
+		// create file link in browser's memory
+		const href = URL.createObjectURL(response.data);
 
-    // create "a" HTML element with href to file & click
-    const link = document.createElement('a');
-    link.href = href;
-    link.setAttribute('download', 'download.txt'); //or any other extension
-    document.body.appendChild(link);
-    link.click();
+		// create "a" HTML element with href to file & click
+		const link = document.createElement('a');
+		link.href = href;
+		link.setAttribute('download', 'download.txt'); //or any other extension
+		document.body.appendChild(link);
+		link.click();
 
-    // clean up "a" element & remove ObjectURL
-    document.body.removeChild(link);
-    URL.revokeObjectURL(href);
-  });
+		// clean up "a" element & remove ObjectURL
+		document.body.removeChild(link);
+		URL.revokeObjectURL(href);
+	});
 }
 
 export function deleteSkill(id: number) {
-  axiosInstance
-    .delete('Skills/' + id, config)
-    .then((resp) => {
-      return resp;
-    })
-    .catch(console.error);
+	axiosInstance
+		.delete('Skills/' + id, config)
+		.then((resp) => {
+			return resp;
+		})
+		.catch(console.error);
 }
 
 export function postSkill(skill: any) {
-  axiosInstance
-    .post('Skills', skill, config)
-    .then((resp) => {
-      return resp;
-    })
-    .catch(console.error);
+	axiosInstance
+		.post('Skills', skill, config)
+		.then((resp) => {
+			return resp;
+		})
+		.catch(console.error);
 }

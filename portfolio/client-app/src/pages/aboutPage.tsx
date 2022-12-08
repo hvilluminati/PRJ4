@@ -6,8 +6,8 @@ import Popup from 'reactjs-popup';
 import { AboutPopup } from '../popup';
 
 function About() {
-	const [desc, setDesc] = useState('Hello');
-	const [title, setTitle] = useState('About me');
+	const [desc, setDesc] = useState('');
+	const [title, setTitle] = useState('');
 	const [authorized, setAuthorized] = useState(false);
 
 	useEffect(() => {
@@ -47,24 +47,7 @@ function About() {
 							<Popup
 								trigger={
 									<button className='aboutPopupBtn' disabled={!authorized}>
-										<p id='t'>
-											{/*Lorem ipsum dolor sit amet consectetur adipisicing elit.
-											Maxime porro minima delectus. Cupiditate rem ducimus non
-											voluptatem in. Pariatur enim quae perspiciatis dolores
-											veritatis, tempore modi similique quisquam error ad
-											aspernatur obcaecati voluptatibus incidunt, quis quos
-											delectus aut quibusdam. Dignissimos recusandae aspernatur
-											ea facilis fugiat tempore expedita explicabo nesciunt
-											officiis aliquid libero corrupti veniam fuga nisi harum,
-											possimus iusto est voluptate voluptas quibusdam
-											repellendus. Iusto aspernatur quis nisi rerum ea quae id,
-											dolorem voluptatum quasi ipsum ratione corporis ipsa
-											dignissimos praesentium molestiae sed neque hic tempora
-											provident debitis nemo odit sit sequi! Reprehenderit
-											exercitationem quidem voluptatibus blanditiis facilis
-											quisquam tenetur.*/}{' '}
-											{desc}
-										</p>
+										<p id='t'>{desc}</p>
 									</button>
 								}
 								position='right center'>
