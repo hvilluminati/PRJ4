@@ -7,26 +7,38 @@ const config = {
 };
 
 export const code = (name: string) => {
-  if (window.location.pathname === '/PRJ-portfolio/skills') {
+  if (
+    window.location.pathname === '/PRJ-portfolio/skills' &&
+    window.innerWidth > 480
+  ) {
     var element = document.getElementById(name);
     var boxElement = document.getElementById('codeBox');
     var textElement1 = document.getElementById('skillText1');
     var textElement2 = document.getElementById('skillText2');
     var elementskillLVL = document.getElementById('skillLVL');
     var boxElementFill = document.getElementById('codeBoxFill');
+    lang.forEach((element: any) => {
+      if (code === element) {
+        var skillLVL = element;
+        var codeBoxFill = element;
+        console.log(skillLVL);
+      }
+    });
     if (element!.title === 'setSwag' && boxElement!.title === 'setSwag') {
       element!.style.fontSize = '1.8rem';
-      element!.style.marginTop = '20';
-      element!.style.marginLeft = '20';
+      element!.style.marginTop = '20%';
+      element!.style.marginLeft = '30%';
       element!.style.transition = '0s';
       boxElement!.style.opacity = '0';
       boxElement!.style.width = '0%';
-
-      element!.title = '';
-      boxElement!.title = '';
+      boxElement!.style.transition = '0.5s';
       textElement1!.style.opacity = '1';
       textElement2!.style.opacity = '0';
       elementskillLVL!.style.opacity = '0';
+      boxElementFill!.style.width = '0%';
+      boxElementFill!.style.transition = '0.5s';
+      element!.title = '';
+      boxElement!.title = '';
     } else if (element!.title === '' && boxElement!.title === '') {
       element!.style.transition = '2s';
       element!.style.fontSize = '8rem';
@@ -37,16 +49,61 @@ export const code = (name: string) => {
         (element?.offsetWidth !== undefined ? element?.offsetWidth : 0) *
           4.444 +
         'px';
-
+      boxElement!.style.transition = '1s';
       boxElement!.style.opacity = '1';
       boxElement!.style.width = '30%';
-      element!.title = 'setSwag';
-      boxElement!.title = 'setSwag';
       textElement1!.style.opacity = '0';
       textElement2!.style.opacity = '1';
       elementskillLVL!.style.opacity = '1';
+      boxElementFill!.style.transition = '1s';
+      boxElementFill!.style.transitionDelay = '0.8s';
+      boxElementFill!.style.width = '90%';
+      element!.title = 'setSwag';
+      boxElement!.title = 'setSwag';
+    }
+  } else if (
+    window.location.pathname === '/PRJ-portfolio/skills' &&
+    window.innerWidth < 480
+  ) {
+    var element = document.getElementById(name);
+    var boxElement = document.getElementById('codeBox');
+    var textElement1 = document.getElementById('skillText1');
+    var textElement2 = document.getElementById('skillText2');
+    var elementskillLVL = document.getElementById('skillLVL');
+    var boxElementFill = document.getElementById('codeBoxFill');
 
-      boxElementFill!.style.width = '30%';
+    if (element!.title === 'setSwag' && boxElement!.title === 'setSwag') {
+      element!.style.fontSize = '1.2rem';
+      element!.style.marginTop = '60%';
+      element!.style.marginLeft = '40%';
+      element!.style.transition = '0s';
+      boxElement!.style.opacity = '0';
+      boxElement!.style.width = '0%';
+      boxElement!.style.transition = '0.5s';
+      textElement1!.style.opacity = '1';
+      textElement2!.style.opacity = '0';
+      elementskillLVL!.style.opacity = '0';
+      boxElementFill!.style.width = '0%';
+      boxElementFill!.style.transition = '0.5s';
+      element!.title = '';
+      boxElement!.title = '';
+    } else if (element!.title === '' && boxElement!.title === '') {
+      element!.style.transition = '2s';
+      element!.style.fontSize = '4rem';
+      element!.style.position = 'absolute';
+      element!.style.marginLeft = '25%';
+      element!.style.marginTop = '60%';
+      boxElement!.style.transition = '1s';
+      boxElement!.style.opacity = '1';
+      boxElement!.style.width = '70%';
+      textElement1!.style.opacity = '0';
+      textElement2!.style.opacity = '1';
+      elementskillLVL!.style.opacity = '1';
+      boxElementFill!.style.transition = '1s';
+      boxElementFill!.style.transitionDelay = '0.8s';
+      boxElementFill!.style.width = '90%';
+      element!.title = 'setSwag';
+      boxElement!.title = 'setSwag';
     }
   }
 };
