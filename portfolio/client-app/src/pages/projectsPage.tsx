@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getBlob, getFiles, getFilesFind, getFilesSort } from '../axioscalls';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
@@ -94,66 +93,23 @@ export default function Projects() {
           <td>{'Coding language'}</td>
           <td>{'Download button'}</td>
         </tr>
-=======
 
-export default function Projects() {
-	const [fileinfo, setFileinfo] = useState<
-		Array<{
-			id: string;
-			name: string;
-			fileType: string;
-			language: string;
-		}>
-	>([]);
-
-	useEffect(() => {
-		getFiles().then((response) => {
-			for (let index = 0; index < response.length; index++) {
-				setFileinfo((arr) => [
-					...arr,
-					{
-						id: response[index].documentId,
-						name: response[index].name,
-						fileType: response[index].fileType,
-						language: response[index].language,
-					},
-				]);
-			}
-		});
-	}, []);
-
-	return (
-		<div id='hej'>
-			<Link to='/'>
-				<button className='button button1'>
-					<span>Home</span>
-				</button>{' '}
-			</Link>
-			<table id='dataTable' width='350px'>
-				<tr id='Titel'>
-					<td>{'Encrypted Project name'}</td>
-					<td>{'File Type'}</td>
-					<td>{'Coding language'}</td>
-					<td>{'Download button'}</td>
-				</tr>
->>>>>>> c37d124b1ffd0f1216d66d1373558728f68ad2d5
-
-				{fileinfo.map((f) => (
-					<tr>
-						<td>{f.name}</td>
-						<td>{f.fileType}</td>
-						<td>{f.language}</td>
-						<button onClick={() => getBlob(f.id)}>Download</button>'
-					</tr>
-				))}
-			</table>
-			<div id='upload'>
-				<Link to='/UploadProject'>
-					<button className='button button1'>
-						<span>Upload A new Project</span>
-					</button>{' '}
-				</Link>
-			</div>
-		</div>
-	);
+        {fileinfo.map((f) => (
+          <tr>
+            <td>{f.name}</td>
+            <td>{f.fileType}</td>
+            <td>{f.language}</td>
+            <button onClick={() => getBlob(f.id)}>Download</button>'
+          </tr>
+        ))}
+      </table>
+      <div id='upload'>
+        <Link to='/UploadProject'>
+          <button className='button button1'>
+            <span>Upload A new Project</span>
+          </button>{' '}
+        </Link>
+      </div>
+    </div>
+  );
 }
