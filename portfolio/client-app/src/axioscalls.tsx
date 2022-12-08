@@ -218,6 +218,34 @@ export function getFiles() {
     .catch(console.error);
 }
 
+export function getFilesSort(sort: string) {
+  return axiosInstance
+    .get('Files/FilesSort', {
+      params: {
+        sort: sort,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    })
+    .catch(console.error);
+}
+
+export function getFilesFind(find: string) {
+  return axiosInstance
+    .get('Files/FilesFind', {
+      params: {
+        sort: find,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    })
+    .catch(console.error);
+}
+
 export function getBlob(id: string) {
   axiosInstance({
     url: '/api/files/' + id, //your url
