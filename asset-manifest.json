@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/PRJ4/static/css/main.5d89a110.css",
-    "main.js": "/PRJ4/static/js/main.f986e89b.js",
+    "main.js": "/PRJ4/static/js/main.675333ef.js",
     "static/media/nonbinary-person.png": "/PRJ4/static/media/nonbinary-person.af7aa9c397616238f5c6.png",
     "index.html": "/PRJ4/index.html",
     "main.5d89a110.css.map": "/PRJ4/static/css/main.5d89a110.css.map",
-    "main.f986e89b.js.map": "/PRJ4/static/js/main.f986e89b.js.map"
+    "main.675333ef.js.map": "/PRJ4/static/js/main.675333ef.js.map"
   },
   "entrypoints": [
     "static/css/main.5d89a110.css",
-    "static/js/main.f986e89b.js"
+    "static/js/main.675333ef.js"
   ]
 }
