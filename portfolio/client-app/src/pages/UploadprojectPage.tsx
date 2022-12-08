@@ -1,6 +1,5 @@
 import { useState } from 'react';
-//import { postProject } from '../axioscalls';
-import axios from 'axios';
+import { postProject } from '../axioscalls';
 import { Link } from 'react-router-dom';
 
 export default function Upload() {
@@ -12,23 +11,8 @@ export default function Upload() {
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
   };
-
-  const config = {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      Authorization: 'Bearer ' + localStorage.getItem('jwt'),
-    },
-  };
-  const Submit = async () => {
-    var data = new FormData();
-    data.append('file', selectedFile[0]);
-    data.append('id', '1337');
-    const result = await axios.postForm(
-      'https://localhost:7041/api/Files',
-      data,
-      config
-    );
-    console.log(result.data);
+  const Submit = () => {
+    postProject(selectedFile);
   };
   return (
     <div>

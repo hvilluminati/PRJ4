@@ -32,7 +32,7 @@ export var lang = getSkills(pos);
 // 	'CSharp9',
 // ];
 
-export function posSetter(e: any = 0): void {
+export function posSetter(e: any = 0) {
 	if (Object.prototype.toString.call(e) !== '[object Array]') {
 		var x = e === 0 ? 0 : e.clientX / 20;
 		var y = e === 0 ? 0 : e.clientY / 20;
