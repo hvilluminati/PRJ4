@@ -19,8 +19,8 @@ export const code = (name: string) => {
     var boxElementFill = document.getElementById('codeBoxFill');
     lang.forEach((element: any) => {
       if (code === element) {
-        var skillLVL = element[0];
-        var codeBoxFill = element[1];
+        var skillLVL = element;
+        var codeBoxFill = element;
         console.log(skillLVL);
       }
     });
@@ -280,12 +280,3 @@ export async function postProject(selectedFile: any) {
   }
 }
 */
-
-export function postLogin(username: string, password: string) {
-  return axiosInstance
-    .post('Users/login', { Email: username, Password: password })
-    .then((resp) => {
-      return resp;
-    })
-    .catch(console.error);
-}
