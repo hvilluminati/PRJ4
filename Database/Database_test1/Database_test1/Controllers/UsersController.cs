@@ -130,7 +130,7 @@ namespace Portfolio.Controllers
                 // roleClaim,
                 new Claim("UserId", user.UserId.ToString()),
 
-                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddDays(1)).ToUnixTimeSeconds().ToString()),
+                new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddMinutes(1)).ToUnixTimeSeconds().ToString()),
             };
 
             var key = Encoding.ASCII.GetBytes(_appSettings.SecretKey);

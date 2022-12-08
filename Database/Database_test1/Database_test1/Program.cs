@@ -37,11 +37,11 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_appSettings.SecretKey)),
     ValidateLifetime = true, //validate the expiration and not before values
-    ClockSkew = TimeSpan.FromMinutes(5) //5 minute tolerance for the expiration
+    ClockSkew = TimeSpan.Zero //5 minute tolerance for the expiration
 };
 });
 
-//builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
