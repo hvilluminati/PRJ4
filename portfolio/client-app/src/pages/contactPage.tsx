@@ -38,11 +38,7 @@ function Contact() {
             <h1>Contact Me</h1>
           </div>
           <div id='contactInformationBox'>
-            <div id='contactText1'>
-              I'm here to answer any question you may have, reach out to me and
-              I will respond as soon as I can.
-            </div>
-            <div id='contactText2'>
+            <div id='contactText'>
               <div id='contactTextTitle'>
                 <p id='emailTitle'>Email</p>
                 <p id='phoneTitle'>Phone</p>

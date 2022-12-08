@@ -878,40 +878,41 @@ div {
 /*	#endregion	*/
 /*	#region	contact page	*/
 #contact {
-  position: relative;
+  position: absolute;
   flex-direction: column;
   column-count: 1;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   margin: auto;
-  width: 50%;
+  width: 80%;
   height: 70%;
   z-index: 5;
 }
 
 #contactTitle {
+  position: absolute;
+  margin-right: 0%;
+  margin-left: 10%;
+  margin-bottom: 30%;
+}
+#contactInformationBox {
+  position: absolute;
   margin-right: 40%;
+  margin-bottom: 15%;
 }
 
-#contactText1 {
-  width: 500px;
-  margin-bottom: 40%;
-  margin-left: 25%;
-}
-
-#contactText2 {
-  margin-left: -53%;
-  margin-top: 10%;
-  width: 67%;
-  height: 6%;
+#contactText {
+  position: absolute;
+  width: 635px;
+  height: 25px;
   border-style: solid;
   border-width: 3px;
 }
 #contactTextTitle {
   position: absolute;
   width: 800px;
-  margin-top: -5%;
+  margin-top: -6%;
   margin-left: 1.5%;
 }
 #emailTitle {
@@ -958,14 +959,14 @@ a:visited {
 input[type='text'],
 select,
 textarea {
-  width: 100%; /* Full width */
-  padding: 12px; /* Some padding */
-  border: 1px solid #ccc; /* Gray border */
-  border-radius: 4px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
-  margin-top: 6px; /* Add a top margin */
-  margin-bottom: 16px; /* Bottom margin */
-  resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: none;
 }
 
 /* Style the submit button with a specific background color etc */
@@ -978,17 +979,16 @@ input[type='submit'] {
   cursor: pointer;
 }
 
-/* When moving the mouse over the submit button, add a darker green color */
 input[type='submit']:hover {
-  background-color: #45a049;
+  background-color: #117b16;
 }
 
 /* Add a background color and some padding around the form */
 .contactContainer {
   z-index: 10;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 12%;
+  margin-left: 30%;
+  margin-right: 40%;
+  margin-top: 15%;
 }
 
 /*	#endregion	*/
