@@ -1,5 +1,5 @@
 import { useEffect, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import useState from 'react-usestateref';
 import './App.css';
 import WebFont from 'webfontloader';
@@ -67,7 +67,7 @@ function App() {
 	return (
 		<>
 			<Suspense fallback={<Spinner />}>
-				<BrowserRouter basename={process.env.PUBLIC_URL}>
+				<HashRouter>
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/about' element={<About />} />
@@ -78,7 +78,7 @@ function App() {
 						<Route path='/UploadProject' element={<Upload />} />
 						<Route path='/contact' element={<Contact />} />
 					</Routes>
-				</BrowserRouter>
+				</HashRouter>
 			</Suspense>
 			<div id='langs'></div>
 		</>

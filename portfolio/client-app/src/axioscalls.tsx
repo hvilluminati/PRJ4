@@ -13,10 +13,8 @@ export const code = (name: string) => {
 	var textElement2;
 	var elementskillLVL;
 	var boxElementFill;
-	if (
-		window.location.pathname === '/PRJ-portfolio/skills' &&
-		window.innerWidth > 480
-	) {
+	console.log(window.location.pathname);
+	if (window.location.pathname === '/PRJ4' && window.innerWidth > 480) {
 		element = document.getElementById(name);
 		boxElement = document.getElementById('codeBox');
 		textElement1 = document.getElementById('skillText1');
@@ -66,10 +64,7 @@ export const code = (name: string) => {
 			element!.title = 'setSwag';
 			boxElement!.title = 'setSwag';
 		}
-	} else if (
-		window.location.pathname === '/PRJ-portfolio/skills' &&
-		window.innerWidth < 480
-	) {
+	} else if (window.location.pathname === '/PRJ4' && window.innerWidth < 480) {
 		element = document.getElementById(name);
 		boxElement = document.getElementById('codeBox');
 		textElement1 = document.getElementById('skillText1');

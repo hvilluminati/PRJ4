@@ -4,7 +4,7 @@
 	"private": true,
 	"proxy": "https://localhost:44327",
 	"type": "module",
-	"homepage": "https://lassehj0.github.io/PRJ-portfolio",
+	"homepage": "https://hvilluminati.github.io/PRJ4",
 	"dependencies": {
 		"-": "^0.0.1",
 		"@babel/preset-react": "^7.18.6",
