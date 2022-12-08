@@ -200,3 +200,13 @@ export function postSkill(skill: any) {
     })
     .catch(console.error);
 }
+
+export function postLogin(username: string, password: string){
+   return axiosInstance
+    .post('Users/login', {Email: username, Password: password})
+    .then((resp) => {
+      return resp;
+    })
+    .catch(console.error);
+}
+ 

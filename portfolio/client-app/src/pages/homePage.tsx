@@ -34,7 +34,7 @@ const Home = () => {
 					<div id='btn-wrapper'>
 						<Link to='login'>
 							<button className='btn' id='loginBtn'>
-								login
+								Login
 							</button>
 						</Link>
 						<div className='border bottom'></div>
