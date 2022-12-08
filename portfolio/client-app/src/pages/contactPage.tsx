@@ -1,7 +1,30 @@
 import { Link } from 'react-router-dom';
 import ButtonMailto from '../mailTo';
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 function Contact() {
+  const form = useRef<HTMLFormElement>(null!);
+
+  const sendEmail = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        'service_8nakf3g',
+        'template_99uif1d',
+        form.current,
+        '5ljdZ00aN6vQuKHKv'
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+  console.log(form.current);
   return (
     <>
       <div id='hej'>
@@ -57,31 +80,18 @@ function Contact() {
           </div>
         </div>
         <div className='contactContainer'>
-          <form action='action_page.php'>
+          <form ref={form} onSubmit={sendEmail}>
             <label htmlFor='fname'>First Name</label>
-            <input
-              type={'text'}
-              id='fname'
-              name='firstname'
-              placeholder='Your name'
-            ></input>
-
-            <label htmlFor='lname'>Last Name</label>
-            <input
-              type={'text'}
-              id='lname'
-              name='lastname'
-              placeholder='Your last name'
-            ></input>
-
-            <label htmlFor='fname'>First Name</label>
+            <input type={'text'} id='fname' name='user_name'></input>
+            <label htmlFor='lname'>Email</label>
+            <input type={'text'} id='lname' name='user_email'></input>
+            <label htmlFor='fname'>Message</label>
             <textarea
               id='subject'
-              name='subject'
-              placeholder='Write something'
+              name='message'
               style={{ height: '200px' }}
             ></textarea>
-            <input type='submit' value='Submit'></input>
+            <input type='submit' value='Send'></input>
           </form>
         </div>
       </div>
