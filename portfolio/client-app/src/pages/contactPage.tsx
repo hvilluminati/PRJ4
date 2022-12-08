@@ -23,11 +23,11 @@ function Contact() {
           console.log(error.text);
         }
       );
+    alert('Message sent');
   };
-  console.log(form.current);
   return (
     <>
-      <div id='hej'>
+      <div id='halloj'>
         <Link to='/'>
           <button className='button button1'>
             <span>Home</span>
@@ -90,6 +90,7 @@ function Contact() {
             <input type='submit' value='Send'></input>
           </form>
         </div>
+        <div>Message sent</div>
       </div>
     </>
   );
