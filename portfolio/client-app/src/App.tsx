@@ -1,4 +1,4 @@
-import react, { useEffect, Suspense } from 'react';
+import { useEffect, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import useState from 'react-usestateref';
 import './App.css';
@@ -7,7 +7,6 @@ import Home from './pages/homePage';
 import About from './pages/aboutPage';
 import Skills from './pages/skillsPage';
 import Login from './pages/loginPage';
-import { code } from './axioscalls';
 import { posSetter } from './pos';
 import Spinner from './pages/spinner';
 import Projects from './pages/projectsPage';
@@ -17,6 +16,7 @@ import Contact from './pages/contactPage';
 declare const window: any;
 
 function App() {
+	// eslint-disable-next-line
 	const [coords, setCoords, coordsRef] = useState<number[]>(() => [0, 0]);
 	var gyro = null;
 
@@ -37,6 +37,7 @@ function App() {
 			};
 		} else {
 			try {
+				// eslint-disable-next-line
 				gyro = new window.Gyroscope({ frequency: 60 });
 				gyro.addEventListener('reading', (e: any) => {
 					setCoords((p) => [p[0] + e.target.y, p[1] + e.target.x]);
