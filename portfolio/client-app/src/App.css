@@ -228,7 +228,7 @@ div {
 #skillsTitle {
   position: absolute;
   text-align: center;
-  margin-left: 58%;
+  margin-left: 57%;
   margin-top: 10%;
 }
 
@@ -271,7 +271,7 @@ div {
 
 #skillText1 {
   position: absolute;
-  margin-left: 55%;
+  margin-left: 54%;
   margin-top: 18%;
   transition: 2s;
   opacity: 1;
