@@ -1,10 +1,33 @@
 import { Link } from 'react-router-dom';
 import ButtonMailto from '../mailTo';
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 function Contact() {
+  const form = useRef<HTMLFormElement>(null!);
+
+  const sendEmail = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        'service_8nakf3g',
+        'template_99uif1d',
+        form.current,
+        '5ljdZ00aN6vQuKHKv'
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    alert('Message sent');
+  };
   return (
     <>
-      <div id='hej'>
+      <div id='halloj'>
         <Link to='/'>
           <button className='button button1'>
             <span>Home</span>
@@ -15,11 +38,7 @@ function Contact() {
             <h1>Contact Me</h1>
           </div>
           <div id='contactInformationBox'>
-            <div id='contactText1'>
-              I'm here to answer any question you may have, reach out to me and
-              I will respond as soon as I can.
-            </div>
-            <div id='contactText2'>
+            <div id='contactText'>
               <div id='contactTextTitle'>
                 <p id='emailTitle'>Email</p>
                 <p id='phoneTitle'>Phone</p>
@@ -57,33 +76,21 @@ function Contact() {
           </div>
         </div>
         <div className='contactContainer'>
-          <form action='action_page.php'>
+          <form ref={form} onSubmit={sendEmail}>
             <label htmlFor='fname'>First Name</label>
-            <input
-              type={'text'}
-              id='fname'
-              name='firstname'
-              placeholder='Your name'
-            ></input>
-
-            <label htmlFor='lname'>Last Name</label>
-            <input
-              type={'text'}
-              id='lname'
-              name='lastname'
-              placeholder='Your last name'
-            ></input>
-
-            <label htmlFor='fname'>First Name</label>
+            <input type={'text'} id='fname' name='user_name'></input>
+            <label htmlFor='lname'>Email</label>
+            <input type={'text'} id='lname' name='user_email'></input>
+            <label htmlFor='fname'>Message</label>
             <textarea
               id='subject'
-              name='subject'
-              placeholder='Write something'
+              name='message'
               style={{ height: '200px' }}
             ></textarea>
-            <input type='submit' value='Submit'></input>
+            <input type='submit' value='Send'></input>
           </form>
         </div>
+        <div>Message sent</div>
       </div>
     </>
   );
