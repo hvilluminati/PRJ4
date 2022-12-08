@@ -275,7 +275,3 @@ C:\Users\Lasse\OneDrive\Dokumenter\skole\4. semester\PRJ\portolio\portfolio\obj\
 C:\Users\Lasse\OneDrive\Dokumenter\skole\4. semester\PRJ\portolio\portfolio\obj\Debug\net6.0\test.pdb
 C:\Users\Lasse\OneDrive\Dokumenter\skole\4. semester\PRJ\portolio\portfolio\obj\Debug\net6.0\test.genruntimeconfig.cache
 C:\Users\Lasse\OneDrive\Dokumenter\skole\4. semester\PRJ\portolio\portfolio\obj\Debug\net6.0\ref\test.dll
-C:\Users\clara\Source\Repos\PRJ4\portfolio\obj\Debug\net6.0\test.dll
-C:\Users\clara\Source\Repos\PRJ4\portfolio\obj\Debug\net6.0\refint\test.dll
-C:\Users\clara\Source\Repos\PRJ4\portfolio\obj\Debug\net6.0\test.xml
-C:\Users\clara\Source\Repos\PRJ4\portfolio\obj\Debug\net6.0\test.pdb
