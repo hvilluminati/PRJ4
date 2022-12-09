@@ -288,7 +288,7 @@ div {
   z-index: 1;
 }
 
-#skillLVL {
+#skillMonths {
   position: absolute;
   flex-direction: column;
   justify-content: center;
