@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/PRJ4/static/css/main.c36569bc.css",
-    "main.js": "/PRJ4/static/js/main.475c9eb8.js",
+    "main.js": "/PRJ4/static/js/main.c2ef2c6c.js",
     "static/media/nonbinary-person.png": "/PRJ4/static/media/nonbinary-person.af7aa9c397616238f5c6.png",
     "static/media/emaillogo.png": "/PRJ4/static/media/emaillogo.00cad07fc47e95dab520.png",
     "static/media/skypelogo.png": "/PRJ4/static/media/skypelogo.68c81feb0a3ef3db3ac5.png",
     "static/media/phonelogo.png": "/PRJ4/static/media/phonelogo.04283d1651796d5d847d.png",
     "index.html": "/PRJ4/index.html",
     "main.c36569bc.css.map": "/PRJ4/static/css/main.c36569bc.css.map",
-    "main.475c9eb8.js.map": "/PRJ4/static/js/main.475c9eb8.js.map"
+    "main.c2ef2c6c.js.map": "/PRJ4/static/js/main.c2ef2c6c.js.map"
   },
   "entrypoints": [
     "static/css/main.c36569bc.css",
-    "static/js/main.475c9eb8.js"
+    "static/js/main.c2ef2c6c.js"
   ]
 }
