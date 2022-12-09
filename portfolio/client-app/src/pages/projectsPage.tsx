@@ -75,7 +75,7 @@ export default function Projects() {
         </button>{' '}
       </Link>
 
-      <DropdownButton id='dropdown-basic-button' title='Dropdown button'>
+      <DropdownButton id='dropbtn' title='Dropdown button'>
         <Dropdown.Item onClick={(event) => Sortby('name')}>
           Sort By Name
         </Dropdown.Item>
