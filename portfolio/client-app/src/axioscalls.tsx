@@ -171,7 +171,7 @@ export function putSkill(skill: any) {
 			return response;
 		})
 		.catch((err) => {
-			console.error;
+			console.error(err);
 			return err;
 		});
 }
