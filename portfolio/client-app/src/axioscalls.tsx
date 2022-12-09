@@ -1,81 +1,76 @@
 import axios from 'axios';
 
 const config = {
-  headers: {
-    Authorization: 'Bearer ' + localStorage.getItem('jwt'),
-  },
+	headers: {
+		Authorization: 'Bearer ' + window.localStorage.getItem('jwt'),
+	},
 };
 
 export const code = (name: string) => {
-  var element;
-  var boxElement;
-  var textElement1;
-  var textElement2;
-  var elementskillLVL;
-  var boxElementFill;
-  if (
-    window.location.pathname === '/PRJ-portfolio/skills' &&
-    window.innerWidth > 480
-  ) {
-    element = document.getElementById(name);
-    boxElement = document.getElementById('codeBox');
-    textElement1 = document.getElementById('skillText1');
-    textElement2 = document.getElementById('skillText2');
-    elementskillLVL = document.getElementById('skillLVL');
-    boxElementFill = document.getElementById('codeBoxFill');
-    lang.forEach((element: any) => {
-      if (code === element) {
-        var skillLVL = element[0];
-        console.log(skillLVL);
-      }
-    });
-    if (element!.title === 'setSwag' && boxElement!.title === 'setSwag') {
-      element!.style.fontSize = '1.8rem';
-      element!.style.marginTop = '20%';
-      element!.style.marginLeft = '30%';
-      element!.style.transition = '0s';
-      boxElement!.style.opacity = '0';
-      boxElement!.style.width = '0%';
-      boxElement!.style.transition = '0.5s';
-      textElement1!.style.opacity = '1';
-      textElement2!.style.opacity = '0';
-      elementskillLVL!.style.opacity = '0';
-      boxElementFill!.style.width = '0%';
-      boxElementFill!.style.transition = '0.5s';
-      element!.title = '';
-      boxElement!.title = '';
-    } else if (element!.title === '' && boxElement!.title === '') {
-      element!.style.transition = '2s';
-      element!.style.fontSize = '8rem';
-      element!.style.position = 'absolute';
-      element!.style.marginTop = '15%';
-      element!.style.marginLeft =
-        window.innerWidth * 0.45 -
-        (element?.offsetWidth !== undefined ? element?.offsetWidth : 0) *
-          4.444 +
-        'px';
-      boxElement!.style.transition = '1s';
-      boxElement!.style.opacity = '1';
-      boxElement!.style.width = '30%';
-      textElement1!.style.opacity = '0';
-      textElement2!.style.opacity = '1';
-      elementskillLVL!.style.opacity = '1';
-      boxElementFill!.style.transition = '1s';
-      boxElementFill!.style.transitionDelay = '0.8s';
-      boxElementFill!.style.width = '90%';
-      element!.title = 'setSwag';
-      boxElement!.title = 'setSwag';
-    }
-  } else if (
-    window.location.pathname === '/PRJ-portfolio/skills' &&
-    window.innerWidth < 480
-  ) {
-    element = document.getElementById(name);
-    boxElement = document.getElementById('codeBox');
-    textElement1 = document.getElementById('skillText1');
-    textElement2 = document.getElementById('skillText2');
-    elementskillLVL = document.getElementById('skillLVL');
-    boxElementFill = document.getElementById('codeBoxFill');
+	var element;
+	var boxElement;
+	var textElement1;
+	var textElement2;
+	var elementskillLVL;
+	var boxElementFill;
+	console.log(window.location.pathname);
+	if (window.location.pathname === '/PRJ4' && window.innerWidth > 480) {
+		element = document.getElementById(name);
+		boxElement = document.getElementById('codeBox');
+		textElement1 = document.getElementById('skillText1');
+		textElement2 = document.getElementById('skillText2');
+		elementskillLVL = document.getElementById('skillLVL');
+		boxElementFill = document.getElementById('codeBoxFill');
+		lang.forEach((element: any) => {
+			if (code === element) {
+				var skillLVL = element[0];
+				console.log(skillLVL);
+			}
+		});
+		if (element!.title === 'setSwag' && boxElement!.title === 'setSwag') {
+			element!.style.fontSize = '1.8rem';
+			element!.style.marginTop = '20%';
+			element!.style.marginLeft = '30%';
+			element!.style.transition = '0s';
+			boxElement!.style.opacity = '0';
+			boxElement!.style.width = '0%';
+			boxElement!.style.transition = '0.5s';
+			textElement1!.style.opacity = '1';
+			textElement2!.style.opacity = '0';
+			elementskillLVL!.style.opacity = '0';
+			boxElementFill!.style.width = '0%';
+			boxElementFill!.style.transition = '0.5s';
+			element!.title = '';
+			boxElement!.title = '';
+		} else if (element!.title === '' && boxElement!.title === '') {
+			element!.style.transition = '2s';
+			element!.style.fontSize = '8rem';
+			element!.style.position = 'absolute';
+			element!.style.marginTop = '15%';
+			element!.style.marginLeft =
+				window.innerWidth * 0.45 -
+				(element?.offsetWidth !== undefined ? element?.offsetWidth : 0) *
+					4.444 +
+				'px';
+			boxElement!.style.transition = '1s';
+			boxElement!.style.opacity = '1';
+			boxElement!.style.width = '30%';
+			textElement1!.style.opacity = '0';
+			textElement2!.style.opacity = '1';
+			elementskillLVL!.style.opacity = '1';
+			boxElementFill!.style.transition = '1s';
+			boxElementFill!.style.transitionDelay = '0.8s';
+			boxElementFill!.style.width = '90%';
+			element!.title = 'setSwag';
+			boxElement!.title = 'setSwag';
+		}
+	} else if (window.location.pathname === '/PRJ4' && window.innerWidth < 480) {
+		element = document.getElementById(name);
+		boxElement = document.getElementById('codeBox');
+		textElement1 = document.getElementById('skillText1');
+		textElement2 = document.getElementById('skillText2');
+		elementskillLVL = document.getElementById('skillLVL');
+		boxElementFill = document.getElementById('codeBoxFill');
 
     if (element!.title === 'setSwag' && boxElement!.title === 'setSwag') {
       element!.style.fontSize = '1.2rem';
@@ -119,34 +114,34 @@ const axiosInstance = axios.create({
   baseURL: 'https://prj4appservice.azurewebsites.net/api/',
 });
 export function getSkills(pos: number[][]) {
-  axiosInstance
-    .get('Skills')
-    .then((response) => {
-      response.data.forEach((elem: any) => {
-        var p = document.createElement('p');
-        p.className = 'scribble';
-        p.id = elem.skillName;
-        p.innerHTML = elem.skillName;
-        p.style.marginLeft =
-          pos[elem.skillID - 1][0] * window.innerWidth + 'px';
-        p.style.marginTop =
-          pos[elem.skillID - 1][1] * window.innerHeight + 'px';
-        p.style.position = 'absolute';
-        p.onclick = () => {
-          code(elem.skillName);
-        };
-        document.getElementById('langs')?.appendChild(p);
-        lang.push([
-          elem.skillID,
-          elem.skillName,
-          elem.skillLevel,
-          elem.monthsOfExperience,
-        ]);
-      });
-    })
-    .catch(console.error);
+	axiosInstance
+		.get('Skills')
+		.then((response) => {
+			response.data.forEach((elem: any) => {
+				var p = document.createElement('p');
+				p.className = 'scribble';
+				p.id = elem.skillName;
+				p.innerHTML = elem.skillName;
+				p.style.marginLeft =
+					pos[elem.skillID - 1][0] * window.innerWidth + 'px';
+				p.style.marginTop =
+					pos[elem.skillID - 1][1] * window.innerHeight + 'px';
+				p.style.position = 'absolute';
+				p.onclick = () => {
+					code(elem.skillName);
+				};
+				document.getElementById('langs')?.appendChild(p);
+				lang.push([
+					elem.skillID,
+					elem.skillName,
+					elem.skillLevel,
+					elem.monthsOfExperience,
+				]);
+			});
+		})
+		.catch(console.error);
 
-  return lang;
+	return lang;
 }
 
 export function getDescription() {
@@ -224,31 +219,31 @@ export function getFiles() {
 }
 
 export function getFilesSort(sort: string) {
-  return axiosInstance
-    .get('Files/FilesSort', {
-      params: {
-        sort: sort,
-      },
-    })
-    .then((response) => {
-      console.log(response);
-      return response.data;
-    })
-    .catch(console.error);
+	return axiosInstance
+		.get('Files/FilesSort', {
+			params: {
+				sort: sort,
+			},
+		})
+		.then((response) => {
+			console.log(response);
+			return response.data;
+		})
+		.catch(console.error);
 }
 
 export function getFilesFind(find: string) {
-  return axiosInstance
-    .get('Files/FilesFind', {
-      params: {
-        sort: find,
-      },
-    })
-    .then((response) => {
-      console.log(response);
-      return response.data;
-    })
-    .catch(console.error);
+	return axiosInstance
+		.get('Files/FilesFind', {
+			params: {
+				sort: find,
+			},
+		})
+		.then((response) => {
+			console.log(response);
+			return response.data;
+		})
+		.catch(console.error);
 }
 
 export function getBlob(id: string) {
@@ -312,7 +307,7 @@ export async function postProject(selectedFile: any, language: string) {
   try {
     axiosInstance({
       method: 'post',
-      url: 'https://localhost:7041/api/Files/',
+        url: 'https://prj4appservice.azurewebsites.net/api/Files/',
       data: formData,
       headers: {
         'Content-Type': 'multipart/form-data',
