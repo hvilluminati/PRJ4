@@ -164,9 +164,10 @@ export function getDescription() {
 }
 
 export function putSkill(skill: any) {
-  axiosInstance
+  return axiosInstance
     .put('Skills/' + skill.skillID, skill, config)
     .then((response) => {
+      console.log(response);
       return response;
     })
     .catch(console.error);
@@ -256,9 +257,9 @@ export function getFilesFind(find: string) {
     .catch(console.error);
 }
 
-export function getBlob(id: string) {
+export function getBlob(id: string, Filetype: string, name: string) {
   axiosInstance({
-    url: '/api/files/' + id, //your url
+    url: '/files/' + id, //your url
     method: 'GET',
     responseType: 'blob', // important
   }).then((response) => {
@@ -268,7 +269,7 @@ export function getBlob(id: string) {
     // create "a" HTML element with href to file & click
     const link = document.createElement('a');
     link.href = href;
-    link.setAttribute('download', 'download.txt'); //or any other extension
+    link.setAttribute('download', `${name}.${Filetype}`); //or any other extension
     document.body.appendChild(link);
     link.click();
 
