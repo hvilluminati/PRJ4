@@ -12,10 +12,7 @@ export const code = (name: string) => {
   var skillLevel;
   var monthsOfExperience;
 
-  if (
-    window.location.pathname === '/PRJ-portfolio/skills' &&
-    window.innerWidth > 480
-  ) {
+  if (window.location.pathname === '/PRJ4' && window.innerWidth > 480) {
     var element = document.getElementById(name);
     var boxElement = document.getElementById('codeBox');
     var textElement1 = document.getElementById('skillText1');
@@ -75,10 +72,7 @@ export const code = (name: string) => {
       element!.title = 'setSwag';
       boxElement!.title = 'setSwag';
     }
-  } else if (
-    window.location.pathname === '/PRJ-portfolio/skills' &&
-    window.innerWidth < 480
-  ) {
+  } else if (window.location.pathname === '/PRJ4' && window.innerWidth < 480) {
     var element = document.getElementById(name);
     var boxElement = document.getElementById('codeBox');
     var textElement1 = document.getElementById('skillText1');
