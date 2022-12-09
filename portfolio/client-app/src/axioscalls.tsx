@@ -13,7 +13,6 @@ export const code = (name: string) => {
 	var textElement2;
 	var elementskillLVL;
 	var boxElementFill;
-	console.log(window.location.pathname);
 	if (window.location.pathname === '/PRJ4' && window.innerWidth > 480) {
 		element = document.getElementById(name);
 		boxElement = document.getElementById('codeBox');
@@ -154,12 +153,16 @@ export function getDescription() {
 }
 
 export function putSkill(skill: any) {
-	axiosInstance
+	return axiosInstance
 		.put('Skills/' + skill.skillID, skill, config)
 		.then((response) => {
+			console.log(response);
 			return response;
 		})
-		.catch(console.error);
+		.catch((err) => {
+			console.error;
+			return err;
+		});
 }
 
 export function putDescription(desc: string) {
