@@ -21,7 +21,7 @@ export const code = (name: string) => {
     var boxElementFill = document.getElementById('codeBoxFill');
 
     lang.forEach((element: any) => {
-      if (code === element) {
+      if (name === element[1]) {
         skillID = element[0];
         skillName = element[1];
         skillLevel = element[2];

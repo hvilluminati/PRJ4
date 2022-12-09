@@ -939,16 +939,12 @@ div {
 #Download :hover {
   background-color: #16a085;
   color: white;
-  
 }
-
 
 #Titel {
   background-color: #515152;
   height: 50px;
 }
-
-
 
 #upload {
   position: absolute;
@@ -985,59 +981,48 @@ div {
 }
 #contactInformationBox {
   position: absolute;
-  margin-right: 40%;
+  margin-left: 50%;
   margin-bottom: 15%;
 }
 
 #contactText {
   position: absolute;
-  width: 635px;
-  height: 25px;
-  border-style: solid;
-  border-width: 3px;
-}
-#contactTextTitle {
-  position: absolute;
-  width: 800px;
-  margin-top: -6%;
-  margin-left: 1.5%;
-}
-#emailTitle {
-}
-#phoneTitle {
-  margin-left: 15%;
-}
-#skypeTitle {
-  margin-left: 8.5%;
-}
-#linkedinTitle {
-  margin-left: 2.5%;
-}
-#facebookTitle {
-  margin-left: 9.4%;
-}
-#twitterTitle {
-  margin-left: 1%;
-}
-#phone {
-  margin-left: 1.5%;
+  width: 200px;
+  height: 450px;
 }
 
-#skype {
-  margin-left: 1.5%;
+#emaillogo {
+  width: 50px;
+  height: 50px;
 }
-#linkedin {
-  margin-left: 1.5%;
+
+#phonelogo {
+  width: 50px;
+  height: 50px;
+  margin-top: 5px;
 }
-#facebook {
-  margin-left: 1.5%;
+
+#skypelogo {
+  width: 50px;
+  height: 50px;
+  margin-top: 5px;
 }
-#twitter {
-  margin-left: 1.5%;
+#linkedinlogo {
+  width: 50px;
+  height: 50px;
+  margin-top: 5px;
 }
-#email {
-  margin-left: 1.5%;
+#facebooklogo {
+  width: 50px;
+  height: 50px;
+  margin-top: 5px;
 }
+#twitterlogo {
+  width: 50px;
+  height: 50px;
+  margin-top: 5px;
+}
+
 a:link,
 a:visited {
   color: white;
@@ -1073,10 +1058,11 @@ input[type='submit']:hover {
 
 .contactContainer {
   z-index: 10;
-  margin-left: 30%;
-  margin-right: 40%;
-  margin-top: 15%;
+  margin-left: 33%;
+  margin-right: 45%;
+  margin-top: 10%;
 }
+
 @media (max-width: 480px) {
   #halloj {
     position: absolute;
@@ -1099,31 +1085,53 @@ input[type='submit']:hover {
     position: absolute;
     margin-right: 0%;
     margin-left: 15%;
-    margin-top: 0%;
+    margin-top: -20%;
     margin-bottom: 150%;
   }
   #contactInformationBox {
     position: absolute;
-    margin-right: 70%;
-    margin-left: 0%;
-    margin-bottom: 135%;
+    display: block;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 60%;
+  }
+  #contactText {
+    display: block;
+  }
+  #listLogo {
+    float: left;
   }
 
-  #contactText {
-    position: absolute;
-    width: 300px;
-    height: 200px;
-    border-style: solid;
-    border-width: 3px;
-    font-size: 80%;
-    overflow-wrap: break-word;
+  #emaillogo {
+    width: 50px;
+    height: 50px;
   }
-  #contactTextTitle {
-    position: absolute;
-    width: 300px;
-    margin-top: 0%;
-    margin-left: 1.5%;
-    overflow-wrap: break-word;
+
+  #phonelogo {
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+  }
+
+  #skypelogo {
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+  }
+  #linkedinlogo {
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+  }
+  #facebooklogo {
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+  }
+  #twitterlogo {
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
   }
 
   a:link,
@@ -1167,38 +1175,29 @@ input[type='submit']:hover {
 
 /*	#region Uploadprojects	*/
 
+#hej {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
-  #hej {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-
-#Selectfile{
-
+#Selectfile {
   position: absolute;
   margin-left: 10%;
   width: 100%;
   margin-top: 20%;
-  
-
 }
 
-#submit{
-
+#submit {
   position: absolute;
   margin-left: 50%;
   width: 100%;
   margin-top: 0%;
-
 }
 
 #submit :hover {
   background-color: #16a085;
   color: white;
-  
 }
-
-
 
 /*	#endregion	*/
