@@ -21,7 +21,7 @@ export const code = (name: string) => {
     var boxElementFill = document.getElementById('codeBoxFill');
 
     lang.forEach((element: any) => {
-      if (code === element) {
+      if (name === element[1]) {
         skillID = element[0];
         skillName = element[1];
         skillLevel = element[2];
@@ -63,9 +63,10 @@ export const code = (name: string) => {
       boxElement!.style.width = '30%';
       textElement1!.style.opacity = '0';
       textElement2!.style.opacity = '1';
-      elementskillLVL!.style.opacity = '1';
       elementskillLVL!.style.content =
-        'Months of experience:' + { monthsOfExperience };
+        'Months of experience:' + { monthsOfExperience } + '';
+      elementskillLVL!.style.opacity = '1';
+
       boxElementFill!.style.transition = '1s';
       boxElementFill!.style.transitionDelay = '0.8s';
       boxElementFill!.style.width = skillLevel + '%';
