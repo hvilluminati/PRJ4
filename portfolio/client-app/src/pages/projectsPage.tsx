@@ -100,7 +100,7 @@ export default function Projects() {
             <td>{f.fileType}</td>
             <td>{f.language}</td>
             <div id='Download'>
-            <button onClick={() => getBlob(f.id)}>Download</button></div>
+            <button id='Download' onClick={() => getBlob(f.id)}>Download</button></div>
           </tr>
         ))}
       </table>
