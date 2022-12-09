@@ -121,6 +121,7 @@ namespace Database_test1.Controllers
         {
             if (files != null)
             {
+                
                 if (files.Length > 0)
                 {
                     //Getting FileName
@@ -128,12 +129,16 @@ namespace Database_test1.Controllers
                     //Getting file Extension
                     var fileExtension = Path.GetExtension(fileName);
                     // concatenating  FileName + FileExtension
-                    var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
+                    //var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
+                    //Check if file with same name already exists
+                    if ( (_context.Files.Where(x => x.Name == fileName).Any()==false))
+                    {
+                      
 
                     var objfiles = new Files()
                     {
-                        Name = newFileName,
+                        Name = fileName,
                         FileType = fileExtension,
                         CreatedOn = DateTime.Now,
                         Language = language,
@@ -151,10 +156,11 @@ namespace Database_test1.Controllers
 
                     var file = await _context.Files.FindAsync(objfiles.DocumentId);
                     return CreatedAtAction("GetFiles", new { id = file.DocumentId }, files);
-
+                    }
+                    return StatusCode(403);
 
                 }
-                
+
             }
             return BadRequest();
         }
