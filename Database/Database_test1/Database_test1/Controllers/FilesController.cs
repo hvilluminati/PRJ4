@@ -126,13 +126,16 @@ namespace Portfolio.Controllers
             return NoContent();
         }
 
+     
+
         // POST: api/Files
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<File>> PostFiles(IFormFile files,string language)
+        public async Task<ActionResult<File>> PostFiles(IFormFile files, [FromForm] string language)
         {
             if (files != null)
             {
+
                 if (files.Length > 0)
                 {
                     //Getting FileName
@@ -140,36 +143,42 @@ namespace Portfolio.Controllers
                     //Getting file Extension
                     var fileExtension = Path.GetExtension(fileName);
                     // concatenating  FileName + FileExtension
-                    
-                    var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
+                    //var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
-                    var objfiles = new File()
+                    //Check if file with same name already exists
+                    if ((_context.Files.Where(x => x.Name == fileName).Any() == false))
                     {
-                        Name = newFileName,
-                        FileType = fileExtension,
-                        CreatedOn = DateTime.Now,
-                        Language = language
-                    };
 
-                    using (var target = new MemoryStream())
-                    {
-                        files.CopyTo(target);
-                        objfiles.DataFiles = target.ToArray();
+
+                        var objfiles = new File()
+                        {
+                            Name = fileName,
+                            FileType = fileExtension,
+                            CreatedOn = DateTime.Now,
+                            Language = language,
+                        };
+
+                        using (var target = new MemoryStream())
+                        {
+                            files.CopyTo(target);
+                            objfiles.DataFiles = target.ToArray();
+                        }
+
+                        _context.Files.Add(objfiles);
+                        _context.SaveChanges();
+
+
+                        var file = await _context.Files.FindAsync(objfiles.DocumentId);
+                        return CreatedAtAction("GetFiles", new { id = file.DocumentId }, files);
                     }
-
-                    _context.Files.Add(objfiles);
-                    _context.SaveChanges();
-
-
-                    var File = await _context.Files.FindAsync(objfiles.DocumentId);
-                    return CreatedAtAction("GetFiles", new { id = File.DocumentId }, files);
-
+                    return StatusCode(403);
 
                 }
-                
+
             }
             return BadRequest();
         }
+
 
         // DELETE: api/Files/5
         [HttpDelete("{id}")]
