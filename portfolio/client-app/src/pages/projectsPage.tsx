@@ -74,8 +74,7 @@ export default function Projects() {
           <span>Home</span>
         </button>{' '}
       </Link>
-
-      <DropdownButton id='dropdown-basic-button' title='Dropdown button'>
+      <DropdownButton id='dropbtn' title='Sort Projects'>
         <Dropdown.Item onClick={(event) => Sortby('name')}>
           Sort By Name
         </Dropdown.Item>
@@ -86,6 +85,7 @@ export default function Projects() {
           Find all C# Projects
         </Dropdown.Item>
       </DropdownButton>
+
       <table id='dataTable' width='350px'>
         <tr id='Titel'>
           <td>{'Encrypted Project name'}</td>
@@ -99,7 +99,10 @@ export default function Projects() {
             <td>{f.name}</td>
             <td>{f.fileType}</td>
             <td>{f.language}</td>
-            <button onClick={() => getBlob(f.id)}>Download</button>'
+            <button onClick={() => getBlob(f.id, f.fileType, f.name)}>
+              Download
+            </button>
+            '
           </tr>
         ))}
       </table>

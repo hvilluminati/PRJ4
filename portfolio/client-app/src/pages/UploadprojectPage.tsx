@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { postProject } from '../axioscalls';
 import { Link } from 'react-router-dom';
 
+
+
 export default function Upload() {
   const [selectedFile, setSelectedFile] = useState<any>([]);
   const [language, setLanguage] = useState('no Language');
@@ -12,15 +14,18 @@ export default function Upload() {
     setIsFilePicked(true);
   };
   const Submit = () => {
-    postProject(selectedFile);
+    postProject(selectedFile, language);
   };
   return (
     <div>
+       <div  id='hej'>
       <Link to='/'>
         <button className='button button1'>
           <span>Home</span>
         </button>{' '}
       </Link>
+      </div>
+      <div  id='Selectfile'>
       <input type='file' name='file' onChange={fileUploaded} />
       <input
         type='string'
@@ -40,9 +45,11 @@ export default function Upload() {
       ) : (
         <p>Select a file to show details</p>
       )}
-      <div>
+      <div id='submit'>
         <button onClick={Submit}>Submit</button>
       </div>
+      </div>
     </div>
+    
   );
 }
