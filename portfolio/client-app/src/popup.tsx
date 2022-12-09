@@ -87,13 +87,13 @@ export const SkillsPopup = () => {
 
 const SkillPopup = ({ skill }: { skill?: any }) => {
 	const [skillName, setSkillName] = useState(
-		skill !== undefined ? skill[1] : ''
+		skill !== undefined ? skill[1] : false
 	);
 	const [skillLevel, setSkillLevel] = useState(
-		skill !== undefined ? skill[2] : ''
+		skill !== undefined ? skill[2] : false
 	);
 	const [monthsOfExperience, setMonthsOfExperience] = useState(
-		skill !== undefined ? skill[3] : ''
+		skill !== undefined ? skill[3] : false
 	);
 
 	function editSkill() {
@@ -124,17 +124,19 @@ const SkillPopup = ({ skill }: { skill?: any }) => {
 		<div id='skillWrapper'>
 			<textarea
 				id='skillAtt'
-				placeholder={skillName}
+				placeholder={skillName !== false ? skillName : 'Skill name'}
 				onChange={(event) => setSkillName(event.target.value)}
 			/>
 			<textarea
 				id='skillAtt'
-				placeholder={skillLevel}
+				placeholder={skillLevel !== false ? skillLevel : 'Skill level'}
 				onChange={(event) => setSkillLevel(event.target.value)}
 			/>
 			<textarea
 				id='skillAtt'
-				placeholder={monthsOfExperience}
+				placeholder={
+					monthsOfExperience !== false ? monthsOfExperience : 'Experience'
+				}
 				onChange={(event) => setMonthsOfExperience(event.target.value)}
 			/>
 			<div id='skill-btn-wrapper'>

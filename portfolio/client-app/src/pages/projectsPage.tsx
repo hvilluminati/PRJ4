@@ -117,11 +117,13 @@ export default function Projects() {
 				))}
 			</table>
 			<div id='upload'>
-				<Link to='/UploadProject'>
-					<button className='button button1'>
-						<span>Upload A new Project</span>
-					</button>{' '}
-				</Link>
+				{localStorage.getItem('jwt') !== null && (
+					<Link to='/UploadProject'>
+						<button className='button button1'>
+							<span>Upload A new Project</span>
+						</button>{' '}
+					</Link>
+				)}
 			</div>
 		</div>
 	);
