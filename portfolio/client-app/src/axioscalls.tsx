@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const config = {
   headers: {
-    Authorization: 'Bearer ' + localStorage.getItem('jwt'),
+    Authorization: 'Bearer ' + window.localStorage.getItem('jwt'),
   },
 };
 
@@ -234,6 +234,34 @@ export function getFiles() {
     .catch(console.error);
 }
 
+export function getFilesSort(sort: string) {
+  return axiosInstance
+    .get('Files/FilesSort', {
+      params: {
+        sort: sort,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    })
+    .catch(console.error);
+}
+
+export function getFilesFind(find: string) {
+  return axiosInstance
+    .get('Files/FilesFind', {
+      params: {
+        sort: find,
+      },
+    })
+    .then((response) => {
+      console.log(response);
+      return response.data;
+    })
+    .catch(console.error);
+}
+
 export function getBlob(id: string) {
   axiosInstance({
     url: '/api/files/' + id, //your url
@@ -285,9 +313,10 @@ export function postProject(language: string, selectedFile: any) {
     .catch(console.error);
 }*/
 
-export async function postProject(selectedFile: any) {
+export async function postProject(selectedFile: any, language: string) {
   const formData = new FormData();
-  formData.append('selectedFile', selectedFile);
+  formData.append('files', selectedFile);
+  formData.append('language', language);
   for (const pair of formData.entries()) {
     console.log(`${pair[0]}, ${pair[1]}`);
   }

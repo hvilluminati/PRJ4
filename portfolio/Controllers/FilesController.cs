@@ -9,11 +9,12 @@ using Database_test1.Data;
 using Database_test1.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
 
 namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController, Authorize]
+    [ApiController]
     public class FilesController : ControllerBase
     {
         private readonly PortfolioDbContext _context;
@@ -32,6 +33,35 @@ namespace Database_test1.Controllers
 
 
         }
+
+        [HttpGet("FilesSort"), AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Files>>> GetFilesSorted(string? sort)
+        {
+            if (sort == "name")
+            {
+                return await _context.Files.OrderBy(x => x.Name).ToListAsync();
+            }
+            else if (sort == "date")
+            {
+                return await _context.Files.OrderByDescending(x => x.CreatedOn).ToListAsync();
+            }
+            else
+            {
+                 
+                return await _context.Files.ToListAsync();
+            }
+
+        }
+
+
+        [HttpGet("FilesFind"), AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Files>>> GetFindFiles(string? sort)
+        {
+            var list = _context.Files.Where(x => x.Language.Contains(sort)).ToList();
+            return list;
+
+        }
+
 
         // GET: api/Files/5
         [HttpGet("{id}"), AllowAnonymous]
@@ -87,7 +117,7 @@ namespace Database_test1.Controllers
         // POST: api/Files
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Files>> PostFiles(IFormFile files,string language)
+        public async Task<ActionResult<Files>> PostFiles(IFormFile files, [FromForm] string language)
         {
             if (files != null)
             {
@@ -100,12 +130,13 @@ namespace Database_test1.Controllers
                     // concatenating  FileName + FileExtension
                     var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
+
                     var objfiles = new Files()
                     {
                         Name = newFileName,
                         FileType = fileExtension,
                         CreatedOn = DateTime.Now,
-                        Language = language
+                        Language = language,
                     };
 
                     using (var target = new MemoryStream())

@@ -807,7 +807,7 @@ div {
   left: 2px;
 }
 
-input {
+.ClaraIsADummy {
   margin: 0.5rem 0;
   width: 200px;
   border: none;
@@ -819,11 +819,11 @@ input {
   color: white;
 }
 
-input:focus {
+.ClaraIsADummy:focus {
   border-color: #16a085;
 }
 
-button {
+.button2 {
   background-color: white;
   padding: 1rem;
   border-radius: 10px;
@@ -1035,9 +1035,7 @@ a:visited {
   color: white;
 }
 
-input[type='text'],
-select,
-textarea {
+.AskeIsADummy {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -1125,9 +1123,7 @@ input[type='submit']:hover {
     color: white;
   }
 
-  input[type='text'],
-  select,
-  textarea {
+  .AskeIsADummy {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
