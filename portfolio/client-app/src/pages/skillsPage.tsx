@@ -47,7 +47,7 @@ function Skills() {
 						close
 					</div>
 				</div>
-				<div id='skillMonths'></div>
+				<div id='skillMonths'> </div>
 				<input type='checkbox' id='btnControl' />
 				<label className='btn' htmlFor='btnControl'>
 					<div id='codeBox'>

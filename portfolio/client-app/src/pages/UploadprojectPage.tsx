@@ -41,7 +41,7 @@ export default function Upload() {
 					onChange={(event) => setLanguage(event.target.value)}
 				/>
 				{isFilePicked ? (
-					<div>
+					<div id='uplloadedprojektinfo'>
 						<p>Filename: {selectedFile?.name}</p>
 						<p>Filetype: {selectedFile?.type}</p>
 						<p>Size in bytes: {selectedFile?.size}</p>
