@@ -7,6 +7,11 @@ const config = {
 };
 
 export const code = (name: string) => {
+  var skillID;
+  var skillName;
+  var skillLevel;
+  var monthsOfExperience;
+
   if (
     window.location.pathname === '/PRJ-portfolio/skills' &&
     window.innerWidth > 480
@@ -15,13 +20,20 @@ export const code = (name: string) => {
     var boxElement = document.getElementById('codeBox');
     var textElement1 = document.getElementById('skillText1');
     var textElement2 = document.getElementById('skillText2');
-    var elementskillLVL = document.getElementById('skillLVL');
+    var elementskillLVL = document.getElementById('skillMonths');
     var boxElementFill = document.getElementById('codeBoxFill');
+
     lang.forEach((element: any) => {
       if (code === element) {
-        var skillLVL = element[0];
-        var codeBoxFill = element[1];
-        console.log(skillLVL);
+        skillID = element[0];
+        skillName = element[1];
+        skillLevel = element[2];
+        monthsOfExperience = element[3];
+
+        console.log(skillID);
+        console.log(skillName);
+        console.log(skillLevel);
+        console.log(monthsOfExperience);
       }
     });
     if (element!.title === 'setSwag' && boxElement!.title === 'setSwag') {
@@ -55,9 +67,11 @@ export const code = (name: string) => {
       textElement1!.style.opacity = '0';
       textElement2!.style.opacity = '1';
       elementskillLVL!.style.opacity = '1';
+      elementskillLVL!.style.content =
+        'Months of experience:' + { monthsOfExperience };
       boxElementFill!.style.transition = '1s';
       boxElementFill!.style.transitionDelay = '0.8s';
-      boxElementFill!.style.width = '90%';
+      boxElementFill!.style.width = skillLevel + '%';
       element!.title = 'setSwag';
       boxElement!.title = 'setSwag';
     }
@@ -99,9 +113,11 @@ export const code = (name: string) => {
       textElement1!.style.opacity = '0';
       textElement2!.style.opacity = '1';
       elementskillLVL!.style.opacity = '1';
+      elementskillLVL!.style.content =
+        'Months of experience:' + { monthsOfExperience };
       boxElementFill!.style.transition = '1s';
       boxElementFill!.style.transitionDelay = '0.8s';
-      boxElementFill!.style.width = '90%';
+      boxElementFill!.style.width = skillLevel + '%';
       element!.title = 'setSwag';
       boxElement!.title = 'setSwag';
     }
