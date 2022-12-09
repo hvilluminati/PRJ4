@@ -14,7 +14,7 @@ export default function Upload() {
     setIsFilePicked(true);
   };
   const Submit = () => {
-    postProject(selectedFile);
+    postProject(selectedFile, language);
   };
   return (
     <div>

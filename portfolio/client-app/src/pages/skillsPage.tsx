@@ -1,11 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import { getSkills } from '../axioscalls';
 import { SkillsPopup } from '../popup';
+import { lang } from '../pos';
 
 //https://codepen.io/ryasan86/pen/bGpqdYV
 function Skills() {
   const [authorized, setAuthorized] = useState(false);
+  // const [monthsOfExperience, setMonthsOfExperience] = useState();
+
+  // const [skills, setSkills] = useState<number[][]>([]);
+  // var lang: string[][] = [];
+
+  // useEffect(() => {
+  //   setMonthsOfExperience(lang[1]);
+  // });
 
   useEffect(() => {
     if (localStorage.getItem('jwt') !== null) {
@@ -31,9 +41,7 @@ function Skills() {
             close
           </div>
         </div>
-        <div id='skillLVL'>
-          Skill lvl: Noob <br></br> Experience: <br></br> 2 days <br></br> 50%
-        </div>
+        <div id='skillMonths'></div>
         <input type='checkbox' id='btnControl' />
         <label className='btn' htmlFor='btnControl'>
           <div id='codeBox'>

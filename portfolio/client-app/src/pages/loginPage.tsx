@@ -40,6 +40,7 @@ const Login = () => {
 									onChange={(e) => setEmail(e.target.value)}
 									type='email'
 									placeholder='Email'
+									className='ClaraIsADummy'
 								/>
 								<div className='icon'>
 									<BiUser />
@@ -51,12 +52,13 @@ const Login = () => {
 									onChange={(e) => setPassword(e.target.value)}
 									type='password'
 									placeholder='Password'
+									className='ClaraIsADummy'
 								/>
 								<i className='icon'>
 									<BiLockAlt />
 								</i>
 							</div>
-							<button className='login-button' type='submit'>
+							<button className='button2 login-button' type='submit'>
 								{' '}
 								Log in
 							</button>

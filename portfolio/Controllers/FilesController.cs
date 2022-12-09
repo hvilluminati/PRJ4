@@ -9,11 +9,12 @@ using Database_test1.Data;
 using Database_test1.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
 
 namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController, Authorize]
+    [ApiController]
     public class FilesController : ControllerBase
     {
         private readonly PortfolioDbContext _context;
@@ -34,7 +35,7 @@ namespace Database_test1.Controllers
         }
 
         [HttpGet("FilesSort"), AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Files>>> GetFilesSorted(string sort)
+        public async Task<ActionResult<IEnumerable<Files>>> GetFilesSorted(string? sort)
         {
             if (sort == "name")
             {
@@ -54,7 +55,7 @@ namespace Database_test1.Controllers
 
 
         [HttpGet("FilesFind"), AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Files>>> GetFindFiles(string sort)
+        public async Task<ActionResult<IEnumerable<Files>>> GetFindFiles(string? sort)
         {
             var list = _context.Files.Where(x => x.Language.Contains(sort)).ToList();
             return list;
@@ -116,10 +117,11 @@ namespace Database_test1.Controllers
         // POST: api/Files
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Files>> PostFiles(IFormFile files,string language)
+        public async Task<ActionResult<Files>> PostFiles(IFormFile files, [FromForm] string language)
         {
             if (files != null)
             {
+                
                 if (files.Length > 0)
                 {
                     //Getting FileName
@@ -127,14 +129,19 @@ namespace Database_test1.Controllers
                     //Getting file Extension
                     var fileExtension = Path.GetExtension(fileName);
                     // concatenating  FileName + FileExtension
-                    var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
+                    //var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
+
+                    //Check if file with same name already exists
+                    if ( (_context.Files.Where(x => x.Name == fileName).Any()==false))
+                    {
+                      
 
                     var objfiles = new Files()
                     {
-                        Name = newFileName,
+                        Name = fileName,
                         FileType = fileExtension,
                         CreatedOn = DateTime.Now,
-                        Language = language
+                        Language = language,
                     };
 
                     using (var target = new MemoryStream())
@@ -149,10 +156,11 @@ namespace Database_test1.Controllers
 
                     var file = await _context.Files.FindAsync(objfiles.DocumentId);
                     return CreatedAtAction("GetFiles", new { id = file.DocumentId }, files);
-
+                    }
+                    return StatusCode(403);
 
                 }
-                
+
             }
             return BadRequest();
         }

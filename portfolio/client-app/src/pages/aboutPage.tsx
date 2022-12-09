@@ -6,8 +6,8 @@ import Popup from 'reactjs-popup';
 import { AboutPopup } from '../popup';
 
 function About() {
-	const [desc, setDesc] = useState('Hello');
-	const [title, setTitle] = useState('About me');
+	const [desc, setDesc] = useState('');
+	const [title, setTitle] = useState('');
 	const [authorized, setAuthorized] = useState(false);
 
 	useEffect(() => {
