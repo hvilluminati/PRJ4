@@ -55,7 +55,9 @@ export const code = (name: string) => {
 			element!.style.marginTop = '15%';
 			element!.style.marginLeft =
 				window.innerWidth * 0.45 -
-				(element?.offsetWidth !== undefined ? element?.offsetWidth : 0) *
+				(element?.offsetWidth !== undefined
+					? element?.offsetWidth
+					: 0) *
 					4.444 +
 				'px';
 			boxElement!.style.transition = '1s';
@@ -73,7 +75,10 @@ export const code = (name: string) => {
 			element!.title = 'setSwag';
 			boxElement!.title = 'setSwag';
 		}
-	} else if (window.location.pathname === '/PRJ4/' && window.innerWidth < 480) {
+	} else if (
+		window.location.pathname === '/PRJ4/' &&
+		window.innerWidth < 480
+	) {
 		var element = document.getElementById(name);
 		var boxElement = document.getElementById('codeBox');
 		var textElement1 = document.getElementById('skillText1');
@@ -168,7 +173,6 @@ export function putSkill(skill: any) {
 	return axiosInstance
 		.put('Skills/' + skill.skillID, skill, config)
 		.then((response) => {
-			console.log(response);
 			return response;
 		})
 		.catch(console.error);
