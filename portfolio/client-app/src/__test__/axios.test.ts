@@ -88,6 +88,7 @@ describe('Skills', () => {
 	};
 
 	describe('change skill', () => {
+		LS.localStorage.setItem('jwt', authConfig.Authorization);
 		it('Should change a skill item', async () => {
 			mock
 				.onPut('Skills/1', mockFakeSkill, authConfig)
