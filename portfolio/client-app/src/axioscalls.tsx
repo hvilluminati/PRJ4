@@ -55,7 +55,9 @@ export const code = (name: string) => {
 			element!.style.marginTop = '15%';
 			element!.style.marginLeft =
 				window.innerWidth * 0.45 -
-				(element?.offsetWidth !== undefined ? element?.offsetWidth : 0) *
+				(element?.offsetWidth !== undefined
+					? element?.offsetWidth
+					: 0) *
 					4.444 +
 				'px';
 			boxElement!.style.transition = '1s';
@@ -73,7 +75,10 @@ export const code = (name: string) => {
 			element!.title = 'setSwag';
 			boxElement!.title = 'setSwag';
 		}
-	} else if (window.location.pathname === '/PRJ4/' && window.innerWidth < 480) {
+	} else if (
+		window.location.pathname === '/PRJ4/' &&
+		window.innerWidth < 480
+	) {
 		var element = document.getElementById(name);
 		var boxElement = document.getElementById('codeBox');
 		var textElement1 = document.getElementById('skillText1');
@@ -191,7 +196,7 @@ export function putDescription(desc: string) {
 }
 
 export function putTitle(title: string) {
-	axiosInstance
+	return axiosInstance
 		.put(
 			'Texts/1',
 			{
@@ -207,23 +212,10 @@ export function putTitle(title: string) {
 		.catch(console.error);
 }
 
-export function authorize() {
-	return axiosInstance
-		.put('/users/loggedin', config)
-		.then(() => {
-			return true;
-		})
-		.catch((err) => {
-			console.log(err);
-			return false;
-		});
-}
-
 export function getFiles() {
 	return axiosInstance
 		.get('Files')
 		.then((response) => {
-			console.log(response);
 			return response.data;
 		})
 		.catch(console.error);
@@ -280,7 +272,7 @@ export function getBlob(id: string, Filetype: string, name: string) {
 }
 
 export function deleteSkill(id: number) {
-	axiosInstance
+	return axiosInstance
 		.delete('Skills/' + id, config)
 		.then((resp) => {
 			return resp;
@@ -289,7 +281,7 @@ export function deleteSkill(id: number) {
 }
 
 export function postSkill(skill: any) {
-	axiosInstance
+	return axiosInstance
 		.post('Skills', skill, config)
 		.then((resp) => {
 			return resp;
