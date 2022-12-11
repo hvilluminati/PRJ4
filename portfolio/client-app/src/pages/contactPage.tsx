@@ -44,54 +44,52 @@ function Contact() {
             <h1>Contact Me</h1>
           </div>
           <div id='contactInformationBox'>
-            <div id='contactText'>
-              <ul id='listLogo'>
-                <div id='email'>
-                  {/* <ButtonMailto
+            <ul id='listLogo'>
+              <li id='email'>
+                {/* <ButtonMailto
                       mailto='JohnDoe@email.com'
                       label='JohnDoe@email.com'
                     /> */}
-                  <a href='mailto:JohnDoe@email.com'>
-                    {' '}
-                    <img id='emaillogo' src={emaillogo} />{' '}
-                  </a>{' '}
-                </div>
-
-                <div id='phone'>
-                  <a href='tel:+4588888888'>
-                    {' '}
-                    <img id='phonelogo' src={phonelogo} />{' '}
-                  </a>
-                </div>
-
-                <div id='skype'>
-                  <a href='https://www.skype.com/en/'>
-                    <img id='skypelogo' src={skypelogo} />
-                  </a>
-                </div>
-
-                <div id='linkedin'>
+                <a href='mailto:JohnDoe@email.com'>
                   {' '}
-                  <a href='https://www.linkedin.com/'>
-                    <img id='linkedinlogo' src={linkedinlogo} />
-                  </a>
-                </div>
+                  <img id='emaillogo' src={emaillogo} />{' '}
+                </a>{' '}
+              </li>
 
-                <div id='facebook'>
+              <li id='phone'>
+                <a href='tel:+4588888888'>
                   {' '}
-                  <a href='https://www.facebook.com/'>
-                    <img id='facebooklogo' src={facebooklogo} />
-                  </a>
-                </div>
+                  <img id='phonelogo' src={phonelogo} />{' '}
+                </a>
+              </li>
 
-                <div id='twitter'>
-                  {' '}
-                  <a href='https://www.twitter.com/'>
-                    <img id='twitterlogo' src={twitterlogo} />
-                  </a>
-                </div>
-              </ul>
-            </div>
+              <li id='skype'>
+                <a href='https://www.skype.com/en/'>
+                  <img id='skypelogo' src={skypelogo} />
+                </a>
+              </li>
+
+              <li id='linkedin'>
+                {' '}
+                <a href='https://www.linkedin.com/'>
+                  <img id='linkedinlogo' src={linkedinlogo} />
+                </a>
+              </li>
+
+              <li id='facebook'>
+                {' '}
+                <a href='https://www.facebook.com/'>
+                  <img id='facebooklogo' src={facebooklogo} />
+                </a>
+              </li>
+
+              <li id='twitter'>
+                {' '}
+                <a href='https://www.twitter.com/'>
+                  <img id='twitterlogo' src={twitterlogo} />
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
         <div className='contactContainer'>

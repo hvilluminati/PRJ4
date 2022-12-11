@@ -934,14 +934,11 @@ div {
   margin-top: 15%;
   text-align: center;
   z-index: 10;
-  
-  
 }
 
 #Download :hover {
   background-color: #16a085;
   color: white;
-  
 }
 
 #Titel {
@@ -956,7 +953,6 @@ div {
   font-size: 16px;
   border: none;
   cursor: pointer;
-  
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -967,7 +963,6 @@ div {
   z-index: 20;
   justify-content: center;
   margin-left: 45%;
-  
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -978,7 +973,6 @@ div {
   min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 10;
-  
 }
 
 /* Links inside the dropdown */
@@ -1011,10 +1005,6 @@ div {
   width: 100%;
 }
 
-
-
-
-
 @media (max-width: 480px) {
   #hej {
     position: absolute;
@@ -1037,7 +1027,6 @@ div {
   #Download :hover {
     background-color: #16a085;
     color: white;
-    
   }
   #Titel {
     background-color: #16a085;
@@ -1051,7 +1040,6 @@ div {
     font-size: 12px;
     border: none;
     cursor: pointer;
-    
   }
   .dropdown {
     position: absolute;
@@ -1060,14 +1048,8 @@ div {
     z-index: 20;
     justify-content: center;
     margin-left: 30%;
-    
   }
-
 }
-
-
-
-
 
 /*	#endregion	*/
 /*	#region	contact page	*/
@@ -1207,48 +1189,46 @@ input[type='submit']:hover {
   }
   #contactInformationBox {
     position: absolute;
-    display: block;
+    display: inline;
     flex-wrap: nowrap;
-    width: 100%;
+    flex-direction: column;
+    column-count: 6;
+    width: 90%;
     height: 60%;
+    margin-right: 60%;
+    margin-top: 40%;
   }
-  #contactText {
-    display: block;
-  }
+
   #listLogo {
-    float: left;
+    list-style-type: none;
   }
 
   #emaillogo {
-    width: 50px;
+    width: 50;
     height: 50px;
+    margin-top: -10px;
   }
 
   #phonelogo {
     width: 50px;
     height: 50px;
-    margin-top: 5px;
   }
 
   #skypelogo {
     width: 50px;
     height: 50px;
-    margin-top: 5px;
   }
   #linkedinlogo {
     width: 50px;
     height: 50px;
-    margin-top: 5px;
   }
   #facebooklogo {
     width: 50px;
     height: 50px;
-    margin-top: 5px;
   }
   #twitterlogo {
     width: 50px;
     height: 50px;
-    margin-top: 5px;
   }
 
   a:link,
