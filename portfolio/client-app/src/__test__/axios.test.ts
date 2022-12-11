@@ -60,11 +60,9 @@ describe('Skills', () => {
 				Authorization: 'Bearer ' + window.localStorage.getItem('jwt'),
 			};
 
-			mock.onPut(
-				'Skills/1',
-				mockFakeSkill,
-				expect.objectContaining(config)
-			).replyOnce(200);
+			mock
+				.onPut('Skills/1', mockFakeSkill, expect.objectContaining(config))
+				.replyOnce(200);
 
 			var res: AxiosResponse<any, any> | void;
 			await putSkill(mockFakeSkill).then((r) => {
@@ -79,11 +77,9 @@ describe('Skills', () => {
 			mock.resetHistory();
 			jest.spyOn(console, 'error').mockImplementationOnce(() => {});
 
-			mock.onPut(
-				'Skills/1',
-				mockFakeSkill,
-				expect.objectContaining(config)
-			).replyOnce(401);
+			mock
+				.onPut('Skills/1', mockFakeSkill, expect.objectContaining(config))
+				.replyOnce(401);
 
 			var res: AxiosResponse<any, any> | void;
 			await putSkill(mockFakeSkill).then((r) => {

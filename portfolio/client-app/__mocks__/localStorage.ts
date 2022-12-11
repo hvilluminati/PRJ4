@@ -1,16 +1,16 @@
 var localStorageMock = (function () {
-	var store = {};
+	var store: any = {};
 	return {
-		getItem: function (key) {
+		getItem: function (key: string) {
 			return store[key];
 		},
-		setItem: function (key, value) {
+		setItem: function (key: string, value: string) {
 			store[key] = value.toString();
 		},
 		clear: function () {
 			store = {};
 		},
-		removeItem: function (key) {
+		removeItem: function (key: string) {
 			delete store[key];
 		},
 	};
