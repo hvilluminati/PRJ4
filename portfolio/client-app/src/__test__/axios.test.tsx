@@ -1,7 +1,15 @@
 window.localStorage.setItem('jwt', 'aabbcc112233');
 import axios, { AxiosResponse } from 'axios';
-import { getDescription, putSkill, getSkills } from '../axioscalls';
+import {
+	getDescription,
+	putSkill,
+	getSkills,
+	putDescription,
+} from '../axioscalls';
 import MockAdapter from 'axios-mock-adapter';
+import About from '../pages/aboutPage';
+import { cleanup } from '@testing-library/react';
+import { JSDOM } from 'jsdom';
 
 jest.mock('axios', () => {
 	return {
@@ -12,15 +20,17 @@ jest.mock('axios', () => {
 const mock = new MockAdapter(axios);
 
 describe('Texts', () => {
-	afterEach(() => {
-		jest.clearAllMocks();
-	});
+	const mockFakeText = [
+		{ textID: 1, headline: 'testHeader', mainText: 'bye' },
+		{ textID: 1, headline: 'hej', mainText: 'bye' },
+	];
+
 	describe('get Text', () => {
+		afterEach(() => {
+			jest.clearAllMocks();
+		});
+
 		it('Should return first description item', async () => {
-			const mockFakeText = [
-				{ textID: 1, headline: 'hej', mainText: 'bye' },
-				{ textID: 1, headline: 'hej', mainText: 'bye' },
-			];
 			mock.onGet('Texts').replyOnce(200, mockFakeText);
 
 			var result: any;
@@ -31,9 +41,7 @@ describe('Texts', () => {
 			expect(mock.history.get.length).toBe(1);
 			expect(result).toEqual(mockFakeText[0]);
 		});
-	});
 
-	describe('get error', () => {
 		it('should return undefined from catch', async () => {
 			jest.spyOn(console, 'error').mockImplementationOnce(() => {});
 			mock.onGet('Text').networkErrorOnce();
@@ -42,6 +50,46 @@ describe('Texts', () => {
 				result = t;
 			});
 			expect(result).toBe(undefined);
+		});
+	});
+
+	describe('Change texts', () => {
+		var config = {
+			Authorization: 'Bearer ' + window.localStorage.getItem('jwt'),
+		};
+
+		beforeEach(() => {
+			mock.resetHistory();
+		});
+
+		afterEach(cleanup);
+		const mockGetElementById = jest.fn();
+
+		mockGetElementById.mockImplementation((id) => {
+			if (id === 'aboutTitleText') {
+				return {
+					innerHTML: 'testHeader',
+				};
+			}
+		});
+		document.getElementById = mockGetElementById;
+
+		it('Should change the description', async () => {
+			mock
+				.onPut('/Texts/1', mockFakeText[0], expect.objectContaining(config))
+				.replyOnce(200);
+
+			var result: AxiosResponse<any, any> | void;
+			putDescription('bye').then((r) => {
+				result = r;
+			});
+			await new Promise((r) => setTimeout(r, 200));
+
+			const data = JSON.parse(result!.config.data);
+
+			expect(data.mainText).toEqual(mockFakeText[0].mainText);
+			expect(mock.history.put.length).toEqual(1);
+			expect(result!.status).toEqual(200);
 		});
 	});
 });
@@ -56,6 +104,7 @@ describe('Skills', () => {
 		};
 		it('Should try to change a skill item', async () => {
 			// #region success
+			mock.resetHistory();
 			var config = {
 				Authorization: 'Bearer ' + window.localStorage.getItem('jwt'),
 			};

@@ -9,7 +9,11 @@ export default {
 	},
 	transformIgnorePatterns: ['<rootDir>/node_modules/'],
 	resolver: 'jest-ts-webcompat-resolver',
-	setupFiles: ['./__mocks__/client.js', './__mocks__/localStorage.js'],
+	setupFiles: [
+		'./__mocks__/client.js',
+		'./__mocks__/localStorage.js',
+		'./__mocks__/nav.js',
+	],
 	moduleNameMapper: {
 		'\\.(css|less)$': 'identity-obj-proxy',
 	},

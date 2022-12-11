@@ -5,7 +5,9 @@ const Home = () => {
 	return (
 		<>
 			<div id='home-wrapper'>
-				<h1 id='welcome'>Welcome</h1>
+				<h1 id='welcome' data-testid='hej'>
+					Welcome
+				</h1>
 				<div id='btns'>
 					<div id='btn-wrapper'>
 						<Link to='skills'>

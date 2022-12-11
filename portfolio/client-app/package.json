@@ -23,6 +23,7 @@
 		"gh-pages": "^4.0.0",
 		"jest-ts-webcompat-resolver": "^1.0.0",
 		"jquery": "^3.6.1",
+		"jsdom": "^20.0.3",
 		"json-server": "^0.17.1",
 		"popper.js": "^1.16.1",
 		"react": "^18.2.0",
@@ -32,6 +33,7 @@
 		"react-dropdown": "^1.11.0",
 		"react-dropdown-button": "^1.0.11",
 		"react-scripts": "5.0.1",
+		"react-test-renderer": "^18.2.0",
 		"react-usestateref": "^1.0.8",
 		"reactjs-popup": "^2.0.5",
 		"save-dev": "^0.0.1-security",
@@ -69,6 +71,7 @@
 	},
 	"devDependencies": {
 		"@emailjs/browser": "^3.10.0",
+		"@types/jsdom": "^20.0.1",
 		"@types/node": "^18.8.2",
 		"@types/webfontloader": "^1.6.35",
 		"react-icons": "^4.7.1",
