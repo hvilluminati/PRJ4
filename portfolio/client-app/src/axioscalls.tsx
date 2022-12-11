@@ -168,7 +168,6 @@ export function putSkill(skill: any) {
   return axiosInstance
     .put('Skills/' + skill.skillID, skill, config)
     .then((response) => {
-      console.log(response);
       return response;
     })
     .catch(console.error);
