@@ -3,18 +3,22 @@ import renderer from 'react-test-renderer';
 import Contact from '../pages/contactPage';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { JSDOM } from 'jsdom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 const dom = new JSDOM();
 global.document = dom.window.document;
 
-it('renders placeholdertext correctly'),
-  () => {
-    const { getByPlaceholderText } = render(<Contact />);
+it('renders placeholdertext correctly', () => {
+	const screen = render(
+		<BrowserRouter>
+			<Contact />
+		</BrowserRouter>
+	);
 
-    expect(getByPlaceholderText('Your name')).toBeInTheDocument;
-    expect(getByPlaceholderText('Your email')).toBeInTheDocument;
-    expect(getByPlaceholderText('Your message')).toBeInTheDocument;
-  };
+	expect(screen.getByPlaceholderText('Your name')).toBeInTheDocument;
+	expect(screen.getByPlaceholderText('Your email')).toBeInTheDocument;
+	expect(screen.getByPlaceholderText('Your message')).toBeInTheDocument;
+});
 
 // describe('href logos', () => {
 //   it('href logos navigate correct', () => {

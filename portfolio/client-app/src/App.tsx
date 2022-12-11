@@ -21,10 +21,10 @@ function App() {
 	var gyro = null;
 
 	useEffect(() => {
-		var expire = localStorage.getItem('expire');
+		var expire = window.localStorage.getItem('expire');
 		if (expire && new Date().getTime().toString() > expire) {
-			localStorage.removeItem('jwt');
-			localStorage.removeItem('expire');
+			window.localStorage.removeItem('jwt');
+			window.localStorage.removeItem('expire');
 		}
 		WebFont.load({
 			google: {

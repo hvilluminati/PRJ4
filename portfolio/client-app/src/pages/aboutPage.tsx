@@ -11,10 +11,10 @@ function About() {
 	const [authorized, setAuthorized] = useState(false);
 
 	useEffect(() => {
-		var expire = localStorage.getItem('expire');
+		var expire = window.localStorage.getItem('expire');
 		if (expire && new Date().getTime().toString() > expire) {
-			localStorage.removeItem('jwt');
-			localStorage.removeItem('expire');
+			window.localStorage.removeItem('jwt');
+			window.localStorage.removeItem('expire');
 		}
 
 		getDescription().then((d) => {
@@ -22,7 +22,7 @@ function About() {
 			setTitle(d.headline);
 		});
 
-		if (localStorage.getItem('jwt') !== null) {
+		if (window.localStorage.getItem('jwt') !== null) {
 			document.getElementById('description')!.className = 'authorized';
 			document.getElementById('aboutTitle')!.className = 'authorized';
 			setAuthorized(true);
