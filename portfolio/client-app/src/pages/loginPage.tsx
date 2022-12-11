@@ -12,11 +12,14 @@ const Login = () => {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		localStorage.clear();
-		console.log(email, password);
 		postLogin(email, password).then((e) => {
+			const now = new Date();
 			if (e) {
 				localStorage.setItem('jwt', e.data.jwt);
-				console.log(e);
+				localStorage.setItem(
+					'expire',
+					(now.getTime() + 1000 * 60 * 60).toString()
+				);
 			}
 			if (localStorage.getItem('jwt')) nav('/');
 		});

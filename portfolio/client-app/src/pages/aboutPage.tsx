@@ -11,6 +11,12 @@ function About() {
 	const [authorized, setAuthorized] = useState(false);
 
 	useEffect(() => {
+		var expire = localStorage.getItem('expire');
+		if (expire && new Date().getTime().toString() > expire) {
+			localStorage.removeItem('jwt');
+			localStorage.removeItem('expire');
+		}
+
 		getDescription().then((d) => {
 			setDesc(d.mainText);
 			setTitle(d.headline);
