@@ -15,6 +15,4 @@ var localStorageMock = (function () {
 		},
 	};
 })();
-export default Object.defineProperty(window, 'localStorage', {
-	value: localStorageMock,
-});
+Object.defineProperty(window, 'localStorage', { value: localStorageMock });
