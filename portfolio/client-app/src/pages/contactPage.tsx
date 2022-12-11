@@ -24,12 +24,12 @@ function Contact() {
       .then(
         (result) => {
           console.log(result.text);
+          alert('Message sent');
         },
         (error) => {
           console.log(error.text);
         }
       );
-    alert('Message sent');
   };
   return (
     <>
@@ -50,42 +50,42 @@ function Contact() {
                       mailto='JohnDoe@email.com'
                       label='JohnDoe@email.com'
                     /> */}
-                <a href='mailto:JohnDoe@email.com'>
+                <a href='mailto:JohnDoe@email.com' title='emailLink'>
                   {' '}
                   <img id='emaillogo' src={emaillogo} />{' '}
                 </a>{' '}
               </li>
 
               <li id='phone'>
-                <a href='tel:+4588888888'>
+                <a href='tel:+4588888888' title='phoneLink'>
                   {' '}
                   <img id='phonelogo' src={phonelogo} />{' '}
                 </a>
               </li>
 
               <li id='skype'>
-                <a href='https://www.skype.com/en/'>
+                <a href='https://www.skype.com/en/' title='skypeLink'>
                   <img id='skypelogo' src={skypelogo} />
                 </a>
               </li>
 
               <li id='linkedin'>
                 {' '}
-                <a href='https://www.linkedin.com/'>
+                <a href='https://www.linkedin.com/' title='linkedinLink'>
                   <img id='linkedinlogo' src={linkedinlogo} />
                 </a>
               </li>
 
               <li id='facebook'>
                 {' '}
-                <a href='https://www.facebook.com/'>
+                <a href='https://www.facebook.com/' title='fbLink'>
                   <img id='facebooklogo' src={facebooklogo} />
                 </a>
               </li>
 
               <li id='twitter'>
                 {' '}
-                <a href='https://www.twitter.com/'>
+                <a href='https://www.twitter.com/' title='twitterLink'>
                   <img id='twitterlogo' src={twitterlogo} />
                 </a>
               </li>
@@ -94,12 +94,13 @@ function Contact() {
         </div>
         <div className='contactContainer'>
           <form ref={form} onSubmit={sendEmail}>
-            <label htmlFor='fname'>First Name</label>
+            <label htmlFor='fname'>Name</label>
             <input
               type={'text'}
               id='fname'
               name='user_name'
               className='AskeIsADummy'
+              placeholder='Your name'
             ></input>
             <label htmlFor='lname'>Email</label>
             <input
@@ -107,6 +108,7 @@ function Contact() {
               id='lname'
               name='user_email'
               className='AskeIsADummy'
+              placeholder='Your email'
             ></input>
             <label htmlFor='fname'>Message</label>
             <textarea
@@ -114,6 +116,7 @@ function Contact() {
               id='subject'
               name='message'
               style={{ height: '200px' }}
+              placeholder='Your message'
             ></textarea>
             <input
               className='AskeIsADummy'
