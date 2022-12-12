@@ -9,12 +9,10 @@ import {
 	putDescription,
 	putTitle,
 	getFiles,
-	getBlob,
 	postLogin,
 } from '../axioscalls';
 import MockAdapter from 'axios-mock-adapter';
 import { cleanup } from '@testing-library/react';
-import { response } from 'express';
 
 jest.mock('axios', () => {
 	return {
@@ -381,25 +379,6 @@ describe('Files', () => {
 			expect(console.error).toBeCalledTimes(1);
 		});
 	});
-
-	// describe('Get files', () => {
-	// 	global.Blob = jest.fn().mockImplementation(() => {
-	// 		return 'mockBlobData';
-	// 	});
-
-	// 	it('Should download a file', async () => {
-	// 		mock.onGet('Files/' + mockFakeFileInfo[0].id).replyOnce(
-	// 			200,
-	// 			new Blob()
-	// 		);
-
-	// 		var result = getBlob(
-	// 			mockFakeFileInfo[0].id,
-	// 			mockFakeFileInfo[0].fileType,
-	// 			mockFakeFileInfo[0].name
-	// 		);
-	// 	});
-	// });
 });
 
 describe('Login', () => {
