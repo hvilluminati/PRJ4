@@ -1,3 +1,4 @@
+jest.spyOn(console, 'error').mockImplementation(() => {});
 import About from '../pages/aboutPage';
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
@@ -26,7 +27,7 @@ describe('Test description and title text', () => {
 });
 
 describe('Test description and title authorization', () => {
-	it('Should not add description and title className to authorized', () => {
+	it('Should not add description and title className to authorized', async () => {
 		jest.spyOn(console, 'error').mockImplementationOnce(() => {});
 		window.localStorage.clear();
 
@@ -36,13 +37,15 @@ describe('Test description and title authorization', () => {
 			</BrowserRouter>
 		);
 
+		await new Promise((r) => setTimeout(r, 2000));
+
 		expect(getByTestId('aboutTitle')).toBeInTheDocument;
 		expect(getByTestId('desc')).toBeInTheDocument;
 		expect(getByTestId('aboutTitle').className).not.toBe('authorized');
 		expect(getByTestId('desc').className).not.toBe('authorized');
 	});
 
-	it('Should set description and title className to authorized', () => {
+	it('Should set description and title className to authorized', async () => {
 		jest.spyOn(console, 'error').mockImplementationOnce(() => {});
 		window.localStorage.setItem('jwt', 'aabbcc112233');
 
@@ -51,6 +54,8 @@ describe('Test description and title authorization', () => {
 				<About />
 			</BrowserRouter>
 		);
+
+		await new Promise((r) => setTimeout(r, 2000));
 
 		expect(getByTestId('aboutTitle')).toBeInTheDocument;
 		expect(getByTestId('desc')).toBeInTheDocument;
@@ -76,7 +81,7 @@ describe('Test jwt and expire keys', () => {
 		expect(window.localStorage.getItem('expire')).toBe(undefined);
 	});
 
-	it('Should not remove jwt and expire keys', () => {
+	it('Should not remove jwt and expire keys', async () => {
 		window.localStorage.setItem('jwt', 'aabbcc112233');
 		window.localStorage.setItem(
 			'expire',
@@ -87,6 +92,8 @@ describe('Test jwt and expire keys', () => {
 				<About />
 			</BrowserRouter>
 		);
+
+		await new Promise((r) => setTimeout(r, 2000));
 
 		expect(window.localStorage.getItem('jwt')).not.toBe(undefined);
 		expect(window.localStorage.getItem('expire')).not.toBe(undefined);
@@ -109,7 +116,7 @@ describe('Test admin buttons state', () => {
 		expect(getAllByTestId('butt')[1].closest('button')).not.toBeDisabled;
 	});
 
-	it('Should not remove jwt and expire keys', () => {
+	it('Should not remove jwt and expire keys', async () => {
 		window.localStorage.clear();
 
 		const { getAllByTestId } = render(
@@ -117,6 +124,8 @@ describe('Test admin buttons state', () => {
 				<About />
 			</BrowserRouter>
 		);
+
+		await new Promise((r) => setTimeout(r, 2000));
 
 		expect(getAllByTestId('butt')[0].closest('button')).toBeDisabled;
 		expect(getAllByTestId('butt')[1].closest('button')).toBeDisabled;
