@@ -181,6 +181,21 @@ namespace Database_test1.Controllers
             return NoContent();
         }
 
+        [HttpDelete("{name}")]
+        public async Task<IActionResult> DeleteFiles(string name)
+        {
+            var files = await _context.Files.Where(x => x.Name == name).FirstOrDefaultAsync();
+            if (files == null)
+            {
+                return NotFound();
+            }
+
+            _context.Files.Remove(files);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
         private bool FilesExists(int id)
         {
             return _context.Files.Any(e => e.DocumentId == id);
