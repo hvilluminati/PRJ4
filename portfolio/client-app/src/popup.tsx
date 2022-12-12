@@ -50,13 +50,11 @@ export const AboutPopup = ({
 export const SkillsPopup = () => {
 	const [height, setHeight] = useState('1px');
 
-	function addSkill() {}
-
 	useEffect(() => {
 		setHeight(lang.length * 40 + 40 + 'px');
 	}, []);
 	return (
-		<div id='skillsWrapper' style={{ height: height }}>
+		<div id='skillsWrapper' style={{ height: height }} data-testid='wrap'>
 			{lang.map((l, i) => (
 				<Popup
 					trigger={<button id={'skill'}>{l[1]}</button>}
@@ -70,9 +68,7 @@ export const SkillsPopup = () => {
 			<Popup
 				trigger={
 					<div id='skill-btn-wrapper'>
-						<button onClick={addSkill} style={{ color: '#16a085' }}>
-							Add skill
-						</button>
+						<button style={{ color: '#16a085' }}>Add skill</button>
 						<div className='border bottom' />
 						<div className='border left' />
 						<div className='border right' />

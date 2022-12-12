@@ -133,33 +133,14 @@
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
 <a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -174,6 +155,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -224,30 +206,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
-import { getSkills } from '../axioscalls';
 import { SkillsPopup } from '../popup';
-import { lang } from '../pos';
 &nbsp;
 //https://codepen.io/ryasan86/pen/bGpqdYV
 function <span class="fstat-no" title="function not covered" >Skills(</span>) {
 	const [authorized, setAuthorized] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-	// const [monthsOfExperience, setMonthsOfExperience] = useState();
-&nbsp;
-	// const [skills, setSkills] = useState&lt;number[][]&gt;([]);
-	// var lang: string[][] = [];
-&nbsp;
-	// useEffect(() =&gt; {
-	//   setMonthsOfExperience(lang[1]);
-	// });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >	useEffect(<span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
-		var expire = <span class="cstat-no" title="statement not covered" >localStorage.getItem('expire');</span>
+		var expire = <span class="cstat-no" title="statement not covered" >window.localStorage.getItem('expire');</span>
 <span class="cstat-no" title="statement not covered" >		<span class="missing-if-branch" title="if path not taken" >I</span>if (expire &amp;&amp; new Date().getTime().toString() &gt; expire) {</span>
-<span class="cstat-no" title="statement not covered" >			localStorage.removeItem('jwt');</span>
-<span class="cstat-no" title="statement not covered" >			localStorage.removeItem('expire');</span>
+<span class="cstat-no" title="statement not covered" >			window.localStorage.removeItem('jwt');</span>
+<span class="cstat-no" title="statement not covered" >			window.localStorage.removeItem('expire');</span>
 		}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		<span class="missing-if-branch" title="if path not taken" >I</span>if (localStorage.getItem('jwt') !== null) {</span>
+<span class="cstat-no" title="statement not covered" >		<span class="missing-if-branch" title="if path not taken" >I</span>if (window.localStorage.getItem('jwt') !== null) {</span>
 <span class="cstat-no" title="statement not covered" >			setAuthorized(true);</span>
 		}
 	}, []);
@@ -266,8 +238,8 @@ function <span class="fstat-no" title="function not covered" >Skills(</span>) {
 					&lt;/div&gt;
 					&lt;div id='skillText1'&gt;Click a code language&lt;/div&gt;
 					&lt;div id='skillText2'&gt;
-						Click the bar to see more information, and click a code language to
-						close
+						Click the bar to see more information, and click a code
+						language to close
 					&lt;/div&gt;
 				&lt;/div&gt;
 				&lt;div id='skillMonths'&gt; &lt;/div&gt;
@@ -290,7 +262,8 @@ function <span class="fstat-no" title="function not covered" >Skills(</span>) {
 							&lt;/div&gt;
 						}
 						modal={true}
-						nested={true}&gt;
+						nested={true}
+					&gt;
 						&lt;SkillsPopup /&gt;
 					&lt;/Popup&gt;
 				)}
@@ -307,7 +280,7 @@ export default Skills;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-12T18:37:38.597Z
+                at 2022-12-12T21:55:42.943Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
