@@ -14,7 +14,7 @@ using File = Portfolio.Models.File;
 namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController,Authorize]
     public class FilesController : ControllerBase
     {
         private readonly PortfolioDbContext _context;
@@ -181,7 +181,7 @@ namespace Database_test1.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{name}")]
+        [HttpDelete("name/{name}")]
         public async Task<IActionResult> DeleteFiles(string name)
         {
             var files = await _context.Files.Where(x => x.Name == name).FirstOrDefaultAsync();
