@@ -1,11 +1,6 @@
-jest.spyOn(console, 'error').mockImplementation(() => {});
+// jest.spyOn(console, 'error').mockImplementation(() => {});
 import App from '../App';
 import { fireEvent, render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-
-beforeEach(() => {
-	jest.resetAllMocks();
-});
 
 Object.defineProperty(document.documentElement, 'clientHeight', {
 	writable: true,
@@ -67,8 +62,8 @@ describe('Test root height set', () => {
 	});
 });
 
-describe('Test posSetter function', () => {
-	it('Should set new margins on mouse move', async () => {
+describe('Test events', () => {
+	it('Should set new margins on mouse move and resize', async () => {
 		const { getByTestId } = render(
 			<div id='root' data-testid='root'>
 				<App />
@@ -79,27 +74,51 @@ describe('Test posSetter function', () => {
 
 		fireEvent.mouseMove(document, { clientX: 0, clientY: 0 });
 
-		const startStyles = window.getComputedStyle(
+		var startStyles = window.getComputedStyle(
 			getByTestId('langs').children[0]
 		);
-		const startMarginLeft = startStyles.marginLeft;
-		const startMarginTop = startStyles.marginTop;
+		var startMarginLeft = startStyles.marginLeft;
+		var startMarginTop = startStyles.marginTop;
 
 		fireEvent.mouseMove(document, { clientX: 100, clientY: 100 });
 
-		const endStyles = window.getComputedStyle(
+		var endStyles = window.getComputedStyle(
 			getByTestId('langs').children[0]
 		);
-		const endMarginLeft = endStyles.marginLeft;
-		const endMarginTop = endStyles.marginTop;
+		var endMarginLeft = endStyles.marginLeft;
+		var endMarginTop = endStyles.marginTop;
+
+		expect(startMarginLeft).not.toEqual(endMarginLeft);
+		expect(startMarginTop).not.toEqual(endMarginTop);
+
+		await new Promise((r) => setTimeout(r, 500));
+
+		Object.defineProperty(document.documentElement, 'clientHeight', {
+			value: 600,
+		});
+		Object.defineProperty(window, 'innerWidth', {
+			value: 1520,
+		});
+
+		var startStyles = window.getComputedStyle(
+			getByTestId('langs').children[0]
+		);
+		startMarginLeft = startStyles.marginLeft;
+		startMarginTop = startStyles.marginTop;
+
+		fireEvent.resize(window);
+
+		var endStyles = window.getComputedStyle(
+			getByTestId('langs').children[0]
+		);
+		endMarginLeft = endStyles.marginLeft;
+		endMarginTop = endStyles.marginTop;
 
 		expect(startMarginLeft).not.toEqual(endMarginLeft);
 		expect(startMarginTop).not.toEqual(endMarginTop);
 	});
-});
 
-describe('Test resize event', () => {
-	it('Should set new root height', async () => {
+	it('Should set new root height on resize', async () => {
 		const { getByTestId } = render(
 			<div id='root' data-testid='root'>
 				<App />
@@ -115,41 +134,5 @@ describe('Test resize event', () => {
 		fireEvent.resize(window);
 
 		expect(getByTestId('root').style.height).toBe('600px');
-	});
-
-	it('Should change position of lang children', async () => {
-		const { getByTestId } = render(
-			<div id='root' data-testid='root'>
-				<App />
-			</div>
-		);
-
-		await new Promise((r) => setTimeout(r, 2000));
-
-		fireEvent.resize(window);
-
-		Object.defineProperty(document.documentElement, 'clientHeight', {
-			value: 600,
-		});
-		Object.defineProperty(window, 'innerWidth', {
-			value: 1520,
-		});
-
-		const startStyles = window.getComputedStyle(
-			getByTestId('langs').children[0]
-		);
-		const startMarginLeft = startStyles.marginLeft;
-		const startMarginTop = startStyles.marginTop;
-
-		fireEvent.resize(window);
-
-		const endStyles = window.getComputedStyle(
-			getByTestId('langs').children[0]
-		);
-		const endMarginLeft = endStyles.marginLeft;
-		const endMarginTop = endStyles.marginTop;
-
-		expect(startMarginLeft).not.toEqual(endMarginLeft);
-		expect(startMarginTop).not.toEqual(endMarginTop);
 	});
 });

@@ -81,7 +81,7 @@ describe('Test jwt and expire keys', () => {
 		expect(window.localStorage.getItem('expire')).toBe(undefined);
 	});
 
-	it('Should not remove jwt and expire keys', () => {
+	it('Should not remove jwt and expire keys', async () => {
 		window.localStorage.setItem('jwt', 'aabbcc112233');
 		window.localStorage.setItem(
 			'expire',
@@ -92,6 +92,8 @@ describe('Test jwt and expire keys', () => {
 				<About />
 			</BrowserRouter>
 		);
+
+		await new Promise((r) => setTimeout(r, 2000));
 
 		expect(window.localStorage.getItem('jwt')).not.toBe(undefined);
 		expect(window.localStorage.getItem('expire')).not.toBe(undefined);
@@ -114,7 +116,7 @@ describe('Test admin buttons state', () => {
 		expect(getAllByTestId('butt')[1].closest('button')).not.toBeDisabled;
 	});
 
-	it('Should not remove jwt and expire keys', () => {
+	it('Should not remove jwt and expire keys', async () => {
 		window.localStorage.clear();
 
 		const { getAllByTestId } = render(
@@ -122,6 +124,8 @@ describe('Test admin buttons state', () => {
 				<About />
 			</BrowserRouter>
 		);
+
+		await new Promise((r) => setTimeout(r, 2000));
 
 		expect(getAllByTestId('butt')[0].closest('button')).toBeDisabled;
 		expect(getAllByTestId('butt')[1].closest('button')).toBeDisabled;
