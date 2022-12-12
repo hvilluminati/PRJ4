@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Portfolio.Data;
-using Portfolio.Models;
 using Microsoft.CodeAnalysis;
-using Mapster;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
+using Portfolio.Data;
 using File = Portfolio.Models.File;
 
-namespace Portfolio.Controllers
+namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
-   // [ApiController, Authorize]
+    [ApiController]
     public class FilesController : ControllerBase
     {
         private readonly PortfolioDbContext _context;
@@ -24,29 +22,20 @@ namespace Portfolio.Controllers
         public FilesController(PortfolioDbContext context)
         {
             _context = context;
-            TypeAdapterConfig<File,File_DTO>.NewConfig().IgnoreNullValues(true);
-
         }
 
         // GET: api/Files
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<File_DTO>>> GetFiles()
+        [HttpGet, AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<File>>> GetFiles()
         {
-            List<File> filesList= await _context.Files.ToListAsync();
-
-
-            List<File_DTO> DTOList = filesList.Adapt<List<File_DTO>>();
-
-            DTOList.ForEach(file => file.id = file.DocumentId.ToString());
-            return DTOList;
+            return await _context.Files.ToListAsync();
 
 
 
         }
 
-
         [HttpGet("FilesSort"), AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<File>>> GetFilesSorted(string sort)
+        public async Task<ActionResult<IEnumerable<File>>> GetFilesSorted(string? sort)
         {
             if (sort == "name")
             {
@@ -66,7 +55,7 @@ namespace Portfolio.Controllers
 
 
         [HttpGet("FilesFind"), AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<File>>> GetFindFiles(string sort)
+        public async Task<ActionResult<IEnumerable<File>>> GetFindFiles(string? sort)
         {
             var list = _context.Files.Where(x => x.Language.Contains(sort)).ToList();
             return list;
@@ -94,18 +83,17 @@ namespace Portfolio.Controllers
 
         }
 
-
         // PUT: api/Files/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFiles(int id, File file)
+        public async Task<IActionResult> PutFiles(int id, File files)
         {
-            if (id != file.DocumentId)
+            if (id != files.DocumentId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(file).State = EntityState.Modified;
+            _context.Entry(files).State = EntityState.Modified;
 
             try
             {
@@ -125,8 +113,6 @@ namespace Portfolio.Controllers
 
             return NoContent();
         }
-
-     
 
         // POST: api/Files
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -179,12 +165,26 @@ namespace Portfolio.Controllers
             return BadRequest();
         }
 
-
         // DELETE: api/Files/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFiles(int id)
         {
             var files = await _context.Files.FindAsync(id);
+            if (files == null)
+            {
+                return NotFound();
+            }
+
+            _context.Files.Remove(files);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{name}")]
+        public async Task<IActionResult> DeleteFiles(string name)
+        {
+            var files = await _context.Files.Where(x => x.Name == name).FirstOrDefaultAsync();
             if (files == null)
             {
                 return NotFound();
