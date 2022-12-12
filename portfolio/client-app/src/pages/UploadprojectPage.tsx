@@ -9,12 +9,12 @@ export default function Upload() {
 	const nav = useNavigate();
 
 	useEffect(() => {
-		var expire = localStorage.getItem('expire');
+		var expire = window.localStorage.getItem('expire');
 		if (expire && new Date().getTime().toString() > expire) {
-			localStorage.removeItem('jwt');
-			localStorage.removeItem('expire');
+			window.localStorage.removeItem('jwt');
+			window.localStorage.removeItem('expire');
 			nav('/');
-		} else if (localStorage.getItem('jwt') === null) nav('/');
+		} else if (window.localStorage.getItem('jwt') === null) nav('/');
 	}, []);
 
 	const fileUploaded = (event: any) => {
