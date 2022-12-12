@@ -15,7 +15,7 @@ const Home = () => {
 								Skills
 							</button>
 						</Link>
-						<div className='border bottom' />
+						<div className='border bottom' data-testid='border' />
 						<div className='border left' />
 						<div className='border right' />
 						<div className='border topright' />

@@ -46,7 +46,7 @@
 		"prestart": "node --loader ts-node/esm ./src/aspnetcore-https.ts && node --loader ts-node/esm ./src/aspnetcore-react.ts",
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "jest --runInBand",
+		"test": "jest",
 		"eject": "react-scripts eject",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build"
