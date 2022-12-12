@@ -35,7 +35,7 @@ namespace Back_end_test
         private readonly JsonContent body_Login;
         public  IntegrationTests()
         {
-           var application = new WebApplicationFactory<Program>()
+            var application = new WebApplicationFactory<Program>()
                 .WithWebHostBuilder(builder => { });
             client = application.CreateClient();
             body_Login = JsonContent.Create(new UserDto
@@ -56,28 +56,122 @@ namespace Back_end_test
 
         }
 
+        
+
         //ensures login works which is required in some following tests
         [Fact]
         public async Task CheckLogin()
         {
-         
             var response = await client.PostAsync("api/Users/login", body_Login);
+            response.EnsureSuccessStatusCode();
+        }
+
+        #region Skills
+        [Fact]
+        public async Task GetSkill()
+        {
+            var application = new WebApplicationFactory<Program>()
+                .WithWebHostBuilder(builder => { });
+
+            var client = application.CreateClient();
+
+
+            var response = await client.GetAsync("/api/Skills");
+            response.EnsureSuccessStatusCode();
+        }
+
+        [Fact]
+        public async Task PostSkill()
+        {
+            //authorize
+            var JsonToken = await GetJWTToken(body_Login, client);
+
+            JObject JWTToken = JObject.Parse(JsonToken);
+
+            string JWT = (string)JWTToken["jwt"];
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JWT);
+
+
+            //create skill
+
+            var body = JsonContent.Create(new Skill { SkillName = "test", MonthsOfExperience = 1, SkillLevel = 1 });
+
+            // db call
+            var response = await client.PostAsync("/api/Skills", body);
+
+            //test
             response.EnsureSuccessStatusCode();
 
 
+            //clean up
 
+            var responseString = response.Content.ReadAsStringAsync();
+
+            JObject json = JObject.Parse(responseString.Result);
+            var id = (string)json["skillID"];
+
+            await client.DeleteAsync($"/api/Skills/{id}");
+
+        }
+
+
+        #endregion
+
+        #region Files
+        [Fact]
+        public async Task UnauthorizedPostFile()
+        {
+            if (client.DefaultRequestHeaders.Authorization == null)
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "wrongToken");
+
+                //create file
+                var bytes = Encoding.UTF8.GetBytes("This is a dummy file");
+
+                var content = new MultipartFormDataContent();
+
+                content.Add(new StreamContent(new MemoryStream(bytes)), "files", "dummyfile");
+                content.Add(new StringContent("test"), "language");
+
+
+                //db call
+                var response = await client.PostAsync("/api/Files", content);
+
+
+                try
+                {
+                    //test
+                    Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+                }
+                catch (Exception e)
+                {
+                    //clean up if test actually puts a file in db
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseString = response.Content.ReadAsStringAsync();
+
+                        JObject json = JObject.Parse(responseString.Result);
+                        var id = (string)json["DocumentId"];
+
+                        await client.DeleteAsync($"/api/Files/{id}");
+                    }
+
+                    throw;
+                }
+
+
+            }
 
 
         }
 
 
-
         [Fact]
-        public async Task PostFile()
+        public async Task AuthorizedPostFile()
         {
 
-
-            //TokenDto JWTToken = new TokenDto();
+            //authorize
             var JsonToken = await GetJWTToken(body_Login, client);
 
             JObject JWTToken = JObject.Parse(JsonToken);
@@ -88,6 +182,7 @@ namespace Back_end_test
 
 
 
+            //create file
 
             var bytes = Encoding.UTF8.GetBytes("This is a dummy file");
           
@@ -96,6 +191,7 @@ namespace Back_end_test
             content.Add(new StreamContent(new MemoryStream(bytes)),"files","dummyfile");
             content.Add(new StringContent("test"),"language");
 
+            //db call
 
             var response = await client.PostAsync("/api/Files",content);
 
@@ -109,15 +205,71 @@ namespace Back_end_test
                 response = await client.DeleteAsync($"/api/Files/dummyfile");
                 response = await client.PostAsync("/api/Files", content);
                 response.EnsureSuccessStatusCode();
+            }
+            // clean up
+            var responseString = response.Content.ReadAsStringAsync();
+
+            JObject json = JObject.Parse(responseString.Result);
+            var id = (string)json["DocumentId"];
+
+            await client.DeleteAsync($"/api/Files/{id}");
+
+        }
+
+        [Fact]
+        public async Task PostFileEmptyFile()
+        {
+
+            //authorize
+            var JsonToken = await GetJWTToken(body_Login, client);
+
+            JObject JWTToken = JObject.Parse(JsonToken);
+
+            string JWT = (string)JWTToken["jwt"];
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JWT);
+
+            //create file
+            var bytes = Encoding.UTF8.GetBytes("");
+
+            var content = new MultipartFormDataContent();
+
+            content.Add(new StreamContent(new MemoryStream(bytes)), "files", "dummyfile");
+            content.Add(new StringContent("test"), "language");
+
+            //db call
+            var response = await client.PostAsync("/api/Files", content);
 
 
+            try
+            {
+                //test
+                Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            }
+            catch (Exception e)
+            {
+                //clean up if test actually puts a file in db
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseString = response.Content.ReadAsStringAsync();
+
+                    JObject json = JObject.Parse(responseString.Result);
+                    var id = (string)json["DocumentId"];
+
+                    await client.DeleteAsync($"/api/Files/{id}");
+                }
+
+                throw;
             }
         }
 
-        [Theory]
-        [InlineData("dummyfile")]
-        public async Task DeleteFile(string filename)
+
+
+        [Fact]
+        public async Task PostFileWithoutFile()
         {
+
+            //authorize
             var JsonToken = await GetJWTToken(body_Login, client);
 
             JObject JWTToken = JObject.Parse(JsonToken);
@@ -126,51 +278,44 @@ namespace Back_end_test
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JWT);
 
-            var response = await client.DeleteAsync($"/api/Files/{filename}");
+            //create file
+
+            var content = new MultipartFormDataContent();
+
+            content.Add(new StringContent("test"), "language");
+            content.Add(new StringContent(""), "file");
 
 
-            response.EnsureSuccessStatusCode();
-
-        }
-
+            //db call
+            var response = await client.PostAsync("/api/Files", content);
 
 
-        [Fact]
-        public async Task PostSkill()
-        {
-            var body_Login = JsonContent.Create(new UserDto
+            try
             {
-                Email = Login_Email,
-                Password = Login_Password
+                //test
+                Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            }
+            catch (Exception e)
+            {
+                //clean up if test actually puts a file in db
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseString = response.Content.ReadAsStringAsync();
 
-            });
-            var JsonToken = await GetJWTToken(body_Login, client);
+                    JObject json = JObject.Parse(responseString.Result);
+                    var id = (string)json["DocumentId"];
 
-            JObject JWTToken = JObject.Parse(JsonToken);
+                    await client.DeleteAsync($"/api/Files/{id}");
+                }
 
-            string JWT = (string)JWTToken["jwt"];
-
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JWT);
-            //set test to be authroized by default
-
-
-            var body = JsonContent.Create(new Skill { SkillName = "test", MonthsOfExperience = 1, SkillLevel = 1 });
-
-            var response = await client.PostAsync("/api/Skills", body);
-            response.EnsureSuccessStatusCode();
+                throw;
+            }
         }
 
-        [Fact]
-        public async Task GetSkill()
-        {
-            var application = new WebApplicationFactory<Program>()
-                .WithWebHostBuilder(builder => { });
-
-            var client = application.CreateClient();
+        #endregion
 
 
-            var response = await client.GetAsync("/api/Skills");
-            response.EnsureSuccessStatusCode();
-        }
+
+
     }
 }
