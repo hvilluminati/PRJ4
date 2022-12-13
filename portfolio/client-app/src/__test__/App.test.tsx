@@ -1,6 +1,7 @@
 // jest.spyOn(console, 'error').mockImplementation(() => {});
 import App from '../App';
 import { fireEvent, render } from '@testing-library/react';
+import { lang } from '../pos';
 
 Object.defineProperty(document.documentElement, 'clientHeight', {
 	writable: true,
@@ -70,7 +71,7 @@ describe('Test events', () => {
 			</div>
 		);
 
-		await new Promise((r) => setTimeout(r, 3000));
+		await new Promise((r) => setTimeout(r, 1000));
 
 		fireEvent.mouseMove(document, { clientX: 0, clientY: 0 });
 

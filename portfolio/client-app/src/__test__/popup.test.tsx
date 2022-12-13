@@ -8,17 +8,8 @@ jest.mock('../pos', () => ({
 }));
 import { AboutPopup, SkillsPopup } from '../popup';
 import { fireEvent, render } from '@testing-library/react';
-import {
-	putDescription,
-	putTitle,
-	putSkill,
-	deleteSkill,
-	postSkill,
-	getSkills,
-} from '../axioscalls';
+import { putDescription, putTitle, getSkills } from '../axioscalls';
 import { lang } from '../pos';
-import Skills from '../pages/skillsPage';
-import { BrowserRouter } from 'react-router-dom';
 
 describe('AboutPopup', () => {
 	describe('Test that AboutPopup renders correct textare, button and wrapper class', () => {
