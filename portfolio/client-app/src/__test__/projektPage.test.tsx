@@ -4,7 +4,6 @@ import { fireEvent, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { render, waitFor } from '@testing-library/react';
 import { getFiles } from '../axioscalls';
-import { Dropdown } from 'react-bootstrap';
 
 const dummyProjects = [
 	{
@@ -54,13 +53,11 @@ test('dropdown button click simulation', async () => {
 		</BrowserRouter>
 	);
 
-	await new Promise((r) => setTimeout(r, 1000));
-
 	fireEvent.click(getByText('Dropdown button'));
 
-	await new Promise((r) => setTimeout(r, 1000));
-
-	expect(getByText('Sort by name')).toBeInTheDocument;
+	expect(getByText('Sort By Name')).toBeInTheDocument;
+	expect(getByText('Sort By Date')).toBeInTheDocument;
+	expect(getByText('Find all C# Projects')).toBeInTheDocument;
 });
 
 test('projects list', async () => {
@@ -70,8 +67,7 @@ test('projects list', async () => {
 		</BrowserRouter>
 	);
 
-	const projectsList = await waitFor(() => screen.findAllByTestId('Titel'));
-	expect(projectsList).toHaveLength(4);
+	expect(screen.findAllByText('Encrypted Project name')).toBeInTheDocument;
 });
 
 test('download button', async () => {
@@ -81,8 +77,5 @@ test('download button', async () => {
 		</BrowserRouter>
 	);
 
-	const projectsList = await waitFor(() =>
-		screen.findAllByTestId('Download')
-	);
-	expect(projectsList);
+	expect(screen.findAllByTestId('Download'));
 });

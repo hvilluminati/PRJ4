@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getBlob, getFiles, getFilesFind, getFilesSort } from '../axioscalls';
 import { Link } from 'react-router-dom';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 export default function Projects() {
 	const [fileinfo, setFileinfo] = useState<
@@ -99,8 +98,8 @@ export default function Projects() {
 						<td>{'Download button'}</td>
 					</tr>
 
-					{fileinfo.map((f) => (
-						<tr>
+					{fileinfo.map((f, i) => (
+						<tr key={i}>
 							<td>{f.name}</td>
 							<td>{f.fileType}</td>
 							<td>{f.language}</td>
