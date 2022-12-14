@@ -193,7 +193,8 @@
 <a name='L128'></a><a href='#L128'>128</a>
 <a name='L129'></a><a href='#L129'>129</a>
 <a name='L130'></a><a href='#L130'>130</a>
-<a name='L131'></a><a href='#L131'>131</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -323,135 +324,137 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect, useState } from 'react';
-import { getBlob, getFiles, getFilesFind, getFilesSort } from '../axioscalls';
-import { Link } from 'react-router-dom';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect, useState } from "react";
+import { getBlob, getFiles, getFilesFind, getFilesSort } from "../axioscalls";
+import { Link } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 &nbsp;
-import { count } from 'console';
-import { func } from 'prop-types';
+import { count } from "console";
+import { func } from "prop-types";
 &nbsp;
 export default function <span class="fstat-no" title="function not covered" >Projects(</span>) {
-	const [fileinfo, setFileinfo] = <span class="cstat-no" title="statement not covered" >useState&lt;</span>
-		Array&lt;{
-			id: string;
-			name: string;
-			fileType: string;
-			language: string;
-		}&gt;
-	&gt;([]);
-	function <span class="fstat-no" title="function not covered" >clearFileInfo(</span>) {
-<span class="cstat-no" title="statement not covered" >		setFileinfo([]);</span>
-	}
-<span class="cstat-no" title="statement not covered" >	useEffect(<span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
-		var expire = <span class="cstat-no" title="statement not covered" >localStorage.getItem('expire');</span>
-<span class="cstat-no" title="statement not covered" >		<span class="missing-if-branch" title="if path not taken" >I</span>if (expire &amp;&amp; new Date().getTime().toString() &gt; expire) {</span>
-<span class="cstat-no" title="statement not covered" >			localStorage.removeItem('jwt');</span>
-<span class="cstat-no" title="statement not covered" >			localStorage.removeItem('expire');</span>
-		}
+  const [fileinfo, setFileinfo] = <span class="cstat-no" title="statement not covered" >useState&lt;</span>
+    Array&lt;{
+      id: string;
+      name: string;
+      fileType: string;
+      language: string;
+    }&gt;
+  &gt;([]);
+  function <span class="fstat-no" title="function not covered" >clearFileInfo(</span>) {
+<span class="cstat-no" title="statement not covered" >    setFileinfo([]);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
+    var expire = <span class="cstat-no" title="statement not covered" >window.localStorage.getItem("expire");</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (expire &amp;&amp; new Date().getTime().toString() &gt; expire) {</span>
+<span class="cstat-no" title="statement not covered" >      window.localStorage.removeItem("jwt");</span>
+<span class="cstat-no" title="statement not covered" >      window.localStorage.removeItem("expire");</span>
+    }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		console.log(localStorage.getItem('jwt'));</span>
-<span class="cstat-no" title="statement not covered" >		getFiles().then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >			for (let index = <span class="cstat-no" title="statement not covered" >0;</span> index &lt; response.length; index++) {</span>
-<span class="cstat-no" title="statement not covered" >				setFileinfo(<span class="fstat-no" title="function not covered" >(a</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >[</span></span>
-					...arr,
-					{
-						id: response[index].documentId,
-						name: response[index].name,
-						fileType: response[index].fileType,
-						language: response[index].language,
-					},
-				]);
-			}
-		});
-	}, []);
-	const Sortby = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ort: string) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		clearFileInfo();</span>
-<span class="cstat-no" title="statement not covered" >		getFilesSort(sort).then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >			for (let index = <span class="cstat-no" title="statement not covered" >0;</span> index &lt; response.length; index++) {</span>
-<span class="cstat-no" title="statement not covered" >				setFileinfo(<span class="fstat-no" title="function not covered" >(a</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >[</span></span>
-					...arr,
-					{
-						id: response[index].documentId,
-						name: response[index].name,
-						fileType: response[index].fileType,
-						language: response[index].language,
-					},
-				]);
-			}
-		});
-	};
+<span class="cstat-no" title="statement not covered" >    console.log(window.localStorage.getItem("jwt"));</span>
+<span class="cstat-no" title="statement not covered" >    getFiles().then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      for (let index = <span class="cstat-no" title="statement not covered" >0;</span> index &lt; response.length; index++) {</span>
+<span class="cstat-no" title="statement not covered" >        setFileinfo(<span class="fstat-no" title="function not covered" >(a</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >[</span></span>
+          ...arr,
+          {
+            id: response[index].documentId,
+            name: response[index].name,
+            fileType: response[index].fileType,
+            language: response[index].language,
+          },
+        ]);
+      }
+    });
+  }, []);
+  const Sortby = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>ort: string) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    clearFileInfo();</span>
+<span class="cstat-no" title="statement not covered" >    getFilesSort(sort).then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      for (let index = <span class="cstat-no" title="statement not covered" >0;</span> index &lt; response.length; index++) {</span>
+<span class="cstat-no" title="statement not covered" >        setFileinfo(<span class="fstat-no" title="function not covered" >(a</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >[</span></span>
+          ...arr,
+          {
+            id: response[index].documentId,
+            name: response[index].name,
+            fileType: response[index].fileType,
+            language: response[index].language,
+          },
+        ]);
+      }
+    });
+  };
 &nbsp;
-	const FindLanguage = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(F</span>ind: string) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		clearFileInfo();</span>
-<span class="cstat-no" title="statement not covered" >		getFilesFind(Find).then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >			for (let index = <span class="cstat-no" title="statement not covered" >0;</span> index &lt; response.length; index++) {</span>
-<span class="cstat-no" title="statement not covered" >				setFileinfo(<span class="fstat-no" title="function not covered" >(a</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >[</span></span>
-					...arr,
-					{
-						id: response[index].documentId,
-						name: response[index].name,
-						fileType: response[index].fileType,
-						language: response[index].language,
-					},
-				]);
-			}
-		});
-	};
-<span class="cstat-no" title="statement not covered" >	return (</span>
-		&lt;div id='hej'&gt;
-			&lt;Link to='/'&gt;
-				&lt;button className='button button1'&gt;
-					&lt;span&gt;Home&lt;/span&gt;
-				&lt;/button&gt;{' '}
-			&lt;/Link&gt;
+  const FindLanguage = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(F</span>ind: string) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    clearFileInfo();</span>
+<span class="cstat-no" title="statement not covered" >    getFilesFind(Find).then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      for (let index = <span class="cstat-no" title="statement not covered" >0;</span> index &lt; response.length; index++) {</span>
+<span class="cstat-no" title="statement not covered" >        setFileinfo(<span class="fstat-no" title="function not covered" >(a</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >[</span></span>
+          ...arr,
+          {
+            id: response[index].documentId,
+            name: response[index].name,
+            fileType: response[index].fileType,
+            language: response[index].language,
+          },
+        ]);
+      }
+    });
+  };
+<span class="cstat-no" title="statement not covered" >  return (</span>
+    &lt;div id='hej'&gt;
+      &lt;Link to='/'&gt;
+        &lt;button className='button button1'&gt;
+          &lt;span&gt;Home&lt;/span&gt;
+        &lt;/button&gt;{" "}
+      &lt;/Link&gt;
 &nbsp;
-			&lt;DropdownButton id='dropbtn' title='Dropdown button'&gt;
-				&lt;Dropdown.Item onClick={<span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; <span class="cstat-no" title="statement not covered" >Sortby('name')}</span>&gt;
-					Sort By Name
-				&lt;/Dropdown.Item&gt;
-				&lt;Dropdown.Item onClick={<span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; <span class="cstat-no" title="statement not covered" >Sortby('date')}</span>&gt;
-					Sort By Date
-				&lt;/Dropdown.Item&gt;
-				&lt;Dropdown.Item onClick={<span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; <span class="cstat-no" title="statement not covered" >FindLanguage('c#')}</span>&gt;
-					Find all C# Projects
-				&lt;/Dropdown.Item&gt;
-			&lt;/DropdownButton&gt;
-			&lt;table id='dataTable' width='350px'&gt;
-				&lt;tr id='Titel'&gt;
-					&lt;td&gt;{'Encrypted Project name'}&lt;/td&gt;
-					&lt;td&gt;{'File Type'}&lt;/td&gt;
-					&lt;td&gt;{'Coding language'}&lt;/td&gt;
-					&lt;td&gt;{'Download button'}&lt;/td&gt;
-				&lt;/tr&gt;
+      &lt;DropdownButton id='dropbtn' title='Dropdown button'&gt;
+        &lt;Dropdown.Item onClick={<span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; <span class="cstat-no" title="statement not covered" >Sortby("name")}</span>&gt;
+          Sort By Name
+        &lt;/Dropdown.Item&gt;
+        &lt;Dropdown.Item onClick={<span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; <span class="cstat-no" title="statement not covered" >Sortby("date")}</span>&gt;
+          Sort By Date
+        &lt;/Dropdown.Item&gt;
+        &lt;Dropdown.Item onClick={<span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; <span class="cstat-no" title="statement not covered" >FindLanguage("c#")}</span>&gt;
+          Find all C# Projects
+        &lt;/Dropdown.Item&gt;
+      &lt;/DropdownButton&gt;
+      &lt;table id='dataTable' width='350px'&gt;
+        &lt;tr id='Titel'&gt;
+          &lt;td&gt;{"Encrypted Project name"}&lt;/td&gt;
+          &lt;td&gt;{"File Type"}&lt;/td&gt;
+          &lt;td&gt;{"Coding language"}&lt;/td&gt;
+          &lt;td&gt;{"Download button"}&lt;/td&gt;
+        &lt;/tr&gt;
 &nbsp;
-				{fileinfo.map(<span class="fstat-no" title="function not covered" >(f</span>) =&gt; (
-<span class="cstat-no" title="statement not covered" >					&lt;tr&gt;</span>
-						&lt;td&gt;{f.name}&lt;/td&gt;
-						&lt;td&gt;{f.fileType}&lt;/td&gt;
-						&lt;td&gt;{f.language}&lt;/td&gt;
-						&lt;div id='Download'&gt;
-							&lt;button
-								id='Download'
-								onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >getBlob(f.id, f.fileType, f.name)}</span>&gt;
-								Download
-							&lt;/button&gt;
-						&lt;/div&gt;
-					&lt;/tr&gt;
-				))}
-			&lt;/table&gt;
-			&lt;div id='upload'&gt;
-				{localStorage.getItem('jwt') !== null &amp;&amp; (
-					&lt;Link to='/UploadProject'&gt;
-						&lt;button className='button button1'&gt;
-							&lt;span&gt;Upload A new Project&lt;/span&gt;
-						&lt;/button&gt;{' '}
-					&lt;/Link&gt;
-				)}
-			&lt;/div&gt;
-		&lt;/div&gt;
-	);
+        {fileinfo.map(<span class="fstat-no" title="function not covered" >(f</span>) =&gt; (
+<span class="cstat-no" title="statement not covered" >          &lt;tr&gt;</span>
+            &lt;td&gt;{f.name}&lt;/td&gt;
+            &lt;td&gt;{f.fileType}&lt;/td&gt;
+            &lt;td&gt;{f.language}&lt;/td&gt;
+            &lt;div id='Download'&gt;
+              &lt;button
+                id='Download'
+                onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >getBlob(f.id, f.fileType, f.name)}</span>
+              &gt;
+                Download
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/tr&gt;
+        ))}
+      &lt;/table&gt;
+      &lt;div id='upload'&gt;
+        {window.localStorage.getItem("jwt") !== null &amp;&amp; (
+          &lt;Link to='/UploadProject'&gt;
+            &lt;button className='button button1'&gt;
+              &lt;span&gt;Upload A new Project&lt;/span&gt;
+            &lt;/button&gt;{" "}
+          &lt;/Link&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -460,7 +463,7 @@ export default function <span class="fstat-no" title="function not covered" >Pro
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-12T21:55:42.943Z
+                at 2022-12-13T15:20:32.943Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

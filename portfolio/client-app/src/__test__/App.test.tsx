@@ -71,7 +71,7 @@ describe('Test events', () => {
 			</div>
 		);
 
-		await new Promise((r) => setTimeout(r, 1000));
+		await new Promise((r) => setTimeout(r, 3000));
 
 		fireEvent.mouseMove(document, { clientX: 0, clientY: 0 });
 
