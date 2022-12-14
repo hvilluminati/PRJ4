@@ -79,13 +79,13 @@ export default function Projects() {
       </Link>
 
       <DropdownButton id='dropbtn' title='Dropdown button'>
-        <Dropdown.Item onClick={() => Sortby("name")}>
+        <Dropdown.Item id='sort-name-btn' onClick={() => Sortby("name")}>
           Sort By Name
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => Sortby("date")}>
+        <Dropdown.Item id='sort-date-btn' onClick={() => Sortby("date")}>
           Sort By Date
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => FindLanguage("c#")}>
+        <Dropdown.Item id='find-btn' onClick={() => FindLanguage("c#")}>
           Find all C# Projects
         </Dropdown.Item>
       </DropdownButton>
