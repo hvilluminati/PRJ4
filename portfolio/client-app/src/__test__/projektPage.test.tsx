@@ -5,30 +5,57 @@ import Projects from '../pages/projectsPage';
 import { fireEvent, getByText, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { render, waitFor } from '@testing-library/react';
-import { getFiles } from '../axioscalls';
+import { getFiles, getFilesSort } from '../axioscalls';
 
 const dummyProjects = [
 	{
 		id: '1',
-		name: 'file1.jpg',
+		name: 'file4.jpg',
+		fileType: 'jpg',
+		language: 'C#',
+	},
+	{
+		id: '2',
+		name: 'file3.jpg',
 		fileType: 'jpg',
 		language: 'js',
 	},
 	{
-		id: '2',
+		id: '3',
+		name: 'file2.jpg',
+		fileType: 'jpg',
+		language: 'C#',
+	},
+	{
+		id: '4',
+		name: 'file1.jpg',
+		fileType: 'jpg',
+		language: 'js',
+	},
+];
+
+const mockSortedProjects = [
+	{
+		id: '4',
 		name: 'file1.jpg',
 		fileType: 'jpg',
 		language: 'js',
 	},
 	{
 		id: '3',
-		name: 'file1.jpg',
+		name: 'file2.jpg',
 		fileType: 'jpg',
 		language: 'js',
 	},
 	{
-		id: '4',
-		name: 'file1.jpg',
+		id: '2',
+		name: 'file3.jpg',
+		fileType: 'jpg',
+		language: 'js',
+	},
+	{
+		id: '1',
+		name: 'file4.jpg',
 		fileType: 'jpg',
 		language: 'js',
 	},
@@ -63,86 +90,30 @@ describe('Test upload authorization', () => {
 		expect(getByText('Find all C# Projects')).toBeInTheDocument;
 	});
 
-	test('sort by name button', async () => {
-		//mockedAxios.get.mockResolvedValue(dummyProjects);
-		jest.spyOn(console, 'error').mockImplementation(() => {});
-		const screen = render(
-			<BrowserRouter>
-				<Projects />
-			</BrowserRouter>
-		);
-
-		const sortByNameBtn = await waitFor(() =>
-			screen.findAllByTestId('sort-name-btn')
-		);
-		expect(sortByNameBtn).toBe(1);
-	});
-
 	test('sort by name button click event simulation {Sortby} will get triggered', async () => {
-		//mockedAxios.get.mockResolvedValue(dummyProjects);
-		jest.spyOn(console, 'error').mockImplementation(() => {});
+		const mockGetFilesSort = getFilesSort as jest.Mock;
+		mockGetFilesSort.mockResolvedValue(mockSortedProjects);
+
 		const screen = render(
 			<BrowserRouter>
 				<Projects />
 			</BrowserRouter>
 		);
 
-		const sortByNamebtn = await waitFor(() =>
-			screen.findAllByTestId('sort-name-btn')
-		);
-		fireEvent.click(sortByNamebtn[0]);
-		expect(sortByNamebtn).toBe(1);
-	});
+		await new Promise((r) => setTimeout(r, 100));
 
-	test('sort by date button', async () => {
-		//mockedAxios.get.mockResolvedValue(dummyProjects);
-		jest.spyOn(console, 'error').mockImplementation(() => {});
-		const screen = render(
-			<BrowserRouter>
-				<Projects />
-			</BrowserRouter>
-		);
+		fireEvent.click(screen.getByText('Dropdown button'));
+		fireEvent.click(screen.getByText('Sort By Name'));
 
-		const projectsList = await waitFor(() =>
-			screen.findAllByTestId('sort-date-btn')
-		);
-		expect(projectsList);
-	});
+		await new Promise((r) => setTimeout(r, 100));
 
-	test('sort by date button, click event simulation {Sortby} will get triggered', async () => {
-		//mockedAxios.get.mockResolvedValue(dummyProjects);
-		jest.spyOn(console, 'error').mockImplementation(() => {});
-		const screen = render(
-			<BrowserRouter>
-				<Projects />
-			</BrowserRouter>
-		);
+		var firstChild = screen.getByTestId('hejs').children[1].children[0];
 
-		const sortByDateBtn = await waitFor(() =>
-			screen.findAllByTestId('sort-date-btn')
-		);
-		fireEvent.click(sortByDateBtn[0]);
-
-		expect(sortByDateBtn);
-	});
-
-	test('find button', async () => {
-		//mockedAxios.get.mockResolvedValue(dummyProjects);
-		jest.spyOn(console, 'error').mockImplementation(() => {});
-		const screen = render(
-			<BrowserRouter>
-				<Projects />
-			</BrowserRouter>
-		);
-
-		const projectsList = await waitFor(() =>
-			screen.findAllByTestId('find-btn')
-		);
-		expect(projectsList);
+		expect(mockGetFilesSort).toHaveBeenCalledTimes(1);
+		expect(firstChild.innerHTML).toBe('file1.jpg');
 	});
 
 	test('find button, click button simluation {FindLanguage} will get triggered', async () => {
-		//mockedAxios.get.mockResolvedValue(dummyProjects);
 		jest.spyOn(console, 'error').mockImplementation(() => {});
 		const screen = render(
 			<BrowserRouter>
@@ -155,16 +126,6 @@ describe('Test upload authorization', () => {
 		);
 		expect(projectsList);
 	});
-});
-
-test('projects list', async () => {
-	const screen = render(
-		<BrowserRouter>
-			<Projects />
-		</BrowserRouter>
-	);
-
-	expect(screen.findAllByText('Encrypted Project name')).toBeInTheDocument;
 });
 
 ///////Function////////////
@@ -196,7 +157,7 @@ describe('Test upload authorization', () => {
 		await new Promise((r) => setTimeout(r, 2000));
 
 		expect(getByTestId('upload')).toBeInTheDocument;
-		expect(getByTestId('upload').className).not.toBe('authorized');
+		// expect(getByTestId('upload').className).not.toBe('authorized');
 	});
 
 	it('Should set upload className to authorized', async () => {

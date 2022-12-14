@@ -77,25 +77,19 @@ export default function Projects() {
 			</Link>
 
 			<DropdownButton id='dropbtn' title='Dropdown button'>
-				<Dropdown.Item
-					id='sort-name-btn'
-					onClick={() => Sortby('name')}
-				>
+				<Dropdown.Item onClick={() => Sortby('name')}>
 					Sort By Name
 				</Dropdown.Item>
-				<Dropdown.Item
-					id='sort-date-btn'
-					onClick={() => Sortby('date')}
-				>
+				<Dropdown.Item onClick={() => Sortby('date')}>
 					Sort By Date
 				</Dropdown.Item>
-				<Dropdown.Item id='find-btn' onClick={() => FindLanguage('c#')}>
+				<Dropdown.Item onClick={() => FindLanguage('c#')}>
 					Find all C# Projects
 				</Dropdown.Item>
 			</DropdownButton>
 			<div id='dataTable'>
 				<table id='dataTable' data-testid='table' width='350px'>
-					<tbody>
+					<tbody data-testid='hejs'>
 						<tr id='Titel'>
 							<td>{'Encrypted Project name'}</td>
 							<td>{'File Type'}</td>
