@@ -6,9 +6,16 @@ jest.mock('../pos', () => ({
 		['2', 'SQL', '9', '14'],
 	],
 }));
-import { AboutPopup, SkillsPopup } from '../popup';
+import { AboutPopup, SkillsPopup, SkillPopup } from '../popup';
 import { fireEvent, render } from '@testing-library/react';
-import { putDescription, putTitle, getSkills } from '../axioscalls';
+import {
+	putDescription,
+	putTitle,
+	getSkills,
+	postSkill,
+	deleteSkill,
+	putSkill,
+} from '../axioscalls';
 import { lang } from '../pos';
 
 describe('AboutPopup', () => {
@@ -132,5 +139,93 @@ describe('SkillsPopup', () => {
 		expect(window.getComputedStyle(getByTestId('wrap')).height).toEqual(
 			'120px' // lang.length * 40 + 40
 		);
+	});
+});
+
+describe('SkillPopup', () => {
+	describe('Render with different parameters', () => {
+		it('Should render correctly with no skill parameter', async () => {
+			const { getByPlaceholderText, getByText, queryByText } = render(
+				<SkillPopup />
+			);
+
+			expect(getByPlaceholderText('Skill name')).toBeInTheDocument;
+			expect(getByPlaceholderText('Skill level')).toBeInTheDocument;
+			expect(getByPlaceholderText('Experience')).toBeInTheDocument;
+			expect(getByText('Add skill')).toBeInTheDocument;
+			expect(queryByText('Delete skill')).toBeNull;
+		});
+
+		it('Should render correctly with mock skill', async () => {
+			const { getByPlaceholderText, getByText } = render(
+				<SkillPopup skill={['1', 'react', '7', '3']} />
+			);
+
+			expect(getByPlaceholderText('react')).toBeInTheDocument;
+			expect(getByPlaceholderText('7')).toBeInTheDocument;
+			expect(getByPlaceholderText('3')).toBeInTheDocument;
+			expect(getByText('Change skill')).toBeInTheDocument;
+			expect(getByText('Delete skill')).toBeInTheDocument;
+		});
+	});
+
+	describe('Events', () => {
+		describe('onChange event', () => {
+			it('Should change placeholders on event trigger', async () => {
+				const { getByPlaceholderText } = render(<SkillPopup />);
+
+				fireEvent.change(getByPlaceholderText('Skill name'), {
+					target: { value: 'new name' },
+				});
+				fireEvent.change(getByPlaceholderText('Skill level'), {
+					target: { value: 'new level' },
+				});
+				fireEvent.change(getByPlaceholderText('Experience'), {
+					target: { value: 'new experience' },
+				});
+
+				expect(getByPlaceholderText('new name')).toBeInTheDocument;
+				expect(getByPlaceholderText('new level')).toBeInTheDocument;
+				expect(getByPlaceholderText('new experience'))
+					.toBeInTheDocument;
+			});
+		});
+
+		describe('onClick event', () => {
+			jest.spyOn(console, 'log').mockImplementationOnce(() => {});
+			it('Should call the editSkill function', () => {
+				const mockPutSkill = putSkill as jest.Mock;
+				mockPutSkill.mockImplementation(() => {});
+				const { getByText } = render(
+					<SkillPopup skill={['1', 'react', '7', '3']} />
+				);
+
+				fireEvent.click(getByText('Change skill'));
+
+				expect(mockPutSkill).toHaveBeenCalledTimes(1);
+			});
+
+			it('Should call the addSkill function', () => {
+				const mockPostSkill = postSkill as jest.Mock;
+				mockPostSkill.mockImplementation(() => {});
+				const { getByText } = render(<SkillPopup />);
+
+				fireEvent.click(getByText('Add skill'));
+
+				expect(mockPostSkill).toHaveBeenCalledTimes(1);
+			});
+
+			it('Should call the delSkill function', () => {
+				const mockDeleteSkill = deleteSkill as jest.Mock;
+				mockDeleteSkill.mockImplementation(() => {});
+				const { getByText } = render(
+					<SkillPopup skill={['1', 'react', '7', '3']} />
+				);
+
+				fireEvent.click(getByText('Delete skill'));
+
+				expect(mockDeleteSkill).toHaveBeenCalledTimes(1);
+			});
+		});
 	});
 });

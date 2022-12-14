@@ -21,8 +21,6 @@ export default function Projects() {
 			window.localStorage.removeItem('jwt');
 			window.localStorage.removeItem('expire');
 		}
-
-		console.log(window.localStorage.getItem('jwt'));
 		getFiles().then((response) => {
 			for (let index = 0; index < response.length; index++) {
 				setFileinfo((arr) => [
@@ -89,34 +87,36 @@ export default function Projects() {
 					Find all C# Projects
 				</Dropdown.Item>
 			</DropdownButton>
-			<table id='dataTable' width='350px'>
-				<tbody>
-					<tr id='Titel'>
-						<td>{'Encrypted Project name'}</td>
-						<td>{'File Type'}</td>
-						<td>{'Coding language'}</td>
-						<td>{'Download button'}</td>
-					</tr>
-
-					{fileinfo.map((f, i) => (
-						<tr key={i}>
-							<td>{f.name}</td>
-							<td>{f.fileType}</td>
-							<td>{f.language}</td>
-							<div id='Download'>
-								<button
-									id='Download'
-									onClick={() =>
-										getBlob(f.id, f.fileType, f.name)
-									}
-								>
-									Download
-								</button>
-							</div>
+			<div id='dataTable'>
+				<table id='dataTable' data-testid='table' width='350px'>
+					<tbody data-testid='hejs'>
+						<tr id='Titel'>
+							<td>{'Encrypted Project name'}</td>
+							<td>{'File Type'}</td>
+							<td>{'Coding language'}</td>
+							<td>{'Download button'}</td>
 						</tr>
-					))}
-				</tbody>
-			</table>
+
+						{fileinfo.map((f, i) => (
+							<tr key={i}>
+								<td>{f.name}</td>
+								<td>{f.fileType}</td>
+								<td>{f.language}</td>
+								<div id='Download'>
+									<button
+										id='Download'
+										onClick={() =>
+											getBlob(f.id, f.fileType, f.name)
+										}
+									>
+										Download
+									</button>
+								</div>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
 			<div id='upload'>
 				{window.localStorage.getItem('jwt') !== null && (
 					<Link to='/UploadProject'>
