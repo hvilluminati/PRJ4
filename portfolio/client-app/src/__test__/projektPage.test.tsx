@@ -37,29 +37,124 @@ const dummyProjects = [
 const mockPutTitle = getFiles as jest.Mock;
 mockPutTitle.mockResolvedValue(dummyProjects);
 
-test('dropdown button on screen', async () => {
-	const { getAllByText } = render(
-		<BrowserRouter>
-			<Projects />
-		</BrowserRouter>
-	);
+describe('Test upload authorization', () => {
+	test('dropdown button on screen', async () => {
+		const { getAllByText } = render(
+			<BrowserRouter>
+				<Projects />
+			</BrowserRouter>
+		);
 
-	expect(getAllByText('Dropdown button')).toBeInTheDocument;
-	expect(getAllByText('Dropdown button')).toHaveLength(1);
-});
+		expect(getAllByText('Dropdown button')).toBeInTheDocument;
+		expect(getAllByText('Dropdown button')).toHaveLength(1);
+	});
 
-test('dropdown button click simulation', async () => {
-	const { getByText } = render(
-		<BrowserRouter>
-			<Projects />
-		</BrowserRouter>
-	);
+	test('dropdown button click simulation', async () => {
+		const { getByText } = render(
+			<BrowserRouter>
+				<Projects />
+			</BrowserRouter>
+		);
 
-	fireEvent.click(getByText('Dropdown button'));
+		fireEvent.click(getByText('Dropdown button'));
 
-	expect(getByText('Sort By Name')).toBeInTheDocument;
-	expect(getByText('Sort By Date')).toBeInTheDocument;
-	expect(getByText('Find all C# Projects')).toBeInTheDocument;
+		expect(getByText('Sort By Name')).toBeInTheDocument;
+		expect(getByText('Sort By Date')).toBeInTheDocument;
+		expect(getByText('Find all C# Projects')).toBeInTheDocument;
+	});
+
+	test('sort by name button', async () => {
+		//mockedAxios.get.mockResolvedValue(dummyProjects);
+		jest.spyOn(console, 'error').mockImplementation(() => {});
+		const screen = render(
+			<BrowserRouter>
+				<Projects />
+			</BrowserRouter>
+		);
+
+		const sortByNameBtn = await waitFor(() =>
+			screen.findAllByTestId('sort-name-btn')
+		);
+		expect(sortByNameBtn).toBe(1);
+	});
+
+	test('sort by name button click event simulation {Sortby} will get triggered', async () => {
+		//mockedAxios.get.mockResolvedValue(dummyProjects);
+		jest.spyOn(console, 'error').mockImplementation(() => {});
+		const screen = render(
+			<BrowserRouter>
+				<Projects />
+			</BrowserRouter>
+		);
+
+		const sortByNamebtn = await waitFor(() =>
+			screen.findAllByTestId('sort-name-btn')
+		);
+		fireEvent.click(sortByNamebtn[0]);
+		expect(sortByNamebtn).toBe(1);
+	});
+
+	test('sort by date button', async () => {
+		//mockedAxios.get.mockResolvedValue(dummyProjects);
+		jest.spyOn(console, 'error').mockImplementation(() => {});
+		const screen = render(
+			<BrowserRouter>
+				<Projects />
+			</BrowserRouter>
+		);
+
+		const projectsList = await waitFor(() =>
+			screen.findAllByTestId('sort-date-btn')
+		);
+		expect(projectsList);
+	});
+
+	test('sort by date button, click event simulation {Sortby} will get triggered', async () => {
+		//mockedAxios.get.mockResolvedValue(dummyProjects);
+		jest.spyOn(console, 'error').mockImplementation(() => {});
+		const screen = render(
+			<BrowserRouter>
+				<Projects />
+			</BrowserRouter>
+		);
+
+		const sortByDateBtn = await waitFor(() =>
+			screen.findAllByTestId('sort-date-btn')
+		);
+		fireEvent.click(sortByDateBtn[0]);
+
+		expect(sortByDateBtn);
+	});
+
+	test('find button', async () => {
+		//mockedAxios.get.mockResolvedValue(dummyProjects);
+		jest.spyOn(console, 'error').mockImplementation(() => {});
+		const screen = render(
+			<BrowserRouter>
+				<Projects />
+			</BrowserRouter>
+		);
+
+		const projectsList = await waitFor(() =>
+			screen.findAllByTestId('find-btn')
+		);
+		expect(projectsList);
+	});
+
+	test('find button, click button simluation {FindLanguage} will get triggered', async () => {
+		//mockedAxios.get.mockResolvedValue(dummyProjects);
+		jest.spyOn(console, 'error').mockImplementation(() => {});
+		const screen = render(
+			<BrowserRouter>
+				<Projects />
+			</BrowserRouter>
+		);
+
+		const projectsList = await waitFor(() =>
+			screen.findAllByTestId('find-btn')
+		);
+		expect(projectsList);
+	});
 });
 
 test('projects list', async () => {
@@ -72,28 +167,51 @@ test('projects list', async () => {
 	expect(screen.findAllByText('Encrypted Project name')).toBeInTheDocument;
 });
 
-test('download button', async () => {
-	const screen = render(
-		<BrowserRouter>
-			<Projects />
-		</BrowserRouter>
-	);
-
-	expect(screen.findAllByTestId('Download'));
-});
-
 ///////Function////////////
 
 describe('Test table', () => {
 	it('Should set id, name, fileType and language', async () => {
-		const { getByText, getAllByText } = render(
+		const { getAllByText } = render(
+			<BrowserRouter>
+				<Projects />
+			</BrowserRouter>
+		);
+		await new Promise((r) => setTimeout(r, 2000));
+
+		expect(getAllByText('Download')).toHaveLength(4);
+	});
+});
+
+describe('Test upload authorization', () => {
+	it('Should not add upload className to authorized', async () => {
+		jest.spyOn(console, 'error').mockImplementationOnce(() => {});
+		window.localStorage.clear();
+
+		const { getByTestId } = render(
 			<BrowserRouter>
 				<Projects />
 			</BrowserRouter>
 		);
 
-		await new Promise((r) => setTimeout(r, 100));
+		await new Promise((r) => setTimeout(r, 2000));
 
-		expect(getAllByText('Download')).toHaveLength(4);
+		expect(getByTestId('upload')).toBeInTheDocument;
+		expect(getByTestId('upload').className).not.toBe('authorized');
+	});
+
+	it('Should set upload className to authorized', async () => {
+		jest.spyOn(console, 'error').mockImplementationOnce(() => {});
+		window.localStorage.setItem('jwt', 'upload');
+
+		const { getByTestId } = render(
+			<BrowserRouter>
+				<Projects />
+			</BrowserRouter>
+		);
+
+		await new Promise((r) => setTimeout(r, 2000));
+
+		expect(getByTestId('upload')).toBeInTheDocument;
+		expect(getByTestId('upload').className).toBe('authorized');
 	});
 });
