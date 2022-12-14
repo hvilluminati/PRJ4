@@ -67,7 +67,7 @@ export const SkillsPopup = () => {
 			))}
 			<Popup
 				trigger={
-					<div id='skill-btn-wrapper'>
+					<div id='skill-btn-wrapper' data-testid='poptest'>
 						<button style={{ color: '#16a085' }}>Add skill</button>
 						<div className='border bottom' />
 						<div className='border left' />
@@ -83,7 +83,7 @@ export const SkillsPopup = () => {
 	);
 };
 
-const SkillPopup = ({ skill }: { skill?: any }) => {
+export const SkillPopup = ({ skill }: { skill?: any }) => {
 	const [skillName, setSkillName] = useState(
 		skill !== undefined ? skill[1] : false
 	);
