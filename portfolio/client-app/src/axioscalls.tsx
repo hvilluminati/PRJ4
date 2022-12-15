@@ -131,16 +131,13 @@ export function getSkills(pos: number[][]) {
   axiosInstance
     .get('Skills')
     .then((response) => {
-      response.data.forEach((elem: any) => {
-        console.log(elem);
+      response.data.forEach((elem: any, i: number) => {
         var p = document.createElement('p');
         p.className = 'scribble';
         p.id = elem.skillName;
         p.innerHTML = elem.skillName;
-        p.style.marginLeft =
-          pos[elem.skillID - 1][0] * window.innerWidth + 'px';
-        p.style.marginTop =
-          pos[elem.skillID - 1][1] * window.innerHeight + 'px';
+        p.style.marginLeft = pos[i][0] * window.innerWidth + 'px';
+        p.style.marginTop = pos[i][1] * window.innerHeight + 'px';
         p.style.position = 'absolute';
         p.onclick = () => {
           code(elem.skillName);
