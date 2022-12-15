@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">72.22% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/18</span>
+                <span class='fraction'>16/20</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">72.22% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/18</span>
+                <span class='fraction'>16/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -195,8 +195,7 @@
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
 <a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L133'></a><a href='#L133'>133</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -208,31 +207,30 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -343,9 +341,10 @@ import twitterlogo from '../logoContactPage/twitterlogo.png';
 function Contact() {
   const form = useRef&lt;HTMLFormElement&gt;(null!);
 &nbsp;
-  const sendEmail = <span class="fstat-no" title="function not covered" >(e</span>: { preventDefault: () =&gt; void }) =&gt; {
-<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >    emailjs</span>
+  const sendEmail = (e: { preventDefault: () =&gt; void }) =&gt; {
+    e.preventDefault();
+    console.log('Trying to send email');
+    emailjs
       .sendForm(
         'service_8nakf3g',
         'template_99uif1d',
@@ -355,6 +354,7 @@ function Contact() {
       .then(
 <span class="fstat-no" title="function not covered" >        (r</span>esult) =&gt; {
 <span class="cstat-no" title="statement not covered" >          console.log(result.text);</span>
+<span class="cstat-no" title="statement not covered" >          console.log('Email successfully sent!');</span>
 <span class="cstat-no" title="statement not covered" >          alert('Message sent');</span>
         },
 <span class="fstat-no" title="function not covered" >        (e</span>rror) =&gt; {
@@ -377,46 +377,42 @@ function Contact() {
           &lt;div id='contactInformationBox'&gt;
             &lt;ul id='listLogo'&gt;
               &lt;li id='email'&gt;
-                {/* &lt;ButtonMailto
-                      mailto='JohnDoe@email.com'
-                      label='JohnDoe@email.com'
-                    /&gt; */}
-                &lt;a href='mailto:JohnDoe@email.com' title='emailLink'&gt;
+                &lt;a href='mailto:JohnDoe@email.com' data-testid='emailLink'&gt;
                   {' '}
                   &lt;img id='emaillogo' src={emaillogo} /&gt;{' '}
                 &lt;/a&gt;{' '}
               &lt;/li&gt;
 &nbsp;
               &lt;li id='phone'&gt;
-                &lt;a href='tel:+4588888888' title='phoneLink'&gt;
+                &lt;a href='tel:+4588888888' data-testid='phoneLink'&gt;
                   {' '}
                   &lt;img id='phonelogo' src={phonelogo} /&gt;{' '}
                 &lt;/a&gt;
               &lt;/li&gt;
 &nbsp;
               &lt;li id='skype'&gt;
-                &lt;a href='https://www.skype.com/en/' title='skypeLink'&gt;
+                &lt;a href='https://www.skype.com/en/' data-testid='skypeLink'&gt;
                   &lt;img id='skypelogo' src={skypelogo} /&gt;
                 &lt;/a&gt;
               &lt;/li&gt;
 &nbsp;
               &lt;li id='linkedin'&gt;
                 {' '}
-                &lt;a href='https://www.linkedin.com/' title='linkedinLink'&gt;
+                &lt;a href='https://www.linkedin.com/' data-testid='linkedinLink'&gt;
                   &lt;img id='linkedinlogo' src={linkedinlogo} /&gt;
                 &lt;/a&gt;
               &lt;/li&gt;
 &nbsp;
               &lt;li id='facebook'&gt;
                 {' '}
-                &lt;a href='https://www.facebook.com/' title='fbLink'&gt;
+                &lt;a href='https://www.facebook.com/' data-testid='fbLink'&gt;
                   &lt;img id='facebooklogo' src={facebooklogo} /&gt;
                 &lt;/a&gt;
               &lt;/li&gt;
 &nbsp;
               &lt;li id='twitter'&gt;
                 {' '}
-                &lt;a href='https://www.twitter.com/' title='twitterLink'&gt;
+                &lt;a href='https://www.twitter.com/' data-testid='twitterLink'&gt;
                   &lt;img id='twitterlogo' src={twitterlogo} /&gt;
                 &lt;/a&gt;
               &lt;/li&gt;
@@ -424,7 +420,7 @@ function Contact() {
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div className='contactContainer'&gt;
-          &lt;form ref={form} onSubmit={sendEmail}&gt;
+          &lt;form ref={form} onSubmit={sendEmail} data-testid='form'&gt;
             &lt;label htmlFor='fname'&gt;Name&lt;/label&gt;
             &lt;input
               type={'text'}
@@ -453,6 +449,7 @@ function Contact() {
               className='AskeIsADummy'
               type='submit'
               value='Contact me'
+              placeholder='Contact me'
             &gt;&lt;/input&gt;
           &lt;/form&gt;
         &lt;/div&gt;
@@ -469,7 +466,7 @@ export default Contact;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-14T18:47:38.692Z
+                at 2022-12-15T16:32:34.641Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

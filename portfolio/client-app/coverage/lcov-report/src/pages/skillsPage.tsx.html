@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.71% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/14</span>
+                <span class='fraction'>12/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.71% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/14</span>
+                <span class='fraction'>12/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -133,34 +133,30 @@
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
 <a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -202,74 +198,87 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import { SkillsPopup } from '../popup';
 &nbsp;
-//https://codepen.io/ryasan86/pen/bGpqdYV
-function <span class="fstat-no" title="function not covered" >Skills(</span>) {
-	const [authorized, setAuthorized] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+function Skills() {
+  const [authorized, setAuthorized] = useState(false);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	useEffect(<span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
-		var expire = <span class="cstat-no" title="statement not covered" >window.localStorage.getItem('expire');</span>
-<span class="cstat-no" title="statement not covered" >		<span class="missing-if-branch" title="if path not taken" >I</span>if (expire &amp;&amp; new Date().getTime().toString() &gt; expire) {</span>
-<span class="cstat-no" title="statement not covered" >			window.localStorage.removeItem('jwt');</span>
-<span class="cstat-no" title="statement not covered" >			window.localStorage.removeItem('expire');</span>
-		}
+  useEffect(() =&gt; {
+    var expire = window.localStorage.getItem('expire');
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (expire &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >new Date().getTime().toString() &gt; expire)</span> {
+<span class="cstat-no" title="statement not covered" >      window.localStorage.removeItem('jwt');</span>
+<span class="cstat-no" title="statement not covered" >      window.localStorage.removeItem('expire');</span>
+    }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		<span class="missing-if-branch" title="if path not taken" >I</span>if (window.localStorage.getItem('jwt') !== null) {</span>
-<span class="cstat-no" title="statement not covered" >			setAuthorized(true);</span>
-		}
-	}, []);
+    if (window.localStorage.getItem('jwt') !== null) {
+      setAuthorized(true);
+    }
+  }, []);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return (</span>
-		&lt;&gt;
-			&lt;div id='hello'&gt;
-				&lt;Link to='/'&gt;
-					&lt;button className='button button1'&gt;
-						&lt;span&gt;Home&lt;/span&gt;
-					&lt;/button&gt;{' '}
-				&lt;/Link&gt;
-				&lt;div id='skills'&gt;
-					&lt;div id='skillsTitle'&gt;
-						&lt;h1&gt;Skills&lt;/h1&gt;
-					&lt;/div&gt;
-					&lt;div id='skillText1'&gt;Click a code language&lt;/div&gt;
-					&lt;div id='skillText2'&gt;
-						Click the bar to see more information, and click a code
-						language to close
-					&lt;/div&gt;
-				&lt;/div&gt;
-				&lt;div id='skillMonths'&gt; &lt;/div&gt;
-				&lt;input type='checkbox' id='btnControl' /&gt;
-				&lt;label className='btn' htmlFor='btnControl'&gt;
-					&lt;div id='codeBox'&gt;
-						&lt;div id='codeBoxFill'&gt;&lt;/div&gt;
-					&lt;/div&gt;
-				&lt;/label&gt;
-				{authorized === true &amp;&amp; (
-					&lt;Popup
-						trigger={
-							&lt;div id='skills-btn-wrapper'&gt;
-								&lt;button&gt;Edit skills&lt;/button&gt;
-								&lt;div className='border bottom' /&gt;
-								&lt;div className='border left' /&gt;
-								&lt;div className='border right' /&gt;
-								&lt;div className='border topright' /&gt;
-								&lt;div className='border topleft' /&gt;
-							&lt;/div&gt;
-						}
-						modal={true}
-						nested={true}
-					&gt;
-						&lt;SkillsPopup /&gt;
-					&lt;/Popup&gt;
-				)}
-			&lt;/div&gt;
-		&lt;/&gt;
-	);
+  return (
+    &lt;&gt;
+      &lt;div id='hello'&gt;
+        &lt;Link to='/'&gt;
+          &lt;button className='button button1'&gt;
+            &lt;span&gt;Home&lt;/span&gt;
+          &lt;/button&gt;
+        &lt;/Link&gt;
+        &lt;div id='skills'&gt;
+          &lt;div id='skillsTitle'&gt;
+            &lt;h1 data-testid='skillsTitle'&gt;Skills&lt;/h1&gt;
+          &lt;/div&gt;
+          &lt;div id='skillText1' data-testid='skillText1Test'&gt;
+            Click a code language
+          &lt;/div&gt;
+          &lt;div id='skillText2' data-testid='skillText2Test'&gt;
+            Click the bar to see more information, and click a code language to
+            close
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div id='skillMonths' data-testid='skillMonthsTest'&gt;
+          {' '}
+        &lt;/div&gt;
+        &lt;input type='checkbox' id='btnControl' /&gt;
+        &lt;label className='btner' htmlFor='btnControl'&gt;
+          &lt;div id='codeBox' data-testid='codeBoxTest'&gt;
+            &lt;div id='codeBoxFill' data-testid='codeBoxFillTest'&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/label&gt;
+        {authorized === true &amp;&amp; (
+          &lt;Popup
+            trigger={
+              &lt;div id='skills-btn-wrapper'&gt;
+                &lt;button&gt;Edit skills&lt;/button&gt;
+                &lt;div className='border bottom' /&gt;
+                &lt;div className='border left' /&gt;
+                &lt;div className='border right' /&gt;
+                &lt;div className='border topright' /&gt;
+                &lt;div className='border topleft' /&gt;
+              &lt;/div&gt;
+            }
+            modal={true}
+            nested={true}
+          &gt;
+            &lt;SkillsPopup /&gt;
+          &lt;/Popup&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  );
 }
 &nbsp;
 export default Skills;
@@ -280,7 +289,7 @@ export default Skills;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-14T18:47:38.692Z
+                at 2022-12-15T16:32:34.641Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

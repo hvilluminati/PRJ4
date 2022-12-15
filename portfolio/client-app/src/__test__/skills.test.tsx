@@ -74,22 +74,47 @@ describe('Skills page tests', () => {
     await new Promise((r) => setTimeout(r, 2000));
     const skillsLanguage = screen.getByTestId('langsTest').children[0];
 
-    var startStyle = window.getComputedStyle(
-      screen.getByTestId('langsTest').children[0]
-    );
-    var startFont = startStyle.fontSize;
-    var startMarginTop = startStyle.marginTop;
-
     fireEvent.click(skillsLanguage);
-    await new Promise((r) => setTimeout(r, 2000));
-    var endStyle = window.getComputedStyle(
-      screen.getByTestId('langsTest').children[0]
-    );
-    var endFont = endStyle.fontSize;
-    var endMarginTop = endStyle.marginTop;
 
     expect(consoleSpy).toHaveBeenCalledWith('Showing skills');
-    expect(endFont).not.toBe(startFont);
+  });
+
+  it('Code function is changing elements correct with smaller screen', async () => {
+    const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    const screen = render(
+      <>
+        <BrowserRouter>
+          <Skills />
+        </BrowserRouter>
+        <div id='langs' data-testid='langsTest'></div>
+      </>
+    );
+
+    Object.defineProperty(window, 'innerWidth', {
+      value: 400,
+    });
+
+    var result: string[][] = getSkills(pos);
+    await new Promise((r) => setTimeout(r, 2000));
+    const skillsLanguage = screen.getByTestId('langsTest').children[0];
+
+    var startStyles = window.getComputedStyle(
+      screen.getByTestId('langsTest').children[0]
+    );
+    var startfont = startStyles.fontSize;
+    var startMarginTop = startStyles.marginTop;
+
+    fireEvent.click(skillsLanguage);
+
+    var endStyles = window.getComputedStyle(
+      screen.getByTestId('langsTest').children[0]
+    );
+    var endfont = endStyles.fontSize;
+    var endMarginTop = endStyles.marginTop;
+
+    expect(endfont).not.toBe(startfont);
     expect(endMarginTop).not.toBe(startMarginTop);
   });
 

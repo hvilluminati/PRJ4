@@ -156,6 +156,7 @@ export function getSkills(pos: number[][]) {
       });
     })
     .catch(console.error);
+
   return lang;
 }
 
