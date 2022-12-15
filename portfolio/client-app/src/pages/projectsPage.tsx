@@ -52,7 +52,7 @@ export default function Projects() {
 		});
 	};
 
-	const FindLanguage = (Find: string) => {
+	const FindByLanguage = (Find: string) => {
 		clearFileInfo();
 		getFilesFind(Find).then((response) => {
 			for (let index = 0; index < response.length; index++) {

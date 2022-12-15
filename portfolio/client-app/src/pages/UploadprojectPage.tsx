@@ -44,9 +44,9 @@ export default function Upload() {
         />
         {isFilePicked ? (
           <div id='uplloadedprojektinfo'>
-            <p>Filename: {selectedFile?.name}</p>
-            <p>Filetype: {selectedFile?.type}</p>
-            <p>Size in bytes: {selectedFile?.size}</p>
+            <p> Filename: {selectedFile?.name}</p>
+            <p> Filetype: {selectedFile?.type}</p>
+            <p> Size in bytes: {selectedFile?.size}</p>
             <p>
               lastModifiedDate:{' '}
               {selectedFile?.lastModifiedDate.toLocaleDateString()}
