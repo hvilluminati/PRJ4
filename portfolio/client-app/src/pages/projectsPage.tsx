@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getBlob, getFiles, getFilesFind, getFilesSort } from '../axioscalls';
 import { Link } from 'react-router-dom';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-
-import { count } from 'console';
-import { func } from 'prop-types';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 export default function Projects() {
 	const [fileinfo, setFileinfo] = useState<
@@ -20,13 +16,11 @@ export default function Projects() {
 		setFileinfo([]);
 	}
 	useEffect(() => {
-		var expire = localStorage.getItem('expire');
+		var expire = window.localStorage.getItem('expire');
 		if (expire && new Date().getTime().toString() > expire) {
-			localStorage.removeItem('jwt');
-			localStorage.removeItem('expire');
+			window.localStorage.removeItem('jwt');
+			window.localStorage.removeItem('expire');
 		}
-
-		console.log(localStorage.getItem('jwt'));
 		getFiles().then((response) => {
 			for (let index = 0; index < response.length; index++) {
 				setFileinfo((arr) => [
@@ -58,7 +52,7 @@ export default function Projects() {
 		});
 	};
 
-	const FindLanguage = (Find: string) => {
+	const FindByLanguage = (Find: string) => {
 		clearFileInfo();
 		getFilesFind(Find).then((response) => {
 			for (let index = 0; index < response.length; index++) {
@@ -83,41 +77,48 @@ export default function Projects() {
 			</Link>
 
 			<DropdownButton id='dropbtn' title='Dropdown button'>
-				<Dropdown.Item onClick={(event) => Sortby('name')}>
+				<Dropdown.Item onClick={() => Sortby('name')}>
 					Sort By Name
 				</Dropdown.Item>
-				<Dropdown.Item onClick={(event) => Sortby('date')}>
+				<Dropdown.Item onClick={() => Sortby('date')}>
 					Sort By Date
 				</Dropdown.Item>
-				<Dropdown.Item onClick={(event) => FindLanguage('c#')}>
+				<Dropdown.Item onClick={() => FindLanguage('c#')}>
 					Find all C# Projects
 				</Dropdown.Item>
 			</DropdownButton>
-			<table id='dataTable' width='350px'>
-				<tr id='Titel'>
-					<td>{'Encrypted Project name'}</td>
-					<td>{'File Type'}</td>
-					<td>{'Coding language'}</td>
-					<td>{'Download button'}</td>
-				</tr>
+			<div id='dataTable'>
+				<table id='dataTable' data-testid='table' width='350px'>
+					<tbody data-testid='hejs'>
+						<tr id='Titel'>
+							<td>{'Encrypted Project name'}</td>
+							<td>{'File Type'}</td>
+							<td>{'Coding language'}</td>
+							<td>{'Download button'}</td>
+						</tr>
 
-				{fileinfo.map((f) => (
-					<tr>
-						<td>{f.name}</td>
-						<td>{f.fileType}</td>
-						<td>{f.language}</td>
-						<div id='Download'>
-							<button
-								id='Download'
-								onClick={() => getBlob(f.id, f.fileType, f.name)}>
-								Download
-							</button>
-						</div>
-					</tr>
-				))}
-			</table>
+						{fileinfo.map((f, i) => (
+							<tr key={i}>
+								<td>{f.name}</td>
+								<td>{f.fileType}</td>
+								<td>{f.language}</td>
+								<div id='Download'>
+									<button
+										id='Download'
+										onClick={() =>
+											getBlob(f.id, f.fileType, f.name)
+										}
+									>
+										Download
+									</button>
+								</div>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
 			<div id='upload'>
-				{localStorage.getItem('jwt') !== null && (
+				{window.localStorage.getItem('jwt') !== null && (
 					<Link to='/UploadProject'>
 						<button className='button button1'>
 							<span>Upload A new Project</span>

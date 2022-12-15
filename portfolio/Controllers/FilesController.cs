@@ -14,7 +14,7 @@ using System.Text;
 namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController,Authorize]
     public class FilesController : ControllerBase
     {
         private readonly PortfolioDbContext _context;
@@ -82,37 +82,7 @@ namespace Database_test1.Controllers
 
             
         }
-
-        // PUT: api/Files/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutFiles(int id, Files files)
-        {
-            if (id != files.DocumentId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(files).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FilesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
+        
 
         // POST: api/Files
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -128,8 +98,6 @@ namespace Database_test1.Controllers
                     var fileName = Path.GetFileName(files.FileName);
                     //Getting file Extension
                     var fileExtension = Path.GetExtension(fileName);
-                    // concatenating  FileName + FileExtension
-                    //var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
                     //Check if file with same name already exists
                     if ( (_context.Files.Where(x => x.Name == fileName).Any()==false))
@@ -144,7 +112,7 @@ namespace Database_test1.Controllers
                         Language = language,
                     };
 
-                    using (var target = new MemoryStream())
+                    using (var target = new MemoryStream()) 
                     {
                         files.CopyTo(target);
                         objfiles.DataFiles = target.ToArray();
@@ -170,6 +138,21 @@ namespace Database_test1.Controllers
         public async Task<IActionResult> DeleteFiles(int id)
         {
             var files = await _context.Files.FindAsync(id);
+            if (files == null)
+            {
+                return NotFound();
+            }
+
+            _context.Files.Remove(files);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete("name/{name}")]
+        public async Task<IActionResult> DeleteFiles(string name)
+        {
+            var files = await _context.Files.Where(x => x.Name == name).FirstOrDefaultAsync();
             if (files == null)
             {
                 return NotFound();

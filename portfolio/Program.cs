@@ -7,13 +7,20 @@ using System.Reflection;
 using System.Text; //for encoding maybe?
 using Database_test1.Utilities;
 
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddJsonOptions(x =>
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-builder.Services.AddDbContext<PortfolioDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseContext")));
+
+    builder.Services.AddDbContext<PortfolioDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseContext")));
+   
+
+
 
 
 // Add services to the container.
@@ -124,3 +131,9 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
+
+public partial class Program
+{
+    
+}
+
