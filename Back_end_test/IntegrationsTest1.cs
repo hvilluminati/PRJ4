@@ -20,14 +20,8 @@ using Newtonsoft.Json.Linq;
 
 namespace Back_end_test
 {
-    interface IIntegrationTests
-    {
-        Task<string> GetJWTToken(JsonContent body, HttpClient client);
-
-        
-
-    }
-    public class IntegrationTests : IIntegrationTests
+    
+    public class IntegrationTests 
     {
         private readonly HttpClient client;
         private readonly string Login_Email = "admin@min.com";
@@ -77,6 +71,32 @@ namespace Back_end_test
 
 
             var response = await client.GetAsync("/api/Skills");
+            response.EnsureSuccessStatusCode();
+        }
+
+        [Fact]
+        public async Task GetText()
+        {
+            var application = new WebApplicationFactory<Program>()
+                .WithWebHostBuilder(builder => { });
+
+            var client = application.CreateClient();
+
+
+            var response = await client.GetAsync("/api/Texts");
+            response.EnsureSuccessStatusCode();
+        }
+
+        [Fact]
+        public async Task GetFiles()
+        {
+            var application = new WebApplicationFactory<Program>()
+                .WithWebHostBuilder(builder => { });
+
+            var client = application.CreateClient();
+
+
+            var response = await client.GetAsync("/api/Files");
             response.EnsureSuccessStatusCode();
         }
 
@@ -202,12 +222,67 @@ namespace Back_end_test
             }
             else
             {
-                response = await client.DeleteAsync($"/api/Files/dummyfile");
+                response = await client.DeleteAsync($"/api/Files/name/dummyfile");
                 response = await client.PostAsync("/api/Files", content);
                 response.EnsureSuccessStatusCode();
             }
             // clean up
             var responseString = response.Content.ReadAsStringAsync();
+
+            JObject json = JObject.Parse(responseString.Result);
+            var id = (string)json["DocumentId"];
+
+            await client.DeleteAsync($"/api/Files/{id}");
+
+        }
+
+        [Fact]
+        public async Task PostFileWithSameNameFails()
+        {
+
+            //authorize
+            var JsonToken = await GetJWTToken(body_Login, client);
+
+            JObject JWTToken = JObject.Parse(JsonToken);
+
+            string JWT = (string)JWTToken["jwt"];
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", JWT);
+
+
+
+            //create file
+
+            var bytes = Encoding.UTF8.GetBytes("This is a dummy file");
+
+            var content = new MultipartFormDataContent();
+
+            content.Add(new StreamContent(new MemoryStream(bytes)), "files", "dummyfile");
+            content.Add(new StringContent("test"), "language");
+
+            //db call
+
+            var response = await client.PostAsync("/api/Files", content);
+
+            //checks if it fails because the file was already posted
+            if (response.StatusCode != HttpStatusCode.Forbidden)
+            {
+                response.EnsureSuccessStatusCode();
+            }
+            else
+            {
+                response = await client.DeleteAsync($"/api/Files/name/dummyfile");
+                response = await client.PostAsync("/api/Files", content);
+                response.EnsureSuccessStatusCode();
+            }
+            //Posts the file again
+            response = await client.PostAsync("/api/Files", content);
+
+
+            // clean up
+            var responseString = response.Content.ReadAsStringAsync();
+            Assert.Equal(HttpStatusCode.Forbidden, response.StatusCode);
+
 
             JObject json = JObject.Parse(responseString.Result);
             var id = (string)json["DocumentId"];
