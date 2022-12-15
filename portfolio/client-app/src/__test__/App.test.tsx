@@ -1,4 +1,3 @@
-// jest.spyOn(console, 'error').mockImplementation(() => {});
 import App from '../App';
 import { fireEvent, render } from '@testing-library/react';
 import { lang } from '../pos';
@@ -52,7 +51,7 @@ describe('Test jwt and expire keys', () => {
 });
 
 describe('Test root height set', () => {
-	it('Should change root height to 150px', () => {
+	it('Should change root height to 1080px', () => {
 		const { getByTestId } = render(
 			<div id='root' data-testid='root'>
 				<App />
@@ -71,7 +70,7 @@ describe('Test events', () => {
 			</div>
 		);
 
-		await new Promise((r) => setTimeout(r, 3000));
+		await new Promise((r) => setTimeout(r, 1000));
 
 		fireEvent.mouseMove(document, { clientX: 0, clientY: 0 });
 
@@ -92,8 +91,7 @@ describe('Test events', () => {
 		expect(startMarginLeft).not.toEqual(endMarginLeft);
 		expect(startMarginTop).not.toEqual(endMarginTop);
 
-		await new Promise((r) => setTimeout(r, 500));
-
+		// Testing resize event
 		Object.defineProperty(document.documentElement, 'clientHeight', {
 			value: 600,
 		});
@@ -101,17 +99,13 @@ describe('Test events', () => {
 			value: 1520,
 		});
 
-		var startStyles = window.getComputedStyle(
-			getByTestId('langs').children[0]
-		);
+		startStyles = window.getComputedStyle(getByTestId('langs').children[0]);
 		startMarginLeft = startStyles.marginLeft;
 		startMarginTop = startStyles.marginTop;
 
 		fireEvent.resize(window);
 
-		var endStyles = window.getComputedStyle(
-			getByTestId('langs').children[0]
-		);
+		endStyles = window.getComputedStyle(getByTestId('langs').children[0]);
 		endMarginLeft = endStyles.marginLeft;
 		endMarginTop = endStyles.marginTop;
 
