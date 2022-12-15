@@ -50,11 +50,11 @@ describe('Skills page tests', () => {
 				<Skills />
 			</BrowserRouter>
 		);
-		//   expect(getByTestId('codeBoxTest')).toBeInTheDocument;
-		//   expect(getByTestId('codeBoxFillTest')).toBeInTheDocument;
-		//   expect(getByTestId('skillText1Test')).toBeInTheDocument;
-		//   expect(getByTestId('skillText2Test')).toBeInTheDocument;
-		//   expect(getByTestId('skillMonthsTest')).toBeInTheDocument;
+		expect(getByTestId('codeBoxTest')).toBeInTheDocument;
+		expect(getByTestId('codeBoxFillTest')).toBeInTheDocument;
+		expect(getByTestId('skillText1Test')).toBeInTheDocument;
+		expect(getByTestId('skillText2Test')).toBeInTheDocument;
+		expect(getByTestId('skillMonthsTest')).toBeInTheDocument;
 		expect(getByTestId('skillsTitle')).toBeInTheDocument;
 	});
 
