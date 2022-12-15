@@ -9,15 +9,13 @@ beforeEach(() => {
 
 describe('Test description and title text', () => {
 	it('Should set description and title', async () => {
-		jest.spyOn(console, 'error').mockImplementation(() => {});
-
 		const { getByTestId } = render(
 			<BrowserRouter>
 				<About />
 			</BrowserRouter>
 		);
 
-		await new Promise((r) => setTimeout(r, 2000));
+		await new Promise((r) => setTimeout(r, 3000));
 
 		expect(getByTestId('title')).toBeInTheDocument;
 		expect(getByTestId('description')).toBeInTheDocument;
@@ -37,8 +35,6 @@ describe('Test description and title authorization', () => {
 			</BrowserRouter>
 		);
 
-		await new Promise((r) => setTimeout(r, 2000));
-
 		expect(getByTestId('aboutTitle')).toBeInTheDocument;
 		expect(getByTestId('desc')).toBeInTheDocument;
 		expect(getByTestId('aboutTitle').className).not.toBe('authorized');
@@ -54,8 +50,6 @@ describe('Test description and title authorization', () => {
 				<About />
 			</BrowserRouter>
 		);
-
-		await new Promise((r) => setTimeout(r, 2000));
 
 		expect(getByTestId('aboutTitle')).toBeInTheDocument;
 		expect(getByTestId('desc')).toBeInTheDocument;
@@ -93,8 +87,6 @@ describe('Test jwt and expire keys', () => {
 			</BrowserRouter>
 		);
 
-		await new Promise((r) => setTimeout(r, 2000));
-
 		expect(window.localStorage.getItem('jwt')).not.toBe(undefined);
 		expect(window.localStorage.getItem('expire')).not.toBe(undefined);
 	});
@@ -124,8 +116,6 @@ describe('Test admin buttons state', () => {
 				<About />
 			</BrowserRouter>
 		);
-
-		await new Promise((r) => setTimeout(r, 2000));
 
 		expect(getAllByTestId('butt')[0].closest('button')).toBeDisabled;
 		expect(getAllByTestId('butt')[1].closest('button')).toBeDisabled;

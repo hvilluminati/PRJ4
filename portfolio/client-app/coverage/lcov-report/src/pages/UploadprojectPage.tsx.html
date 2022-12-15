@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.39% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/23</span>
+                <span class='fraction'>4/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/23</span>
+                <span class='fraction'>0/24</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">18.18% </span>
+                <span class="strong">17.39% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/22</span>
+                <span class='fraction'>4/23</span>
             </div>
         
             
@@ -125,7 +125,9 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -150,6 +152,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -192,62 +196,64 @@ import { postProject } from '../axioscalls';
 import { Link, useNavigate } from 'react-router-dom';
 &nbsp;
 export default function <span class="fstat-no" title="function not covered" >Upload(</span>) {
-	const [selectedFile, setSelectedFile] = <span class="cstat-no" title="statement not covered" >useState&lt;any&gt;([]);</span>
-	const [language, setLanguage] = <span class="cstat-no" title="statement not covered" >useState('no Language');</span>
-	const [isFilePicked, setIsFilePicked] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-	const nav = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
+  const [selectedFile, setSelectedFile] = <span class="cstat-no" title="statement not covered" >useState&lt;any&gt;([]);</span>
+  const [language, setLanguage] = <span class="cstat-no" title="statement not covered" >useState('no Language');</span>
+  const [isFilePicked, setIsFilePicked] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+  const nav = <span class="cstat-no" title="statement not covered" >useNavigate();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	useEffect(<span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
-		var expire = <span class="cstat-no" title="statement not covered" >window.localStorage.getItem('expire');</span>
-<span class="cstat-no" title="statement not covered" >		if (expire &amp;&amp; new Date().getTime().toString() &gt; expire) {</span>
-<span class="cstat-no" title="statement not covered" >			window.localStorage.removeItem('jwt');</span>
-<span class="cstat-no" title="statement not covered" >			window.localStorage.removeItem('expire');</span>
-<span class="cstat-no" title="statement not covered" >			nav('/');</span>
-		} else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if (window.localStorage.getItem('jwt') === null) <span class="cstat-no" title="statement not covered" >nav('/');</span></span>
-	}, []);
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
+    var expire = <span class="cstat-no" title="statement not covered" >window.localStorage.getItem('expire');</span>
+<span class="cstat-no" title="statement not covered" >    if (expire &amp;&amp; new Date().getTime().toString() &gt; expire) {</span>
+<span class="cstat-no" title="statement not covered" >      window.localStorage.removeItem('jwt');</span>
+<span class="cstat-no" title="statement not covered" >      window.localStorage.removeItem('expire');</span>
+<span class="cstat-no" title="statement not covered" >      nav('/');</span>
+    } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if (window.localStorage.getItem('jwt') === null) <span class="cstat-no" title="statement not covered" >nav('/');</span></span>
+  }, []);
 &nbsp;
-	const fileUploaded = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent: any) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		setSelectedFile(event.target.files[0]);</span>
-<span class="cstat-no" title="statement not covered" >		setIsFilePicked(true);</span>
-	};
-	const Submit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
-<span class="cstat-no" title="statement not covered" >		postProject(selectedFile, language);</span>
-	};
-<span class="cstat-no" title="statement not covered" >	return (</span>
-		&lt;div&gt;
-			&lt;div id='hej'&gt;
-				&lt;Link to='/'&gt;
-					&lt;button className='button button1'&gt;
-						&lt;span&gt;Home&lt;/span&gt;
-					&lt;/button&gt;{' '}
-				&lt;/Link&gt;
-			&lt;/div&gt;
-			&lt;div id='Selectfile'&gt;
-				&lt;input type='file' name='file' onChange={fileUploaded} /&gt;
-				&lt;input
-					type='string'
-					name='language'
-					onChange={<span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; <span class="cstat-no" title="statement not covered" >setLanguage(event.target.value)}</span>
-				/&gt;
-				{isFilePicked ? (
-					&lt;div id='uplloadedprojektinfo'&gt;
-						&lt;p&gt;Filename: {selectedFile?.name}&lt;/p&gt;
-						&lt;p&gt;Filetype: {selectedFile?.type}&lt;/p&gt;
-						&lt;p&gt;Size in bytes: {selectedFile?.size}&lt;/p&gt;
-						&lt;p&gt;
-							lastModifiedDate:{' '}
-							{selectedFile?.lastModifiedDate.toLocaleDateString()}
-						&lt;/p&gt;
-					&lt;/div&gt;
-				) : (
-					&lt;p&gt;Select a file to show details&lt;/p&gt;
-				)}
-				&lt;div id='submit'&gt;
-					&lt;button onClick={Submit}&gt;Submit&lt;/button&gt;
-				&lt;/div&gt;
-			&lt;/div&gt;
-		&lt;/div&gt;
-	);
+  const fileUploaded = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent: any) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setSelectedFile(event.target.files[0]);</span>
+<span class="cstat-no" title="statement not covered" >    setIsFilePicked(true);</span>
+  };
+  const Submit = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (isFilePicked) {</span>
+<span class="cstat-no" title="statement not covered" >      postProject(selectedFile, language);</span>
+    }
+  };
+<span class="cstat-no" title="statement not covered" >  return (</span>
+    &lt;div&gt;
+      &lt;div id='hej'&gt;
+        &lt;Link to='/'&gt;
+          &lt;button className='button button1'&gt;
+            &lt;span&gt;Home&lt;/span&gt;
+          &lt;/button&gt;{' '}
+        &lt;/Link&gt;
+      &lt;/div&gt;
+      &lt;div id='Selectfile'&gt;
+        &lt;input type='file' name='file' onChange={fileUploaded} /&gt;
+        &lt;input
+          type='string'
+          name='language'
+          onChange={<span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; <span class="cstat-no" title="statement not covered" >setLanguage(event.target.value)}</span>
+        /&gt;
+        {isFilePicked ? (
+          &lt;div id='uplloadedprojektinfo'&gt;
+            &lt;p&gt;Filename: {selectedFile?.name}&lt;/p&gt;
+            &lt;p&gt;Filetype: {selectedFile?.type}&lt;/p&gt;
+            &lt;p&gt;Size in bytes: {selectedFile?.size}&lt;/p&gt;
+            &lt;p&gt;
+              lastModifiedDate:{' '}
+              {selectedFile?.lastModifiedDate.toLocaleDateString()}
+            &lt;/p&gt;
+          &lt;/div&gt;
+        ) : (
+          &lt;p&gt;Select a file to show details&lt;/p&gt;
+        )}
+        &lt;div id='submit'&gt;
+          &lt;button onClick={Submit}&gt;Submit&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -256,7 +262,7 @@ export default function <span class="fstat-no" title="function not covered" >Upl
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-14T10:56:31.094Z
+                at 2022-12-14T18:47:38.692Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

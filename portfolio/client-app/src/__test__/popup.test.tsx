@@ -19,20 +19,20 @@ import {
 import { lang } from '../pos';
 
 describe('AboutPopup', () => {
+	const mockGetElementById = jest.fn();
+	mockGetElementById.mockImplementation((id) => {
+		if (id === 'aboutTitleText') {
+			return {
+				innerHTML: 'testTitle',
+			};
+		} else if (id === 't') {
+			return {
+				innerHTML: 'testDesc',
+			};
+		}
+	});
+	document.getElementById = mockGetElementById;
 	describe('Test that AboutPopup renders correct textare, button and wrapper class', () => {
-		const mockGetElementById = jest.fn();
-		mockGetElementById.mockImplementation((id) => {
-			if (id === 'aboutTitleText') {
-				return {
-					innerHTML: 'testTitle',
-				};
-			} else if (id === 't') {
-				return {
-					innerHTML: 'testDesc',
-				};
-			}
-		});
-		document.getElementById = mockGetElementById;
 		it('Should set textare, button and wrapper class to title', () => {
 			const { getByPlaceholderText, getByText } = render(
 				<AboutPopup
@@ -71,20 +71,6 @@ describe('AboutPopup', () => {
 	});
 
 	describe('Test calls the correct axios function depending on sender', () => {
-		const mockGetElementById = jest.fn();
-		mockGetElementById.mockImplementation((id) => {
-			if (id === 'aboutTitleText') {
-				return {
-					innerHTML: 'testTitle',
-				};
-			} else if (id === 't') {
-				return {
-					innerHTML: 'testDesc',
-				};
-			}
-		});
-		document.getElementById = mockGetElementById;
-
 		const mockPutTitle = putTitle as jest.Mock;
 		mockPutTitle.mockImplementation(() => {});
 

@@ -379,12 +379,7 @@
 <a name='L314'></a><a href='#L314'>314</a>
 <a name='L315'></a><a href='#L315'>315</a>
 <a name='L316'></a><a href='#L316'>316</a>
-<a name='L317'></a><a href='#L317'>317</a>
-<a name='L318'></a><a href='#L318'>318</a>
-<a name='L319'></a><a href='#L319'>319</a>
-<a name='L320'></a><a href='#L320'>320</a>
-<a name='L321'></a><a href='#L321'>321</a>
-<a name='L322'></a><a href='#L322'>322</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
+<a name='L317'></a><a href='#L317'>317</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -444,8 +439,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -462,9 +455,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -708,323 +698,318 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import axios from 'axios';
 &nbsp;
 const config = {
-	headers: {
-		Authorization: 'Bearer ' + window.localStorage.getItem('jwt'),
-	},
+  headers: {
+    Authorization: 'Bearer ' + window.localStorage.getItem('jwt'),
+  },
 };
 &nbsp;
 export const code = <span class="fstat-no" title="function not covered" >(n</span>ame: string) =&gt; {
-	var skillID;
-	var skillName;
-	var skillLevel;
-	var monthsOfExperience;
+  var skillID;
+  var skillName;
+  var skillLevel;
+  var monthsOfExperience;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	if (window.location.pathname === '/PRJ4/' &amp;&amp; window.innerWidth &gt; 480) {</span>
-		var element = <span class="cstat-no" title="statement not covered" >document.getElementById(name);</span>
-		var boxElement = <span class="cstat-no" title="statement not covered" >document.getElementById('codeBox');</span>
-		var textElement1 = <span class="cstat-no" title="statement not covered" >document.getElementById('skillText1');</span>
-		var textElement2 = <span class="cstat-no" title="statement not covered" >document.getElementById('skillText2');</span>
-		var elementskillLVL = <span class="cstat-no" title="statement not covered" >document.getElementById('skillMonths');</span>
-		var boxElementFill = <span class="cstat-no" title="statement not covered" >document.getElementById('codeBoxFill');</span>
+<span class="cstat-no" title="statement not covered" >  if (window.location.pathname === '/PRJ4/' &amp;&amp; window.innerWidth &gt; 480) {</span>
+    var element = <span class="cstat-no" title="statement not covered" >document.getElementById(name);</span>
+    var boxElement = <span class="cstat-no" title="statement not covered" >document.getElementById('codeBox');</span>
+    var textElement1 = <span class="cstat-no" title="statement not covered" >document.getElementById('skillText1');</span>
+    var textElement2 = <span class="cstat-no" title="statement not covered" >document.getElementById('skillText2');</span>
+    var elementskillLVL = <span class="cstat-no" title="statement not covered" >document.getElementById('skillMonths');</span>
+    var boxElementFill = <span class="cstat-no" title="statement not covered" >document.getElementById('codeBoxFill');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		lang.forEach(<span class="fstat-no" title="function not covered" >(e</span>lement: any) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >			<span class="missing-if-branch" title="if path not taken" >I</span>if (name === element[1]) {</span>
-<span class="cstat-no" title="statement not covered" >				skillID = element[0];</span>
-<span class="cstat-no" title="statement not covered" >				skillName = element[1];</span>
-<span class="cstat-no" title="statement not covered" >				skillLevel = element[2];</span>
-<span class="cstat-no" title="statement not covered" >				monthsOfExperience = element[3];</span>
+<span class="cstat-no" title="statement not covered" >    lang.forEach(<span class="fstat-no" title="function not covered" >(e</span>lement: any) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (name === element[1]) {</span>
+<span class="cstat-no" title="statement not covered" >        skillID = element[0];</span>
+<span class="cstat-no" title="statement not covered" >        skillName = element[1];</span>
+<span class="cstat-no" title="statement not covered" >        skillLevel = element[2];</span>
+<span class="cstat-no" title="statement not covered" >        monthsOfExperience = element[3];</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >				console.log(skillID);</span>
-<span class="cstat-no" title="statement not covered" >				console.log(skillName);</span>
-<span class="cstat-no" title="statement not covered" >				console.log(skillLevel);</span>
-<span class="cstat-no" title="statement not covered" >				console.log(monthsOfExperience);</span>
-			}
-		});
-<span class="cstat-no" title="statement not covered" >		if (element!.title === 'setSwag' &amp;&amp; boxElement!.title === 'setSwag') {</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.fontSize = '1.8rem';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.marginTop = '20%';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.marginLeft = '30%';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.transition = '0s';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.opacity = '0';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.width = '0%';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.transition = '0.5s';</span>
-<span class="cstat-no" title="statement not covered" >			textElement1!.style.opacity = '1';</span>
-<span class="cstat-no" title="statement not covered" >			textElement2!.style.opacity = '0';</span>
-<span class="cstat-no" title="statement not covered" >			elementskillLVL!.style.opacity = '0';</span>
-<span class="cstat-no" title="statement not covered" >			boxElementFill!.style.width = '0%';</span>
-<span class="cstat-no" title="statement not covered" >			boxElementFill!.style.transition = '0.5s';</span>
-<span class="cstat-no" title="statement not covered" >			element!.title = '';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.title = '';</span>
-		} else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if (element!.title === '' &amp;&amp; boxElement!.title === '') {</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.transition = '2s';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.fontSize = '8rem';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.position = 'absolute';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.marginTop = '15%';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.marginLeft =</span>
-				window.innerWidth * 0.45 -
-				(element?.offsetWidth !== undefined
-					? element?.offsetWidth
-					: 0) *
-					4.444 +
-				'px';
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.transition = '1s';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.opacity = '1';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.width = '30%';</span>
-<span class="cstat-no" title="statement not covered" >			textElement1!.style.opacity = '0';</span>
-<span class="cstat-no" title="statement not covered" >			textElement2!.style.opacity = '1';</span>
-<span class="cstat-no" title="statement not covered" >			elementskillLVL!.innerHTML =</span>
-				'Months of experience: ' + monthsOfExperience;
-<span class="cstat-no" title="statement not covered" >			elementskillLVL!.style.opacity = '1';</span>
+<span class="cstat-no" title="statement not covered" >        console.log(skillID);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(skillName);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(skillLevel);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(monthsOfExperience);</span>
+      }
+    });
+<span class="cstat-no" title="statement not covered" >    if (element!.title === 'setSwag' &amp;&amp; boxElement!.title === 'setSwag') {</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.fontSize = '1.8rem';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.marginTop = '20%';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.marginLeft = '30%';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.transition = '0s';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.opacity = '0';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.width = '0%';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.transition = '0.5s';</span>
+<span class="cstat-no" title="statement not covered" >      textElement1!.style.opacity = '1';</span>
+<span class="cstat-no" title="statement not covered" >      textElement2!.style.opacity = '0';</span>
+<span class="cstat-no" title="statement not covered" >      elementskillLVL!.style.opacity = '0';</span>
+<span class="cstat-no" title="statement not covered" >      boxElementFill!.style.width = '0%';</span>
+<span class="cstat-no" title="statement not covered" >      boxElementFill!.style.transition = '0.5s';</span>
+<span class="cstat-no" title="statement not covered" >      element!.title = '';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.title = '';</span>
+    } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if (element!.title === '' &amp;&amp; boxElement!.title === '') {</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.transition = '2s';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.fontSize = '8rem';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.position = 'absolute';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.marginTop = '15%';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.marginLeft =</span>
+        window.innerWidth * 0.45 -
+        (element?.offsetWidth !== undefined ? element?.offsetWidth : 0) *
+          4.444 +
+        'px';
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.transition = '1s';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.opacity = '1';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.width = '30%';</span>
+<span class="cstat-no" title="statement not covered" >      textElement1!.style.opacity = '0';</span>
+<span class="cstat-no" title="statement not covered" >      textElement2!.style.opacity = '1';</span>
+<span class="cstat-no" title="statement not covered" >      elementskillLVL!.innerHTML =</span>
+        'Months of experience: ' + monthsOfExperience;
+<span class="cstat-no" title="statement not covered" >      elementskillLVL!.style.opacity = '1';</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			boxElementFill!.style.transition = '1s';</span>
-<span class="cstat-no" title="statement not covered" >			boxElementFill!.style.transitionDelay = '0.8s';</span>
-<span class="cstat-no" title="statement not covered" >			boxElementFill!.style.width = skillLevel + '%';</span>
-<span class="cstat-no" title="statement not covered" >			element!.title = 'setSwag';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.title = 'setSwag';</span>
-		}
-	} else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if (</span>
-		window.location.pathname === '/PRJ4/' &amp;&amp;
-		window.innerWidth &lt; 480
-	) {
-		var element = <span class="cstat-no" title="statement not covered" >document.getElementById(name);</span>
-		var boxElement = <span class="cstat-no" title="statement not covered" >document.getElementById('codeBox');</span>
-		var textElement1 = <span class="cstat-no" title="statement not covered" >document.getElementById('skillText1');</span>
-		var textElement2 = <span class="cstat-no" title="statement not covered" >document.getElementById('skillText2');</span>
-		var elementskillLVL = <span class="cstat-no" title="statement not covered" >document.getElementById('skillLVL');</span>
-		var boxElementFill = <span class="cstat-no" title="statement not covered" >document.getElementById('codeBoxFill');</span>
+<span class="cstat-no" title="statement not covered" >      boxElementFill!.style.transition = '1s';</span>
+<span class="cstat-no" title="statement not covered" >      boxElementFill!.style.transitionDelay = '0.8s';</span>
+<span class="cstat-no" title="statement not covered" >      boxElementFill!.style.width = skillLevel + '%';</span>
+<span class="cstat-no" title="statement not covered" >      element!.title = 'setSwag';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.title = 'setSwag';</span>
+    }
+  } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if (window.location.pathname === '/PRJ4/' &amp;&amp; window.innerWidth &lt; 480) {</span>
+    var element = <span class="cstat-no" title="statement not covered" >document.getElementById(name);</span>
+    var boxElement = <span class="cstat-no" title="statement not covered" >document.getElementById('codeBox');</span>
+    var textElement1 = <span class="cstat-no" title="statement not covered" >document.getElementById('skillText1');</span>
+    var textElement2 = <span class="cstat-no" title="statement not covered" >document.getElementById('skillText2');</span>
+    var elementskillLVL = <span class="cstat-no" title="statement not covered" >document.getElementById('skillLVL');</span>
+    var boxElementFill = <span class="cstat-no" title="statement not covered" >document.getElementById('codeBoxFill');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		if (element!.title === 'setSwag' &amp;&amp; boxElement!.title === 'setSwag') {</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.fontSize = '1.2rem';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.marginTop = '60%';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.marginLeft = '40%';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.transition = '0s';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.opacity = '0';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.width = '0%';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.transition = '0.5s';</span>
-<span class="cstat-no" title="statement not covered" >			textElement1!.style.opacity = '1';</span>
-<span class="cstat-no" title="statement not covered" >			textElement2!.style.opacity = '0';</span>
-<span class="cstat-no" title="statement not covered" >			elementskillLVL!.style.opacity = '0';</span>
-<span class="cstat-no" title="statement not covered" >			boxElementFill!.style.width = '0%';</span>
-<span class="cstat-no" title="statement not covered" >			boxElementFill!.style.transition = '0.5s';</span>
-<span class="cstat-no" title="statement not covered" >			element!.title = '';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.title = '';</span>
-		} else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if (element!.title === '' &amp;&amp; boxElement!.title === '') {</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.transition = '2s';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.fontSize = '4rem';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.position = 'absolute';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.marginLeft = '25%';</span>
-<span class="cstat-no" title="statement not covered" >			element!.style.marginTop = '60%';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.transition = '1s';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.opacity = '1';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.style.width = '70%';</span>
-<span class="cstat-no" title="statement not covered" >			textElement1!.style.opacity = '0';</span>
-<span class="cstat-no" title="statement not covered" >			textElement2!.style.opacity = '1';</span>
-<span class="cstat-no" title="statement not covered" >			elementskillLVL!.style.opacity = '1';</span>
-<span class="cstat-no" title="statement not covered" >			elementskillLVL!.style.content =</span>
-				'Months of experience:' + { monthsOfExperience };
-<span class="cstat-no" title="statement not covered" >			boxElementFill!.style.transition = '1s';</span>
-<span class="cstat-no" title="statement not covered" >			boxElementFill!.style.transitionDelay = '0.8s';</span>
-<span class="cstat-no" title="statement not covered" >			boxElementFill!.style.width = skillLevel + '%';</span>
-<span class="cstat-no" title="statement not covered" >			element!.title = 'setSwag';</span>
-<span class="cstat-no" title="statement not covered" >			boxElement!.title = 'setSwag';</span>
-		}
-	}
+<span class="cstat-no" title="statement not covered" >    if (element!.title === 'setSwag' &amp;&amp; boxElement!.title === 'setSwag') {</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.fontSize = '1.2rem';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.marginTop = '60%';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.marginLeft = '40%';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.transition = '0s';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.opacity = '0';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.width = '0%';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.transition = '0.5s';</span>
+<span class="cstat-no" title="statement not covered" >      textElement1!.style.opacity = '1';</span>
+<span class="cstat-no" title="statement not covered" >      textElement2!.style.opacity = '0';</span>
+<span class="cstat-no" title="statement not covered" >      elementskillLVL!.style.opacity = '0';</span>
+<span class="cstat-no" title="statement not covered" >      boxElementFill!.style.width = '0%';</span>
+<span class="cstat-no" title="statement not covered" >      boxElementFill!.style.transition = '0.5s';</span>
+<span class="cstat-no" title="statement not covered" >      element!.title = '';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.title = '';</span>
+    } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if (element!.title === '' &amp;&amp; boxElement!.title === '') {</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.transition = '2s';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.fontSize = '4rem';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.position = 'absolute';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.marginLeft = '25%';</span>
+<span class="cstat-no" title="statement not covered" >      element!.style.marginTop = '60%';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.transition = '1s';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.opacity = '1';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.style.width = '70%';</span>
+<span class="cstat-no" title="statement not covered" >      textElement1!.style.opacity = '0';</span>
+<span class="cstat-no" title="statement not covered" >      textElement2!.style.opacity = '1';</span>
+<span class="cstat-no" title="statement not covered" >      elementskillLVL!.style.opacity = '1';</span>
+<span class="cstat-no" title="statement not covered" >      elementskillLVL!.style.content =</span>
+        'Months of experience:' + { monthsOfExperience };
+<span class="cstat-no" title="statement not covered" >      boxElementFill!.style.transition = '1s';</span>
+<span class="cstat-no" title="statement not covered" >      boxElementFill!.style.transitionDelay = '0.8s';</span>
+<span class="cstat-no" title="statement not covered" >      boxElementFill!.style.width = skillLevel + '%';</span>
+<span class="cstat-no" title="statement not covered" >      element!.title = 'setSwag';</span>
+<span class="cstat-no" title="statement not covered" >      boxElement!.title = 'setSwag';</span>
+    }
+  }
 };
 &nbsp;
 var lang: string[][] = [];
 &nbsp;
 const axiosInstance = axios.create({
-	baseURL: 'https://prj4appservice.azurewebsites.net/api/',
+  baseURL: 'https://prj4appservice.azurewebsites.net/api/',
 });
 export function getSkills(pos: number[][]) {
-	axiosInstance
-		.get('Skills')
-		.then((response) =&gt; {
-			response.data.forEach((elem: any) =&gt; {
-				var p = document.createElement('p');
-				p.className = 'scribble';
-				p.id = elem.skillName;
-				p.innerHTML = elem.skillName;
-				p.style.marginLeft =
-					pos[elem.skillID - 1][0] * window.innerWidth + 'px';
-				p.style.marginTop =
-					pos[elem.skillID - 1][1] * window.innerHeight + 'px';
-				p.style.position = 'absolute';
-				p.onclick = <span class="fstat-no" title="function not covered" >() =</span>&gt; {
-<span class="cstat-no" title="statement not covered" >					code(elem.skillName);</span>
-				};
-				document.getElementById('langs')?.appendChild(p);
-				lang.push([
-					elem.skillID,
-					elem.skillName,
-					elem.skillLevel,
-					elem.monthsOfExperience,
-				]);
-			});
-		})
-		.catch(console.error);
+  axiosInstance
+    .get('Skills')
+    .then((response) =&gt; {
+      response.data.forEach((elem: any) =&gt; {
+        var p = document.createElement('p');
+        p.className = 'scribble';
+        p.id = elem.skillName;
+        p.innerHTML = elem.skillName;
+        p.style.marginLeft =
+          pos[elem.skillID - 1][0] * window.innerWidth + 'px';
+        p.style.marginTop =
+          pos[elem.skillID - 1][1] * window.innerHeight + 'px';
+        p.style.position = 'absolute';
+        p.onclick = <span class="fstat-no" title="function not covered" >() =</span>&gt; {
+<span class="cstat-no" title="statement not covered" >          code(elem.skillName);</span>
+        };
+        document.getElementById('langs')?.appendChild(p);
+        lang.push([
+          elem.skillID,
+          elem.skillName,
+          elem.skillLevel,
+          elem.monthsOfExperience,
+        ]);
+      });
+    })
+    .catch(console.error);
 &nbsp;
-	return lang;
+  return lang;
 }
 &nbsp;
 export function getDescription() {
-	return axiosInstance
-		.get('Texts')
-		.then((response) =&gt; {
-			return response.data[0];
-		})
-		.catch(console.error);
+  return axiosInstance
+    .get('Texts')
+    .then((response) =&gt; {
+      return response.data[0];
+    })
+    .catch(console.error);
 }
 &nbsp;
 export function putSkill(skill: any) {
-	return axiosInstance
-		.put('Skills/' + skill.skillID, skill, config)
-		.then((response) =&gt; {
-			return response;
-		})
-		.catch(console.error);
+  return axiosInstance
+    .put('Skills/' + skill.skillID, skill, config)
+    .then((response) =&gt; {
+      return response;
+    })
+    .catch(console.error);
 }
 &nbsp;
 export function putDescription(desc: string) {
-	return axiosInstance
-		.put(
-			'Texts/1',
-			{
-				textID: 1,
-				headline: document.getElementById('aboutTitleText')!.innerHTML,
-				mainText: desc,
-			},
-			config
-		)
-		.then((response) =&gt; {
-			return response;
-		})
-		.catch(console.error);
+  return axiosInstance
+    .put(
+      'Texts/1',
+      {
+        textID: 1,
+        headline: document.getElementById('aboutTitleText')!.innerHTML,
+        mainText: desc,
+      },
+      config
+    )
+    .then((response) =&gt; {
+      return response;
+    })
+    .catch(console.error);
 }
 &nbsp;
 export function putTitle(title: string) {
-	return axiosInstance
-		.put(
-			'Texts/1',
-			{
-				textID: 1,
-				headline: title,
-				mainText: document.getElementById('t')!.innerHTML,
-			},
-			config
-		)
-		.then((response) =&gt; {
-			return response;
-		})
-		.catch(console.error);
+  return axiosInstance
+    .put(
+      'Texts/1',
+      {
+        textID: 1,
+        headline: title,
+        mainText: document.getElementById('t')!.innerHTML,
+      },
+      config
+    )
+    .then((response) =&gt; {
+      return response;
+    })
+    .catch(console.error);
 }
 &nbsp;
 export function getFiles() {
-	return axiosInstance
-		.get('Files')
-		.then((response) =&gt; {
-			return response.data;
-		})
-		.catch(console.error);
+  return axiosInstance
+    .get('Files')
+    .then((response) =&gt; {
+      return response.data;
+    })
+    .catch(console.error);
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >getFilesSort(</span>sort: string) {
-<span class="cstat-no" title="statement not covered" >	return axiosInstance</span>
-		.get('Files/FilesSort', {
-			params: {
-				sort: sort,
-			},
-		})
-		.then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
-<span class="cstat-no" title="statement not covered" >			console.log(response);</span>
-<span class="cstat-no" title="statement not covered" >			return response.data;</span>
-		})
-		.catch(console.error);
+<span class="cstat-no" title="statement not covered" >  return axiosInstance</span>
+    .get('Files/FilesSort', {
+      params: {
+        sort: sort,
+      },
+    })
+    .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log(response);</span>
+<span class="cstat-no" title="statement not covered" >      return response.data;</span>
+    })
+    .catch(console.error);
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >getFilesFind(</span>find: string) {
-<span class="cstat-no" title="statement not covered" >	return axiosInstance</span>
-		.get('Files/FilesFind', {
-			params: {
-				sort: find,
-			},
-		})
-		.then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
-<span class="cstat-no" title="statement not covered" >			console.log(response);</span>
-<span class="cstat-no" title="statement not covered" >			return response.data;</span>
-		})
-		.catch(console.error);
+<span class="cstat-no" title="statement not covered" >  return axiosInstance</span>
+    .get('Files/FilesFind', {
+      params: {
+        sort: find,
+      },
+    })
+    .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+<span class="cstat-no" title="statement not covered" >      console.log(response);</span>
+<span class="cstat-no" title="statement not covered" >      return response.data;</span>
+    })
+    .catch(console.error);
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >getBlob(</span>id: string, Filetype: string, name: string) {
-<span class="cstat-no" title="statement not covered" >	axiosInstance({</span>
-		url: '/files/' + id, //your url
-		method: 'GET',
-		responseType: 'blob', // important
-	}).then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
-		// create file link in browser's memory
-		const href = <span class="cstat-no" title="statement not covered" >URL.createObjectURL(response.data);</span>
+<span class="cstat-no" title="statement not covered" >  axiosInstance({</span>
+    url: '/files/' + id, //your url
+    method: 'GET',
+    responseType: 'blob', // important
+  }).then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; {
+    // create file link in browser's memory
+    const href = <span class="cstat-no" title="statement not covered" >URL.createObjectURL(response.data);</span>
 &nbsp;
-		// create "a" HTML element with href to file &amp; click
-		const link = <span class="cstat-no" title="statement not covered" >document.createElement('a');</span>
-<span class="cstat-no" title="statement not covered" >		link.href = href;</span>
-<span class="cstat-no" title="statement not covered" >		link.setAttribute('download', `${name}.${Filetype}`); </span>//or any other extension
-<span class="cstat-no" title="statement not covered" >		document.body.appendChild(link);</span>
-<span class="cstat-no" title="statement not covered" >		link.click();</span>
+    // create "a" HTML element with href to file &amp; click
+    const link = <span class="cstat-no" title="statement not covered" >document.createElement('a');</span>
+<span class="cstat-no" title="statement not covered" >    link.href = href;</span>
+<span class="cstat-no" title="statement not covered" >    link.setAttribute('download', `${name}`); </span>//or any other extension
+<span class="cstat-no" title="statement not covered" >    document.body.appendChild(link);</span>
+<span class="cstat-no" title="statement not covered" >    link.click();</span>
 &nbsp;
-		// clean up "a" element &amp; remove ObjectURL
-<span class="cstat-no" title="statement not covered" >		document.body.removeChild(link);</span>
-<span class="cstat-no" title="statement not covered" >		URL.revokeObjectURL(href);</span>
-	});
+    // clean up "a" element &amp; remove ObjectURL
+<span class="cstat-no" title="statement not covered" >    document.body.removeChild(link);</span>
+<span class="cstat-no" title="statement not covered" >    URL.revokeObjectURL(href);</span>
+  });
 }
 &nbsp;
 export function deleteSkill(id: number) {
-	return axiosInstance
-		.delete('Skills/' + id, config)
-		.then((resp) =&gt; {
-			return resp;
-		})
-		.catch(console.error);
+  return axiosInstance
+    .delete('Skills/' + id, config)
+    .then((resp) =&gt; {
+      return resp;
+    })
+    .catch(console.error);
 }
 &nbsp;
 export function postSkill(skill: any) {
-	return axiosInstance
-		.post('Skills', skill, config)
-		.then((resp) =&gt; {
-			return resp;
-		})
-		.catch(console.error);
+  return axiosInstance
+    .post('Skills', skill, config)
+    .then((resp) =&gt; {
+      return resp;
+    })
+    .catch(console.error);
 }
 &nbsp;
 export async function <span class="fstat-no" title="function not covered" >postProject(</span>selectedFile: any, language: string) {
-	const formData = <span class="cstat-no" title="statement not covered" >new FormData();</span>
-<span class="cstat-no" title="statement not covered" >	formData.append('files', selectedFile);</span>
-<span class="cstat-no" title="statement not covered" >	formData.append('language', language);</span>
-<span class="cstat-no" title="statement not covered" >	for (const pair of formData.entries()) {</span>
-<span class="cstat-no" title="statement not covered" >		console.log(`${pair[0]}, ${pair[1]}`);</span>
-	}
-<span class="cstat-no" title="statement not covered" >	try {</span>
-<span class="cstat-no" title="statement not covered" >		axiosInstance({</span>
-			method: 'post',
-			url: 'https://prj4appservice.azurewebsites.net/api/Files/',
-			data: formData,
-			headers: {
-				'Content-Type': 'multipart/form-data',
-				Authorization: 'Bearer ' + localStorage.getItem('jwt'),
-			},
-		});
-	} catch (error) {
-<span class="cstat-no" title="statement not covered" >		console.log('ERROR!', error);</span>
-	}
+  const formData = <span class="cstat-no" title="statement not covered" >new FormData();</span>
+<span class="cstat-no" title="statement not covered" >  formData.append('files', selectedFile);</span>
+<span class="cstat-no" title="statement not covered" >  formData.append('language', language);</span>
+<span class="cstat-no" title="statement not covered" >  for (const pair of formData.entries()) {</span>
+<span class="cstat-no" title="statement not covered" >    console.log(`${pair[0]}, ${pair[1]}`);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    axiosInstance({</span>
+      method: 'post',
+      url: 'https://prj4appservice.azurewebsites.net/api/Files/',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: 'Bearer ' + localStorage.getItem('jwt'),
+      },
+    });
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    console.log('ERROR!', error);</span>
+  }
 }
 &nbsp;
 export function postLogin(username: string, password: string) {
-	return axiosInstance
-		.post('Users/login', { Email: username, Password: password })
-		.then((resp) =&gt; {
-			return resp;
-		})
-		.catch(console.error);
+  return axiosInstance
+    .post('Users/login', { Email: username, Password: password })
+    .then((resp) =&gt; {
+      return resp;
+    })
+    .catch(console.error);
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -1033,7 +1018,7 @@ export function postLogin(username: string, password: string) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-14T10:56:31.094Z
+                at 2022-12-14T18:47:38.692Z
             </div>
         <script src="../prettify.js"></script>
         <script>
