@@ -44,6 +44,14 @@ describe('Skills page tests', () => {
 		[0.182, 0.206],
 		[0.577, 0.537],
 	];
+	it('Skills renders without crashing, smoke test', () => {
+		const div = document.createElement('div');
+		render(
+			<BrowserRouter>
+				<Skills />, div
+			</BrowserRouter>
+		);
+	});
 	it('Skills page is rendering correct elements', () => {
 		const { getByTestId } = render(
 			<BrowserRouter>
@@ -56,6 +64,11 @@ describe('Skills page tests', () => {
 		expect(getByTestId('skillText2Test')).toBeInTheDocument;
 		expect(getByTestId('skillMonthsTest')).toBeInTheDocument;
 		expect(getByTestId('skillsTitle')).toBeInTheDocument;
+
+		expect(getByTestId('skillText1Test').innerHTML).not.toBe('');
+		expect(getByTestId('skillText2Test').innerHTML).not.toBe('');
+		expect(getByTestId('skillMonthsTest').innerHTML).not.toBe('');
+		expect(getByTestId('skillsTitle').innerHTML).not.toBe('');
 	});
 
 	it('Code function is changing elements correct', async () => {
@@ -90,6 +103,7 @@ describe('Skills page tests', () => {
 		var endfont = endStyles.fontSize;
 		var endMarginTop = endStyles.marginTop;
 
+		expect(consoleSpy).toHaveBeenCalledWith('Showing skills');
 		expect(endfont).not.toBe(startfont);
 		expect(endMarginTop).not.toBe(startMarginTop);
 	});
@@ -133,13 +147,5 @@ describe('Skills page tests', () => {
 
 		expect(endfont).not.toBe(startfont);
 		expect(endMarginTop).not.toBe(startMarginTop);
-	});
-
-	it('Skills renders without crashing', () => {
-		render(
-			<BrowserRouter>
-				<Skills />
-			</BrowserRouter>
-		);
 	});
 });

@@ -65,6 +65,47 @@ export const code = (name: string) => {
 			elementskillLVL!.innerHTML =
 				'Months of experience: ' + monthsOfExperience;
 			elementskillLVL!.style.opacity = '1';
+    lang.forEach((element: any) => {
+      if (name === element[1]) {
+        skillID = element[0];
+        skillName = element[1];
+        skillLevel = element[2];
+        monthsOfExperience = element[3];
+      }
+    });
+    if (element!.title === 'setSwag' && boxElement!.title === 'setSwag') {
+      element!.style.fontSize = '1.8rem';
+      element!.style.marginTop = '20%';
+      element!.style.marginLeft = '30%';
+      element!.style.transition = '0s';
+      boxElement!.style.opacity = '0';
+      boxElement!.style.width = '0%';
+      boxElement!.style.transition = '0.5s';
+      textElement1!.style.opacity = '1';
+      textElement2!.style.opacity = '0';
+      elementskillLVL!.style.opacity = '0';
+      boxElementFill!.style.width = '0%';
+      boxElementFill!.style.transition = '0.5s';
+      element!.title = '';
+      boxElement!.title = '';
+    } else if (element!.title === '' && boxElement!.title === '') {
+      element!.style.transition = '2s';
+      element!.style.fontSize = '8rem';
+      element!.style.position = 'absolute';
+      element!.style.marginTop = '15%';
+      element!.style.marginLeft =
+        window.innerWidth * 0.45 -
+        (element?.offsetWidth !== undefined ? element?.offsetWidth : 0) *
+          4.444 +
+        'px';
+      boxElement!.style.transition = '1s';
+      boxElement!.style.opacity = '1';
+      boxElement!.style.width = '30%';
+      textElement1!.style.opacity = '0';
+      textElement2!.style.opacity = '1';
+      elementskillLVL!.innerHTML =
+        'Months of experience: ' + monthsOfExperience;
+      elementskillLVL!.style.opacity = '1';
 
 			boxElementFill!.style.transition = '1s';
 			boxElementFill!.style.transitionDelay = '0.8s';
@@ -89,43 +130,42 @@ export const code = (name: string) => {
 			}
 		});
 
-		if (element!.title === 'setSwag' && boxElement!.title === 'setSwag') {
-			element!.style.fontSize = '1.2rem';
-			element!.style.marginTop = '60%';
-			element!.style.marginLeft = '40%';
-			element!.style.transition = '0s';
-			boxElement!.style.opacity = '0';
-			boxElement!.style.width = '0%';
-			boxElement!.style.transition = '0.5s';
-			textElement1!.style.opacity = '1';
-			textElement2!.style.opacity = '0';
-			elementskillLVL!.style.opacity = '0';
-			boxElementFill!.style.width = '0%';
-			boxElementFill!.style.transition = '0.5s';
-			element!.title = '';
-			boxElement!.title = '';
-		} else if (element!.title === '' && boxElement!.title === '') {
-			console.log('Showing skills');
-			element!.style.transition = '2s';
-			element!.style.fontSize = '4rem';
-			element!.style.position = 'absolute';
-			element!.style.marginLeft = '25%';
-			element!.style.marginTop = '60%';
-			boxElement!.style.transition = '1s';
-			boxElement!.style.opacity = '1';
-			boxElement!.style.width = '70%';
-			textElement1!.style.opacity = '0';
-			textElement2!.style.opacity = '1';
-			elementskillLVL!.style.opacity = '1';
-			elementskillLVL!.style.content =
-				'Months of experience:' + { monthsOfExperience };
-			boxElementFill!.style.transition = '1s';
-			boxElementFill!.style.transitionDelay = '0.8s';
-			boxElementFill!.style.width = skillLevel + '%';
-			element!.title = 'setSwag';
-			boxElement!.title = 'setSwag';
-		}
-	}
+    if (element!.title === 'setSwag' && boxElement!.title === 'setSwag') {
+      element!.style.fontSize = '1.2rem';
+      element!.style.marginTop = '60%';
+      element!.style.marginLeft = '40%';
+      element!.style.transition = '0s';
+      boxElement!.style.opacity = '0';
+      boxElement!.style.width = '0%';
+      boxElement!.style.transition = '0.5s';
+      textElement1!.style.opacity = '1';
+      textElement2!.style.opacity = '0';
+      elementskillLVL!.style.opacity = '0';
+      boxElementFill!.style.width = '0%';
+      boxElementFill!.style.transition = '0.5s';
+      element!.title = '';
+      boxElement!.title = '';
+    } else if (element!.title === '' && boxElement!.title === '') {
+      element!.style.transition = '2s';
+      element!.style.fontSize = '4rem';
+      element!.style.position = 'absolute';
+      element!.style.marginLeft = '25%';
+      element!.style.marginTop = '60%';
+      boxElement!.style.transition = '1s';
+      boxElement!.style.opacity = '1';
+      boxElement!.style.width = '70%';
+      textElement1!.style.opacity = '0';
+      textElement2!.style.opacity = '1';
+      elementskillLVL!.style.opacity = '1';
+      elementskillLVL!.style.content =
+        'Months of experience:' + { monthsOfExperience };
+      boxElementFill!.style.transition = '1s';
+      boxElementFill!.style.transitionDelay = '0.8s';
+      boxElementFill!.style.width = skillLevel + '%';
+      element!.title = 'setSwag';
+      boxElement!.title = 'setSwag';
+    }
+  }
 };
 
 const axiosInstance = axios.create({
