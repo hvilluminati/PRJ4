@@ -13,6 +13,7 @@ export const code = (name: string) => {
   var skillName;
   var skillLevel;
   var monthsOfExperience;
+  console.log('Showing skills');
   if (window.innerWidth > 480) {
     var element = document.getElementById(name);
     var boxElement = document.getElementById('codeBox');
@@ -45,7 +46,6 @@ export const code = (name: string) => {
       element!.title = '';
       boxElement!.title = '';
     } else if (element!.title === '' && boxElement!.title === '') {
-      console.log('Showing skills');
       element!.style.transition = '2s';
       element!.style.fontSize = '8rem';
       element!.style.position = 'absolute';
@@ -103,7 +103,6 @@ export const code = (name: string) => {
       element!.title = '';
       boxElement!.title = '';
     } else if (element!.title === '' && boxElement!.title === '') {
-      console.log('Showing skills');
       element!.style.transition = '2s';
       element!.style.fontSize = '4rem';
       element!.style.position = 'absolute';

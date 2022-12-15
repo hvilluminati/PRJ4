@@ -101,6 +101,7 @@ describe('Skills page tests', () => {
     var endfont = endStyles.fontSize;
     var endMarginTop = endStyles.marginTop;
 
+    expect(consoleSpy).toHaveBeenCalledWith('Showing skills');
     expect(endfont).not.toBe(startfont);
     expect(endMarginTop).not.toBe(startMarginTop);
   });
