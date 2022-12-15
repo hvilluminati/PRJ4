@@ -423,25 +423,6 @@ export async function postProject(selectedFile: any, language: string) {
   } catch (error) {
     console.log('ERROR!', error);
   }
-  const formData = new FormData();
-  formData.append('files', selectedFile);
-  formData.append('language', language);
-  for (const pair of formData.entries()) {
-    console.log(`${pair[0]}, ${pair[1]}`);
-  }
-  try {
-    axiosInstance({
-      method: 'post',
-      url: 'https://prj4appservice.azurewebsites.net/api/Files/',
-      data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: 'Bearer ' + localStorage.getItem('jwt'),
-      },
-    });
-  } catch (error) {
-    console.log('ERROR!', error);
-  }
 }
 
 export function postLogin(username: string, password: string) {
