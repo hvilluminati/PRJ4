@@ -14,6 +14,7 @@ function Contact() {
 
   const sendEmail = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    console.log('Trying to send email');
     emailjs
       .sendForm(
         'service_8nakf3g',
@@ -24,6 +25,7 @@ function Contact() {
       .then(
         (result) => {
           console.log(result.text);
+          console.log('Email successfully sent!');
           alert('Message sent');
         },
         (error) => {
@@ -46,46 +48,42 @@ function Contact() {
           <div id='contactInformationBox'>
             <ul id='listLogo'>
               <li id='email'>
-                {/* <ButtonMailto
-                      mailto='JohnDoe@email.com'
-                      label='JohnDoe@email.com'
-                    /> */}
-                <a href='mailto:JohnDoe@email.com' title='emailLink'>
+                <a href='mailto:JohnDoe@email.com' data-testid='emailLink'>
                   {' '}
                   <img id='emaillogo' src={emaillogo} />{' '}
                 </a>{' '}
               </li>
 
               <li id='phone'>
-                <a href='tel:+4588888888' title='phoneLink'>
+                <a href='tel:+4588888888' data-testid='phoneLink'>
                   {' '}
                   <img id='phonelogo' src={phonelogo} />{' '}
                 </a>
               </li>
 
               <li id='skype'>
-                <a href='https://www.skype.com/en/' title='skypeLink'>
+                <a href='https://www.skype.com/en/' data-testid='skypeLink'>
                   <img id='skypelogo' src={skypelogo} />
                 </a>
               </li>
 
               <li id='linkedin'>
                 {' '}
-                <a href='https://www.linkedin.com/' title='linkedinLink'>
+                <a href='https://www.linkedin.com/' data-testid='linkedinLink'>
                   <img id='linkedinlogo' src={linkedinlogo} />
                 </a>
               </li>
 
               <li id='facebook'>
                 {' '}
-                <a href='https://www.facebook.com/' title='fbLink'>
+                <a href='https://www.facebook.com/' data-testid='fbLink'>
                   <img id='facebooklogo' src={facebooklogo} />
                 </a>
               </li>
 
               <li id='twitter'>
                 {' '}
-                <a href='https://www.twitter.com/' title='twitterLink'>
+                <a href='https://www.twitter.com/' data-testid='twitterLink'>
                   <img id='twitterlogo' src={twitterlogo} />
                 </a>
               </li>
@@ -93,7 +91,7 @@ function Contact() {
           </div>
         </div>
         <div className='contactContainer'>
-          <form ref={form} onSubmit={sendEmail}>
+          <form ref={form} onSubmit={sendEmail} data-testid='form'>
             <label htmlFor='fname'>Name</label>
             <input
               type={'text'}
@@ -122,6 +120,7 @@ function Contact() {
               className='AskeIsADummy'
               type='submit'
               value='Contact me'
+              placeholder='Contact me'
             ></input>
           </form>
         </div>
