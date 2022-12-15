@@ -4,9 +4,6 @@ const config = {
   headers: {
     Authorization: 'Bearer ' + window.localStorage.getItem('jwt'),
   },
-  headers: {
-    Authorization: 'Bearer ' + window.localStorage.getItem('jwt'),
-  },
 };
 
 var lang: string[][] = [];
@@ -131,7 +128,6 @@ export const code = (name: string) => {
 
 const axiosInstance = axios.create({
   baseURL: 'https://prj4appservice.azurewebsites.net/api/',
-  baseURL: 'https://prj4appservice.azurewebsites.net/api/',
 });
 export function getSkills(pos: number[][]) {
   axiosInstance
@@ -160,34 +156,6 @@ export function getSkills(pos: number[][]) {
       });
     })
     .catch(console.error);
-  axiosInstance
-    .get('Skills')
-    .then((response) => {
-      response.data.forEach((elem: any) => {
-        var p = document.createElement('p');
-        p.className = 'scribble';
-        p.id = elem.skillName;
-        p.innerHTML = elem.skillName;
-        p.style.marginLeft =
-          pos[elem.skillID - 1][0] * window.innerWidth + 'px';
-        p.style.marginTop =
-          pos[elem.skillID - 1][1] * window.innerHeight + 'px';
-        p.style.position = 'absolute';
-        p.onclick = () => {
-          code(elem.skillName);
-        };
-        document.getElementById('langs')?.appendChild(p);
-        lang.push([
-          elem.skillID,
-          elem.skillName,
-          elem.skillLevel,
-          elem.monthsOfExperience,
-        ]);
-      });
-    })
-    .catch(console.error);
-
-  return lang;
   return lang;
 }
 
@@ -198,21 +166,9 @@ export function getDescription() {
       return response.data[0];
     })
     .catch(console.error);
-  return axiosInstance
-    .get('Texts')
-    .then((response) => {
-      return response.data[0];
-    })
-    .catch(console.error);
 }
 
 export function putSkill(skill: any) {
-  return axiosInstance
-    .put('Skills/' + skill.skillID, skill, config)
-    .then((response) => {
-      return response;
-    })
-    .catch(console.error);
   return axiosInstance
     .put('Skills/' + skill.skillID, skill, config)
     .then((response) => {
@@ -236,24 +192,10 @@ export function putDescription(desc: string) {
       return response;
     })
     .catch(console.error);
-  return axiosInstance
-    .put(
-      'Texts/1',
-      {
-        textID: 1,
-        headline: document.getElementById('aboutTitleText')!.innerHTML,
-        mainText: desc,
-      },
-      config
-    )
-    .then((response) => {
-      return response;
-    })
-    .catch(console.error);
 }
 
 export function putTitle(title: string) {
-  axiosInstance
+  return axiosInstance
     .put(
       'Texts/1',
       {
@@ -303,31 +245,9 @@ export function getFilesSort(sort: string) {
       return response.data;
     })
     .catch(console.error);
-  return axiosInstance
-    .get('Files/FilesSort', {
-      params: {
-        sort: sort,
-      },
-    })
-    .then((response) => {
-      console.log(response);
-      return response.data;
-    })
-    .catch(console.error);
 }
 
 export function getFilesFind(find: string) {
-  return axiosInstance
-    .get('Files/FilesFind', {
-      params: {
-        sort: find,
-      },
-    })
-    .then((response) => {
-      console.log(response);
-      return response.data;
-    })
-    .catch(console.error);
   return axiosInstance
     .get('Files/FilesFind', {
       params: {
@@ -368,14 +288,11 @@ export function getBlob(id: string, Filetype: string, name: string) {
       document.body.removeChild(link);
       URL.revokeObjectURL(href);
     });
-    // clean up "a" element & remove ObjectURL
-    document.body.removeChild(link);
-    URL.revokeObjectURL(href);
   });
 }
 
 export function deleteSkill(id: number) {
-  axiosInstance
+  return axiosInstance
     .delete('Skills/' + id, config)
     .then((resp) => {
       return resp;
@@ -384,7 +301,7 @@ export function deleteSkill(id: number) {
 }
 
 export function postSkill(skill: any) {
-  axiosInstance
+  return axiosInstance
     .post('Skills', skill, config)
     .then((resp) => {
       return resp;
@@ -423,34 +340,9 @@ export async function postProject(selectedFile: any, language: string) {
   } catch (error) {
     console.log('ERROR!', error);
   }
-  const formData = new FormData();
-  formData.append('files', selectedFile);
-  formData.append('language', language);
-  for (const pair of formData.entries()) {
-    console.log(`${pair[0]}, ${pair[1]}`);
-  }
-  try {
-    axiosInstance({
-      method: 'post',
-      url: 'https://prj4appservice.azurewebsites.net/api/Files/',
-      data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: 'Bearer ' + localStorage.getItem('jwt'),
-      },
-    });
-  } catch (error) {
-    console.log('ERROR!', error);
-  }
 }
 
 export function postLogin(username: string, password: string) {
-  return axiosInstance
-    .post('Users/login', { Email: username, Password: password })
-    .then((resp) => {
-      return resp;
-    })
-    .catch(console.error);
   return axiosInstance
     .post('Users/login', { Email: username, Password: password })
     .then((resp) => {

@@ -1,3 +1,4 @@
+jest.spyOn(console, 'error').mockImplementation(() => {});
 import Skills from '../pages/skillsPage';
 import { fireEvent, render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
@@ -73,9 +74,23 @@ describe('Skills page tests', () => {
     await new Promise((r) => setTimeout(r, 2000));
     const skillsLanguage = screen.getByTestId('langsTest').children[0];
 
+    var startStyle = window.getComputedStyle(
+      screen.getByTestId('langsTest').children[0]
+    );
+    var startFont = startStyle.fontSize;
+    var startMarginTop = startStyle.marginTop;
+
     fireEvent.click(skillsLanguage);
+    await new Promise((r) => setTimeout(r, 2000));
+    var endStyle = window.getComputedStyle(
+      screen.getByTestId('langsTest').children[0]
+    );
+    var endFont = endStyle.fontSize;
+    var endMarginTop = endStyle.marginTop;
 
     expect(consoleSpy).toHaveBeenCalledWith('Showing skills');
+    expect(endFont).not.toBe(startFont);
+    expect(endMarginTop).not.toBe(startMarginTop);
   });
 
   it('Skills renders without crashing', () => {
