@@ -65,8 +65,6 @@ describe('Skills page tests', () => {
     expect(getByTestId('skillMonthsTest')).toBeInTheDocument;
     expect(getByTestId('skillsTitle')).toBeInTheDocument;
 
-    expect(getByTestId('codeBoxTest').innerHTML).not.toBe('');
-    expect(getByTestId('codeBoxFillTest').innerHTML).not.toBe('');
     expect(getByTestId('skillText1Test').innerHTML).not.toBe('');
     expect(getByTestId('skillText2Test').innerHTML).not.toBe('');
     expect(getByTestId('skillMonthsTest').innerHTML).not.toBe('');
