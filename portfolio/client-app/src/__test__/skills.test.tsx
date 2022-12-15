@@ -89,9 +89,22 @@ describe('Skills page tests', () => {
     await new Promise((r) => setTimeout(r, 2000));
     const skillsLanguage = screen.getByTestId('langsTest').children[0];
 
+    var startStyles = window.getComputedStyle(
+      screen.getByTestId('langsTest').children[0]
+    );
+    var startfont = startStyles.fontSize;
+    var startMarginTop = startStyles.marginTop;
+
     fireEvent.click(skillsLanguage);
 
-    expect(consoleSpy).toHaveBeenCalledWith('Showing skills');
+    var endStyles = window.getComputedStyle(
+      screen.getByTestId('langsTest').children[0]
+    );
+    var endfont = endStyles.fontSize;
+    var endMarginTop = endStyles.marginTop;
+
+    expect(endfont).not.toBe(startfont);
+    expect(endMarginTop).not.toBe(startMarginTop);
   });
 
   it('Code function is changing elements correct with smaller screen', async () => {

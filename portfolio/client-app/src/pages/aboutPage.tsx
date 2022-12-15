@@ -9,7 +9,7 @@ function About() {
 	const [desc, setDesc] = useState('');
 	const [title, setTitle] = useState('');
 	const [authorized, setAuthorized] = useState(false);
-	//hej
+
 	useEffect(() => {
 		var expire = window.localStorage.getItem('expire');
 		if (expire && new Date().getTime().toString() > expire) {
