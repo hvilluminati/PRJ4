@@ -1,3 +1,4 @@
+jest.spyOn(console, 'error').mockImplementation(() => {});
 import Contact from '../pages/contactPage';
 import { fireEvent, render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
@@ -40,7 +41,7 @@ describe('href logos', () => {
 });
 
 it('Send form', () => {
-  const consoleSpy = jest.spyOn(console, 'log');
+  const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
   const screen = render(
     <BrowserRouter>
       <Contact />

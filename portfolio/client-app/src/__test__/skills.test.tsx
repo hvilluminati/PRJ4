@@ -1,3 +1,4 @@
+jest.spyOn(console, 'error').mockImplementation(() => {});
 import Skills from '../pages/skillsPage';
 import { fireEvent, render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
