@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/PRJ4/static/css/main.11da2b92.css",
+    "main.js": "/PRJ4/static/js/main.3d5cb7ea.js",
+    "static/media/nonbinary-person.png": "/PRJ4/static/media/nonbinary-person.af7aa9c397616238f5c6.png",
+    "index.html": "/PRJ4/index.html",
+    "main.11da2b92.css.map": "/PRJ4/static/css/main.11da2b92.css.map",
+    "main.3d5cb7ea.js.map": "/PRJ4/static/js/main.3d5cb7ea.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.11da2b92.css",
+    "static/js/main.3d5cb7ea.js"
+  ]
+}
