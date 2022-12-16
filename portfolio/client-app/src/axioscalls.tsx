@@ -65,7 +65,7 @@ export const code = (name: string) => {
 
       boxElementFill!.style.transition = '1s';
       boxElementFill!.style.transitionDelay = '0.8s';
-      boxElementFill!.style.width = skillLevel + '%';
+      boxElementFill!.style.width = skillLevel + '0%';
       element!.title = 'setSwag';
       boxElement!.title = 'setSwag';
     }
@@ -117,7 +117,7 @@ export const code = (name: string) => {
         'Months of experience:' + { monthsOfExperience };
       boxElementFill!.style.transition = '1s';
       boxElementFill!.style.transitionDelay = '0.8s';
-      boxElementFill!.style.width = skillLevel + '%';
+      boxElementFill!.style.width = skillLevel + '0%';
       element!.title = 'setSwag';
       boxElement!.title = 'setSwag';
     }
