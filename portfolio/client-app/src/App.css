@@ -385,10 +385,11 @@ div {
     z-index: 1;
   }
 
-  #skillLVL {
+  #skillMonths {
     position: absolute;
     flex-direction: column;
     justify-content: center;
+    column-count: 1;
     align-items: center;
     margin-top: 100%;
     margin-left: 20%;
