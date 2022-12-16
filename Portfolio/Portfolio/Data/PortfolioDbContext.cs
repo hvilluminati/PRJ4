@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Portfolio.Models;
 using Microsoft.EntityFrameworkCore;
-using File = Portfolio.Models.File;
 
 namespace Portfolio.Data
 {
@@ -18,7 +17,7 @@ namespace Portfolio.Data
         public DbSet<Skill> Skills { get; set; }
 
 
-        public DbSet<File> Files { get; set; }
+        public DbSet<Files> Files { get; set; }
 
         public DbSet<Portfolio.Models.User> Users { get; set; }
 

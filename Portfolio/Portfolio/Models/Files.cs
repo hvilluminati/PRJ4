@@ -10,7 +10,7 @@ namespace Portfolio.Models
 
 
 
-    public class File 
+    public class Files 
     {
         [Key] 
         public int DocumentId { get; set; }

@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Portfolio.Data;
 using Portfolio.Models;
 using Microsoft.CodeAnalysis;
-using Mapster;
 using Microsoft.AspNetCore.Authorization;
-using File = Portfolio.Models.File;
+using System.Text;
+using Portfolio.Data;
 
-namespace Portfolio.Controllers
+namespace Database_test1.Controllers
 {
     [Route("api/[controller]")]
-   // [ApiController, Authorize]
+    [ApiController, Authorize]
     public class FilesController : ControllerBase
     {
         private readonly PortfolioDbContext _context;
@@ -24,29 +22,20 @@ namespace Portfolio.Controllers
         public FilesController(PortfolioDbContext context)
         {
             _context = context;
-            TypeAdapterConfig<File,File_DTO>.NewConfig().IgnoreNullValues(true);
-
         }
 
         // GET: api/Files
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<File_DTO>>> GetFiles()
+        [HttpGet, AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Files>>> GetFiles()
         {
-            List<File> filesList= await _context.Files.ToListAsync();
-
-
-            List<File_DTO> DTOList = filesList.Adapt<List<File_DTO>>();
-
-            DTOList.ForEach(file => file.id = file.DocumentId.ToString());
-            return DTOList;
+            return await _context.Files.ToListAsync();
 
 
 
         }
 
-
         [HttpGet("FilesSort"), AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<File>>> GetFilesSorted(string sort)
+        public async Task<ActionResult<IEnumerable<Files>>> GetFilesSorted(string? sort)
         {
             if (sort == "name")
             {
@@ -66,7 +55,7 @@ namespace Portfolio.Controllers
 
 
         [HttpGet("FilesFind"), AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<File>>> GetFindFiles(string sort)
+        public async Task<ActionResult<IEnumerable<Files>>> GetFindFiles(string? sort)
         {
             var list = _context.Files.Where(x => x.Language.Contains(sort)).ToList();
             return list;
@@ -76,7 +65,7 @@ namespace Portfolio.Controllers
 
         // GET: api/Files/5
         [HttpGet("{id}"), AllowAnonymous]
-        public async Task<ActionResult<File>> GetFiles(int id)
+        public async Task<ActionResult<Files>> GetFiles(int id)
         {
             var files = await _context.Files.FindAsync(id);
 
@@ -95,78 +84,51 @@ namespace Portfolio.Controllers
         }
 
 
-        // PUT: api/Files/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutFiles(int id, File file)
-        {
-            if (id != file.DocumentId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(file).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FilesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/Files
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<File>> PostFiles(IFormFile files,string language)
+        public async Task<ActionResult<Files>> PostFiles(IFormFile files, [FromForm] string language)
         {
             if (files != null)
             {
+
                 if (files.Length > 0)
                 {
                     //Getting FileName
                     var fileName = Path.GetFileName(files.FileName);
                     //Getting file Extension
                     var fileExtension = Path.GetExtension(fileName);
-                    // concatenating  FileName + FileExtension
-                    
-                    var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
 
-                    var objfiles = new File()
+                    //Check if file with same name already exists
+                    if ((_context.Files.Where(x => x.Name == fileName).Any() == false))
                     {
-                        Name = newFileName,
-                        FileType = fileExtension,
-                        CreatedOn = DateTime.Now,
-                        Language = language
-                    };
 
-                    using (var target = new MemoryStream())
-                    {
-                        files.CopyTo(target);
-                        objfiles.DataFiles = target.ToArray();
+
+                        var objfiles = new Files()
+                        {
+                            Name = fileName,
+                            FileType = fileExtension,
+                            CreatedOn = DateTime.Now,
+                            Language = language,
+                        };
+
+                        using (var target = new MemoryStream())
+                        {
+                            files.CopyTo(target);
+                            objfiles.DataFiles = target.ToArray();
+                        }
+
+                        _context.Files.Add(objfiles);
+                        _context.SaveChanges();
+
+
+                        var file = await _context.Files.FindAsync(objfiles.DocumentId);
+                        return CreatedAtAction("GetFiles", new { id = file.DocumentId }, files);
                     }
-
-                    _context.Files.Add(objfiles);
-                    _context.SaveChanges();
-
-
-                    var File = await _context.Files.FindAsync(objfiles.DocumentId);
-                    return CreatedAtAction("GetFiles", new { id = File.DocumentId }, files);
-
+                    return StatusCode(403);
 
                 }
-                
+
             }
             return BadRequest();
         }
@@ -176,6 +138,21 @@ namespace Portfolio.Controllers
         public async Task<IActionResult> DeleteFiles(int id)
         {
             var files = await _context.Files.FindAsync(id);
+            if (files == null)
+            {
+                return NotFound();
+            }
+
+            _context.Files.Remove(files);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete("name/{name}")]
+        public async Task<IActionResult> DeleteFiles(string name)
+        {
+            var files = await _context.Files.Where(x => x.Name == name).FirstOrDefaultAsync();
             if (files == null)
             {
                 return NotFound();
