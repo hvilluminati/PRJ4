@@ -1186,18 +1186,14 @@ input[type='submit']:hover {
     flex-direction: column;
     column-count: 1;
     flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 35%;
     z-index: 5;
   }
   #contactTitle {
     position: absolute;
-    margin-right: 0%;
-    margin-left: 15%;
-    margin-top: -20%;
-    margin-bottom: 150%;
+    top: 2.5%;
+    margin: 20px auto;
   }
   #contactInformationBox {
     position: absolute;
@@ -1205,13 +1201,16 @@ input[type='submit']:hover {
     flex-wrap: nowrap;
     width: 100%;
     height: 60%;
+    top: 130px;
+    margin-left: 0;
   }
   #listLogo {
-    float: left;
     flex-direction: column;
-    column-count: 2;
+    column-count: 3;
     width: 50%;
     height: 100%;
+    margin: 0 auto;
+    padding: 0;
   }
 
   #emaillogo {
@@ -1279,7 +1278,8 @@ input[type='submit']:hover {
     z-index: 10;
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 90%;
+    position: absolute;
+    bottom: 0;
   }
 }
 
