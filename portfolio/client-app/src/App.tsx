@@ -85,7 +85,7 @@ function App() {
 					</Routes>
 				</HashRouter>
 			</Suspense>
-			<div id='langs'></div>
+			<div id='langs' data-testid='langs'></div>
 		</>
 	);
 }

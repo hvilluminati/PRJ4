@@ -1,50 +1,55 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
+jest.spyOn(console, 'error').mockImplementation(() => {});
 import Contact from '../pages/contactPage';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { JSDOM } from 'jsdom';
+import { fireEvent, render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-
-const dom = new JSDOM();
-global.document = dom.window.document;
+import '@testing-library/jest-dom/extend-expect';
 
 it('renders placeholdertext correctly', () => {
-	const screen = render(
+	const { getByPlaceholderText } = render(
 		<BrowserRouter>
 			<Contact />
 		</BrowserRouter>
 	);
 
-	expect(screen.getByPlaceholderText('Your name')).toBeInTheDocument;
-	expect(screen.getByPlaceholderText('Your email')).toBeInTheDocument;
-	expect(screen.getByPlaceholderText('Your message')).toBeInTheDocument;
+	expect(getByPlaceholderText('Your name')).toBeInTheDocument;
+	expect(getByPlaceholderText('Your email')).toBeInTheDocument;
+	expect(getByPlaceholderText('Your message')).toBeInTheDocument;
 });
 
-// describe('href logos', () => {
-//   it('href logos navigate correct', () => {
-//     const { getByText, getByTitle } = render(<Contact />);
+describe('href logos', () => {
+	it('href logos navigate correct', () => {
+		const { getByTestId } = render(
+			<BrowserRouter>
+				<Contact />
+			</BrowserRouter>
+		);
 
-// const emailLink = screen.getByTitle('emailLink');
-// const phoneLink = screen.getByTitle('phoneLink').closest('a');
-// const skypeLink = screen.getByTitle('skypeLink').closest('a');
-// const linkedinLink = screen.getByTitle('linkedinLink').closest('a');
-// const fbLink = screen.getByTitle('fbLink').closest('a');
-// const twitterLink = screen.getByTitle('twitterLink').closest('a');
+		const emailLink = getByTestId('emailLink');
+		const phoneLink = getByTestId('phoneLink');
+		const skypeLink = getByTestId('skypeLink');
+		const linkedinLink = getByTestId('linkedinLink');
+		const fbLink = getByTestId('fbLink');
+		const twitterLink = getByTestId('twitterLink');
 
-// const emailLogo = getByAltText(/email logo/i);
+		expect(emailLink).toHaveAttribute('href', 'mailto:JohnDoe@email.com');
+		expect(phoneLink).toHaveAttribute('href', 'tel:+4588888888');
+		expect(skypeLink).toHaveAttribute('href', 'https://www.skype.com/en/');
+		expect(linkedinLink).toHaveAttribute('href', 'https://www.linkedin.com/');
+		expect(fbLink).toHaveAttribute('href', 'https://www.facebook.com/');
+		expect(twitterLink).toHaveAttribute('href', 'https://www.twitter.com/');
+	});
+});
 
-// fireEvent.click(emailLink);
-// fireEvent.click(phoneLink);
-// fireEvent.click(skypeLink);
-// fireEvent.click(linkedinLink);
-// fireEvent.click(fbLink);
-// fireEvent.click(twitterLink);
+it('Send form', () => {
+	const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
+	const screen = render(
+		<BrowserRouter>
+			<Contact />
+		</BrowserRouter>
+	);
+	const submitBtn = screen.getByPlaceholderText('Contact me');
 
-// expect(emailLink).toHaveAttribute('href', 'mailto:JohnDoe@email.com');
-// expect(phoneLink).toHaveAttribute('href', 'tel:+4588888888');
-// expect(skypeLink).toHaveAttribute('href', 'https://www.skype.com/en/');
-// expect(linkedinLink).toHaveAttribute('href', 'https://www.linkedin.com/');
-// expect(fbLink).toHaveAttribute('href', 'https://www.facebook.com/');
-// expect(twitterLink).toHaveAttribute('href', 'https://www.twitter.com/');
-//   });
-// });
+	fireEvent.submit(submitBtn);
+
+	expect(consoleSpy).toHaveBeenCalledWith('Trying to send email');
+});

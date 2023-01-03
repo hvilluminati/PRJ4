@@ -103,7 +103,6 @@ export function posSetter(e: any = 0) {
 				break;
 		}
 		y += 15;
-		console.log(x);
 	}
 	var vw = window.innerWidth;
 	var vh = document.documentElement.clientHeight;

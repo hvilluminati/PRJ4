@@ -17,12 +17,17 @@ function About() {
 			window.localStorage.removeItem('expire');
 		}
 
-		getDescription().then((d) => {
-			setDesc(d.mainText);
-			setTitle(d.headline);
-		});
+		getDescription()
+			.then((d) => {
+				setDesc(d.mainText);
+				setTitle(d.headline);
+			})
+			.catch(() => {
+				setDesc('Error');
+				setTitle('Error');
+			});
 
-		if (window.localStorage.getItem('jwt') !== null) {
+		if (window.localStorage.getItem('jwt')) {
 			document.getElementById('description')!.className = 'authorized';
 			document.getElementById('aboutTitle')!.className = 'authorized';
 			setAuthorized(true);
@@ -38,48 +43,52 @@ function About() {
 					</button>{' '}
 				</Link>
 				<div id='about'>
-					<div id='aboutTitle'>
+					<div id='aboutTitle' data-testid='aboutTitle'>
 						<Popup
 							trigger={
-								<button className='aboutPopupBtn' disabled={!authorized}>
-									<h1 id='aboutTitleText'>{title}</h1>
+								<button
+									className='aboutPopupBtn'
+									disabled={!authorized}
+									data-testid='butt'
+								>
+									<h1 id='aboutTitleText' data-testid='title'>
+										{title}
+									</h1>
 								</button>
-							}>
+							}
+						>
 							<AboutPopup sender='title' func={setTitle} />
 						</Popup>
 					</div>
 					<div id='content'>
-						<div id='description'>
+						<div id='description' data-testid='desc'>
 							<Popup
 								trigger={
-									<button className='aboutPopupBtn' disabled={!authorized}>
-										<p id='t'>
-											{/*Lorem ipsum dolor sit amet consectetur adipisicing elit.
-											Maxime porro minima delectus. Cupiditate rem ducimus non
-											voluptatem in. Pariatur enim quae perspiciatis dolores
-											veritatis, tempore modi similique quisquam error ad
-											aspernatur obcaecati voluptatibus incidunt, quis quos
-											delectus aut quibusdam. Dignissimos recusandae aspernatur
-											ea facilis fugiat tempore expedita explicabo nesciunt
-											officiis aliquid libero corrupti veniam fuga nisi harum,
-											possimus iusto est voluptate voluptas quibusdam
-											repellendus. Iusto aspernatur quis nisi rerum ea quae id,
-											dolorem voluptatum quasi ipsum ratione corporis ipsa
-											dignissimos praesentium molestiae sed neque hic tempora
-											provident debitis nemo odit sit sequi! Reprehenderit
-											exercitationem quidem voluptatibus blanditiis facilis
-											quisquam tenetur.*/}{' '}
+									<button
+										className='aboutPopupBtn'
+										disabled={!authorized}
+										data-testid='butt'
+									>
+										<p id='t' data-testid='description'>
 											{desc}
 										</p>
 									</button>
 								}
-								position='right center'>
-								<AboutPopup sender='description' func={setDesc} />
+								position='right center'
+							>
+								<AboutPopup
+									sender='description'
+									func={setDesc}
+								/>
 							</Popup>
 						</div>
 						<div id='rightSide'>
 							<div id='picture'>
-								<img id='pic' src={picture} alt='insertPersonHere' />
+								<img
+									id='pic'
+									src={picture}
+									alt='insertPersonHere'
+								/>
 							</div>
 						</div>
 					</div>
