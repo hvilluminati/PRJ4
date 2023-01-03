@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import Contact from '../pages/contactPage';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { JSDOM } from 'jsdom';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 const dom = new JSDOM();
 global.document = dom.window.document;
